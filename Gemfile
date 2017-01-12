@@ -15,11 +15,13 @@ gem 'uglifier', '>= 1.3.0'
 gem 'sass-rails', '~> 5.0'
 gem 'coffee-rails', '~> 4.2'
 gem 'jquery-rails'
-gem 'compass-rails', '~> 2.0.5'
+# gem 'compass-rails', '~> 2.0.5'
 gem 'font-awesome-rails'
 gem 'rails-i18n'
 gem 'slim-rails'
 gem 'sdoc', '~> 0.4.0', group: :doc
+
+gem 'json', github: 'flori/json', branch: 'v1.8'
 
 group :development, :test do
   gem 'awesome_print'
@@ -40,7 +42,7 @@ end
 group :development do
   gem 'annotate'
   gem 'better_errors'
-  gem 'quiet_assets'
+  # gem 'quiet_assets'
   gem 'web-console', '~> 2.0'
   gem 'rack-env_ribbon'
 end

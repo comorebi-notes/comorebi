@@ -103,6 +103,9 @@ GEM
       guard (~> 2.1)
       guard-compat (~> 1.1)
       rspec (>= 2.99.0, < 4.0)
+    hpricot (0.8.6)
+    html2slim (0.2.0)
+      hpricot
     i18n (0.7.0)
     jbuilder (2.6.1)
       activesupport (>= 3.0.0, < 5.1)
@@ -284,6 +287,7 @@ DEPENDENCIES
   factory_girl_rails
   font-awesome-rails
   guard-rspec
+  html2slim
   jbuilder (~> 2.5)
   jquery-rails
   json!

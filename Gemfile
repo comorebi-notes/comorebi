@@ -23,6 +23,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'json', github: 'flori/json', branch: 'v1.8'
 
+gem "bulma-rails", "~> 0.3.0"
+gem 'normalize-rails'
+
 group :development, :test do
   gem 'awesome_print'
   gem 'bullet'

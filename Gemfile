@@ -49,7 +49,7 @@ group :development do
   gem 'better_errors'
   # gem 'quiet_assets'
   gem 'web-console', '~> 2.0'
-  gem 'rack-env_ribbon'
+  # gem 'rack-env_ribbon'
   gem 'html2slim'
 end
 

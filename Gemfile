@@ -20,11 +20,13 @@ gem 'font-awesome-rails'
 gem 'rails-i18n'
 gem 'slim-rails'
 gem 'sdoc', '~> 0.4.0', group: :doc
-
 gem 'json', github: 'flori/json', branch: 'v1.8'
 
-gem "bulma-rails", "~> 0.3.0"
+gem 'bulma-rails', '~> 0.3.0'
 gem 'normalize-rails'
+
+gem 'devise'
+gem 'devise-i18n'
 
 group :development, :test do
   gem 'awesome_print'

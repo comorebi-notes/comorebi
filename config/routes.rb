@@ -1,11 +1,9 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :admins
   get 'top/index'
 
   root to: 'top#index'
-
-  namespace :admin do
-    root to: 'users#index'
-    resources :users
+  resources :admins do
+    root to: 'admins#index'
   end
 end

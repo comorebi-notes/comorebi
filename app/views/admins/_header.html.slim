@@ -7,7 +7,7 @@ section.hero.is-success.is-medium
             | comorebi CMS
         .nav-right.nav-menu
           .nav-item
-            = link_to destroy_user_session_path, class: "button is-success is-inverted", method: :delete do
-              span.icon
-                i.fa.fa-sign-out
-              span Log Out
+            = link_to destroy_admin_session_path, class: "button is-success is-inverted", method: :delete do
+              / span.icon
+              /   i.fa.fa-sign-out
+              span Sign Out

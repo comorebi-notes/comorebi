@@ -21,6 +21,7 @@ gem 'rails-i18n'
 gem 'slim-rails'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'json', github: 'flori/json', branch: 'v1.8'
+gem 'seed-fu'
 
 gem 'bulma-rails', '~> 0.3.0'
 gem 'normalize-rails'
@@ -47,9 +48,7 @@ end
 group :development do
   gem 'annotate'
   gem 'better_errors'
-  # gem 'quiet_assets'
   gem 'web-console', '~> 2.0'
-  # gem 'rack-env_ribbon'
   gem 'html2slim'
 end
 

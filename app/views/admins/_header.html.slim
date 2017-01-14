@@ -1,0 +1,13 @@
+section.hero.is-success.is-medium
+  .hero-head
+    header.nav
+      .container
+        .nav-left
+          a.nav-item href="/admin"
+            | comorebi CMS
+        .nav-right.nav-menu
+          .nav-item
+            = link_to destroy_admin_session_path, class: "button is-success is-inverted", method: :delete do
+              / span.icon
+              /   i.fa.fa-sign-out
+              span Sign Out

@@ -1,0 +1,21 @@
+doctype html
+html
+  head
+    title
+      | Admin
+    = csrf_meta_tags
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+
+  body
+    = render "admins/header"
+    section.section
+      .container
+        - if notice
+          p.notification.is-primary
+            = notice
+        - if alert
+          p.notification.is-warning
+            = alert
+
+        = yield

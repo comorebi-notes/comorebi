@@ -20,8 +20,14 @@ gem 'font-awesome-rails'
 gem 'rails-i18n'
 gem 'slim-rails'
 gem 'sdoc', '~> 0.4.0', group: :doc
-
 gem 'json', github: 'flori/json', branch: 'v1.8'
+gem 'seed-fu'
+
+gem 'bulma-rails', '~> 0.3.0'
+gem 'normalize-rails'
+
+gem 'devise'
+gem 'devise-i18n'
 
 group :development, :test do
   gem 'awesome_print'
@@ -42,9 +48,8 @@ end
 group :development do
   gem 'annotate'
   gem 'better_errors'
-  # gem 'quiet_assets'
   gem 'web-console', '~> 2.0'
-  gem 'rack-env_ribbon'
+  gem 'html2slim'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

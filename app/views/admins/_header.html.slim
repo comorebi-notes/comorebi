@@ -1,4 +1,4 @@
-section.hero.is-success.is-medium
+section.hero.is-primary.is-medium
   .hero-head
     header.nav
       .container
@@ -7,5 +7,5 @@ section.hero.is-success.is-medium
         .nav-right.nav-menu
           = link_to "rails_admin", rails_admin.dashboard_path, class: "nav-item"
           .nav-item
-            = link_to destroy_admin_session_path, class: "button is-success is-inverted", method: :delete do
+            = link_to destroy_admin_session_path, class: "button is-primary is-inverted", method: :delete do
               span logout

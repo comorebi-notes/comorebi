@@ -12,10 +12,10 @@ html
     section.section
       .container
         - if notice
-          p.notification.is-primary
+          p.notification.is-success
             = notice
         - if alert
-          p.notification.is-warning
+          p.notification.is-danger
             = alert
 
         = yield

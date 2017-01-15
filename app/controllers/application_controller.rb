@@ -3,8 +3,12 @@ class ApplicationController < ActionController::Base
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
 
+  def after_sign_in_path_for(resource)
+    admin_path
+  end
+
   def after_sign_out_path_for(resource)
-    admins_root_path
+    new_admin_session_path
   end
 
   protected

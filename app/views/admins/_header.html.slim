@@ -3,11 +3,9 @@ section.hero.is-success.is-medium
     header.nav
       .container
         .nav-left
-          a.nav-item href="/admin"
-            | comorebi CMS
+          = link_to "comorebi CMS", admin_path, class: "nav-item"
         .nav-right.nav-menu
+          = link_to "rails_admin", rails_admin.dashboard_path, class: "nav-item"
           .nav-item
             = link_to destroy_admin_session_path, class: "button is-success is-inverted", method: :delete do
-              / span.icon
-              /   i.fa.fa-sign-out
-              span Log Out
+              span logout

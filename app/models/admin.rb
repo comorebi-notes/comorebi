@@ -8,6 +8,7 @@ class Admin < ApplicationRecord
          :authentication_keys => [:login]
 
   attr_accessor :login
+  validates :name, presence: true
 
   def self.find_first_by_auth_conditions(warden_conditions)
     conditions = warden_conditions.dup

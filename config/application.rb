@@ -21,8 +21,10 @@ module Comorebi
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
-
+    
     config.i18n.default_locale = :ja
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
+
     config.generators do |g|
       g.assets false
       g.helper false
@@ -30,6 +32,9 @@ module Comorebi
       g.test_framework :rspec, view_specs: false, routing_specs: false
     end
 
-    config.action_view.field_error_proc = proc { |html_tag, instance| "<span class='is-danger'>#{html_tag}</span>".html_safe }
+    # エラー時にクラスを付与
+    config.action_view.field_error_proc = Proc.new do |html_tag, instance|
+      Nokogiri::HTML.fragment(html_tag).search('input', 'textarea', 'select', 'label').add_class('is-danger').to_html.html_safe
+    end
   end
 end

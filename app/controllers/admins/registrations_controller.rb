@@ -40,6 +40,10 @@ class Admins::RegistrationsController < Devise::RegistrationsController
 
   protected
 
+  def after_update_path_for(resource)
+    admin_path
+  end
+
   def configure_account_update_params
     added_attrs = [:name, :email, :password, :password_confirmation, :remember_me]
     devise_parameter_sanitizer.permit(:sign_up, keys: added_attrs)

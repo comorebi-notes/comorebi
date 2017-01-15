@@ -1,0 +1,11 @@
+ja:
+  activerecord:
+    models:
+      admin: 管理者ユーザ
+    attributes:
+      admin:
+        name: ユーザ名
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: パスワード (確認)
+        current_password: 現在のパスワード

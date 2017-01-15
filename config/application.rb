@@ -29,5 +29,7 @@ module Comorebi
       g.template_engine = :slim
       g.test_framework :rspec, view_specs: false, routing_specs: false
     end
+
+    config.action_view.field_error_proc = proc { |html_tag, instance| "<span class='is-danger'>#{html_tag}</span>".html_safe }
   end
 end

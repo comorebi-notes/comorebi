@@ -2,7 +2,10 @@ doctype html
 html
   head
     title
-      | Admin
+      - if yield(:title).present?
+        = "#{yield(:title)} | comorebi CMS"
+      - else
+        | comorebi CMS
     = csrf_meta_tags
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'

@@ -1,6 +1,10 @@
 class Admin < ApplicationRecord
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable,
+  devise :database_authenticatable,
+         :registerable,
+         :recoverable,
+         :rememberable,
+         :trackable,
+         :validatable,
          :authentication_keys => [:login]
 
   attr_accessor :login

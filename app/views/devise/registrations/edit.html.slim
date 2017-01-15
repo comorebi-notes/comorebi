@@ -1,46 +1,29 @@
-h2
-  | Edit 
-  = resource_name.to_s.humanize
-= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
-  = devise_error_messages!
-  .field
-    = f.label :name
-    br
-    = f.text_field :name, autofocus: true
-  .field
-    = f.label :email
-    br
-    = f.email_field :email, autofocus: true
-  - if devise_mapping.confirmable? && resource.pending_reconfirmation?
-    div
-      | Currently waiting confirmation for: 
-      = resource.unconfirmed_email
-  .field
-    = f.label :password
-    i
-      | (leave blank if you don't want to change it)
-    br
-    = f.password_field :password, autocomplete: "off"
-    - if @minimum_password_length
-      br
-      em
-        = @minimum_password_length
-        |  characters minimum
-  .field
-    = f.label :password_confirmation
-    br
-    = f.password_field :password_confirmation, autocomplete: "off"
-  .field
-    = f.label :current_password
-    i
-      | (we need your current password to confirm your changes)
-    br
-    = f.password_field :current_password, autocomplete: "off"
-  .actions
-    = f.submit "Update"
-h3
-  | Cancel my account
-p
-  | Unhappy? 
-  = button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete
-= link_to "Back", :back
+- title = "ユーザ情報の変更"
+- content_for :title, title
+
+.containar
+  h1.title
+    = title
+  = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+    = f.label :name, "ユーザ名", class: :label
+    p.control
+      = f.text_field :name, class: :input, autofocus: true
+    = f.label :email, "メールアドレス", class: :label
+    p.control
+      = f.email_field :email, class: :input, autofocus: true
+    = f.label :password, "パスワード", class: :label
+    p.control
+      = f.password_field :password, class: :input, autocomplete: "off"
+      span.help
+        | 空欄の場合は変更されません。
+    = f.label :password_confirmation, "パスワード (確認)", class: :label
+    p.control
+      = f.password_field :password_confirmation, class: :input, autocomplete: "off"
+    = f.label :current_password, "現在のパスワード", class: :label
+    div.control
+      = f.password_field :current_password, class: :input, autocomplete: "off"
+    p.control
+      = f.submit "変更する", class: "button is-primary"
+  p.control
+    = button_to "ユーザを削除する", registration_path(resource_name),
+      class: "button is-danger", data: { confirm: "本当に削除しますか？" }, method: :delete

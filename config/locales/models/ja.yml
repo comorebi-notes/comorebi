@@ -1,7 +1,5 @@
 ja:
   activerecord:
-    models:
-      admin: 管理者ユーザ
     attributes:
       admin:
         name: ユーザ名

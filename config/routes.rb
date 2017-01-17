@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   root to: "top#index"
 
-  resource :admin, only: [:show]
+  resource :admin, only: [:index]
   namespace :admin do
   end
 end

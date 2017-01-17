@@ -6,12 +6,12 @@ class Admins::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/sign_up
   def new
-    redirect_to new_admin_session_path, alert: 'ユーザの新規作成はできません。'
+    redirect_to new_admin_session_path, alert: 'アカウントの新規作成はできません。'
   end
 
   # POST /resource
   def create
-    redirect_to new_admin_session_path, alert: 'ユーザの新規作成はできません。'
+    redirect_to new_admin_session_path, alert: 'アカウントの新規作成はできません。'
   end
 
   # GET /resource/edit

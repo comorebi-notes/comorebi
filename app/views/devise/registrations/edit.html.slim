@@ -1,4 +1,4 @@
-- title = t(".title", resource: t("activerecord.models.#{resource.class.to_s.downcase}"))
+- title = t(".title", resource: "管理者アカウント")
 - content_for :title, title
 
 .containar
@@ -18,7 +18,7 @@
       h1.title
         = title
       h2.subtitle.is-6
-        | ユーザ情報の編集を行います。
+        | アカウント情報の編集を行います。
       = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
         = f.label :name, class: :label
         p.control
@@ -40,5 +40,5 @@
         p.control
           = f.submit "更新する", class: "button is-primary"
       / p.control
-      /   = button_to "このユーザを削除する", registration_path(resource_name),
+      /   = button_to "このアカウントを削除する", registration_path(resource_name),
       /     class: "button is-danger", data: { confirm: "本当に削除しますか？" }, method: :delete

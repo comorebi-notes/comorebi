@@ -1,0 +1,35 @@
+- content_for :title, t(".title")
+
+= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+  section.hero.is-primary.is-fullheight
+    .hero-body
+      .container
+        .columns
+          .column.is-half.is-offset-one-quarter
+            .title.is-3.has-text-centered
+              | comorebi CMS
+            .box
+              - if notice
+                p.notification.is-success
+                  = notice
+              - if alert
+                p.notification.is-danger
+                  = alert
+              = f.label :login, "アカウント名 または メールアドレス", class: :label
+              p.control
+                = f.text_field :login, class: :input, autofocus: true
+              = f.label :password, "パスワード", class: :label
+              p.control
+                = f.password_field :password, class: :input, autocomplete: "off"
+              - if devise_mapping.rememberable?
+                p.control
+                  = f.label :remember_me, class: "label checkbox" do
+                    = f.check_box :remember_me
+                    | ログイン状態を記憶
+              p.control
+                = f.submit "ログイン", class: "button is-primary is-fullwidth is-medium"
+
+            / p.has-text-centered
+            /   = render "devise/shared/links"
+            p.has-text-centered
+              small Copyright &copy; 2017 comorebi notes All Rights Reserved.

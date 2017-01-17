@@ -2,12 +2,13 @@ doctype html
 html
   head
     title
-      | Comorebi
+      - if yield(:title).present?
+        = "#{yield(:title)} | comorebi"
+      - else
+        | comorebi
     = csrf_meta_tags
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
 
   body
-    section.section
-      .container
-        = yield
+    = yield

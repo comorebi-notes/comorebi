@@ -1,0 +1,44 @@
+- title = t(".title", resource: "管理者アカウント")
+- content_for :title, title
+
+.containar
+  .columns
+    .column.is-half.is-offset-one-quarter
+      - if @admin.errors.any?
+        article.message.is-danger
+          .message-header
+            p
+              = @admin.errors.count
+              | 件のエラーがあります。
+          .message-body
+            ul
+              - @admin.errors.full_messages.each do |msg|
+                li
+                  = msg
+      h1.title
+        = title
+      h2.subtitle.is-6
+        | アカウント情報の編集を行います。
+      = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+        = f.label :name, class: :label
+        p.control
+          = f.text_field :name, class: :input, autofocus: true
+        = f.label :email, class: :label
+        p.control
+          = f.email_field :email, class: :input, autofocus: true
+        = f.label :password, class: :label
+        p.control
+          = f.password_field :password, class: :input, autocomplete: "off"
+          span.help
+            | 空欄にした場合は変更されません。
+        = f.label :password_confirmation, class: :label
+        p.control
+          = f.password_field :password_confirmation, class: :input, autocomplete: "off"
+        = f.label :current_password, class: :label
+        div.control
+          = f.password_field :current_password, class: :input, autocomplete: "off"
+        p.control
+          = f.submit "更新する", class: "button is-primary"
+      / p.control
+      /   = button_to "このアカウントを削除する", registration_path(resource_name),
+      /     class: "button is-danger", data: { confirm: "本当に削除しますか？" }, method: :delete

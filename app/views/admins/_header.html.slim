@@ -1,13 +1,13 @@
-section.hero.is-success.is-medium
+section.hero.is-primary.is-medium
   .hero-head
     header.nav
       .container
         .nav-left
-          a.nav-item href="/admin"
-            | comorebi CMS
+          = link_to "comorebi CMS", admin_path, class: "nav-item title is-4"
         .nav-right.nav-menu
+          = link_to "rails_admin", rails_admin.dashboard_path, class: "nav-item"
+          = link_to edit_admin_registration_path, class: "nav-item" do
+            = "@#{current_admin.name}"
           .nav-item
-            = link_to destroy_admin_session_path, class: "button is-success is-inverted", method: :delete do
-              / span.icon
-              /   i.fa.fa-sign-out
-              span Log Out
+            = link_to destroy_admin_session_path, class: "button is-primary is-inverted", method: :delete do
+              span ログアウト

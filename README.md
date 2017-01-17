@@ -2,6 +2,6 @@
 
 ## versions
 - ruby
-  - 2.4.0
+  - 2.3.3
 - rails
   - 5.0.1

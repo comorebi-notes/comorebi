@@ -22,15 +22,22 @@ gem 'slim-rails'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'json', github: 'flori/json', branch: 'v1.8'
 gem 'seed-fu'
+gem 'rails-controller-testing'
 
+# admin tools
 gem 'rails_admin'
 gem 'rails_admin-i18n'
 
+# CSS
 gem 'bulma-rails', '~> 0.3.0'
 gem 'normalize-rails'
 
+# authentication
 gem 'devise'
 gem 'devise-i18n'
+
+# test
+gem 'rails-controller-testing'
 
 group :development, :test do
   gem 'awesome_print'

@@ -36,9 +36,6 @@ gem 'normalize-rails'
 gem 'devise'
 gem 'devise-i18n'
 
-# test
-gem 'rails-controller-testing'
-
 group :development, :test do
   gem 'awesome_print'
   gem 'bullet'

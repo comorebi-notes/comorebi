@@ -1,7 +1,7 @@
 - content_for :title, t(".title")
 
 = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  section.hero.is-primary.is-fullheight
+  section.hero.is-primary.is-fullheight.is-flex-mobile
     .hero-body
       .container
         .columns

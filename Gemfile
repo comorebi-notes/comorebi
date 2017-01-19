@@ -60,10 +60,10 @@ group :development do
 end
 
 
-group :production do
-  # for Heroku
-  gem 'rails_12factor'
-end
+# for Heroku
+source 'https://rubygems.org'
+ruby '2.3.3'
+gem 'rails_12factor', group: :production
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

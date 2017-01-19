@@ -11,7 +11,7 @@ html
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
 
   body
-    = render "admins/header"
+    = render "shared/header"
     section.section
       .container
         - if notice
@@ -20,5 +20,5 @@ html
         - if alert
           p.notification.is-danger
             = alert
-
         = yield
+    = render "shared/footer"

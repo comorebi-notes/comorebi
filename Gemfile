@@ -15,7 +15,6 @@ gem 'uglifier', '>= 1.3.0'
 gem 'sass-rails', '~> 5.0'
 gem 'coffee-rails', '~> 4.2'
 gem 'jquery-rails'
-# gem 'compass-rails', '~> 2.0.5'
 gem 'font-awesome-rails'
 gem 'rails-i18n'
 gem 'slim-rails'
@@ -30,7 +29,7 @@ gem 'rails_admin-i18n'
 
 # CSS
 gem 'bulma-rails', '~> 0.3.0'
-gem 'normalize-rails'
+# gem 'compass-rails'
 
 # authentication
 gem 'devise'

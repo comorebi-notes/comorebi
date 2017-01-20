@@ -35,6 +35,9 @@ gem 'bulma-rails', '~> 0.3.0'
 gem 'devise'
 gem 'devise-i18n'
 
+# tags
+gem 'acts-as-taggable-on'
+
 group :development, :test do
   gem 'awesome_print'
   gem 'bullet'
@@ -44,6 +47,7 @@ group :development, :test do
   gem 'guard-rspec'
   gem 'pry-rails'
   gem 'pry-byebug'
+  gem 'rails-erd'
   gem 'rspec-rails'
   gem 'rubocop'
   gem 'shoulda-matchers'

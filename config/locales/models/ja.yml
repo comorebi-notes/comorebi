@@ -7,3 +7,8 @@ ja:
         password: パスワード
         password_confirmation: パスワード (確認)
         current_password: 現在のパスワード
+      work:
+        title: タイトル
+        description: 説明
+        category: カテゴリ
+        status: 公開状態

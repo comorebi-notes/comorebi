@@ -11,7 +11,9 @@ Rails.application.routes.draw do
 
   root to: "top#index"
 
-  resource :admin, only: [:show]
   namespace :admin do
+    root to: "works#index"
+    resources :works
+    resources :music
   end
 end

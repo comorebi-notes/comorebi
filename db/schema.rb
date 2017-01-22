@@ -76,11 +76,12 @@ ActiveRecord::Schema.define(version: 20170122051657) do
 
   create_table "works", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "title",                                 null: false
-    t.integer  "category",                  default: 0, null: false
     t.text     "description", limit: 65535
+    t.integer  "category",                  default: 0, null: false
+    t.integer  "status",                    default: 0, null: false
     t.datetime "created_at",                            null: false
     t.datetime "updated_at",                            null: false
-    t.index ["category"], name: "index_works_on_category", using: :btree
+    t.index ["category", "status"], name: "index_works_on_category_and_status", using: :btree
   end
 
   add_foreign_key "work_musics", "Musics"

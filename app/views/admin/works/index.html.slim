@@ -1,0 +1,38 @@
+- title = "作品一覧"
+- content_for :title, title
+
+.content
+  h1
+    | Works
+  p
+    = link_to "new", new_admin_work_path, class: "button is-primary is-fullwidth"
+
+  h2
+    | Edit
+  table.table
+    thead
+      tr
+        th
+          | title
+        th
+          | description
+        th
+          | status
+        th
+          | created_at
+        th
+          | links
+      tbody
+        - @works.each do |work|
+          tr
+            td
+              = work.title
+            th
+              = work.description
+            th
+              = work.status
+            th
+              = work.created_at
+            th
+              = link_to "edit", edit_admin_work_path(work), class: :button
+              = link_to "delete", admin_work_path(work), class: :button, data: { confirm: "本当に削除しますか？" }, method: :delete

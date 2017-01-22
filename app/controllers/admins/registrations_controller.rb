@@ -41,7 +41,7 @@ class Admins::RegistrationsController < Devise::RegistrationsController
   protected
 
   def after_update_path_for(resource)
-    admin_path
+    admin_root_path
   end
 
   def configure_account_update_params

@@ -1,0 +1,21 @@
+- title = "作品追加"
+- content_for :title, title
+
+.containar
+  .columns
+    .column.is-half.is-offset-one-quarter
+      = render partial: "shared/error_notification", locals: { model: @work }
+
+      h1.title
+        = title
+      h2.subtitle.is-6
+        | 作品の追加を行います。
+
+      = form_for @work, url: admin_works_path, method: :post do |f|
+        = f.label :title, class: :label
+        p.control
+          = f.text_field :title, class: :input, autofocus: true
+          = render partial: "shared/error_message", locals: { model: @work, attribute: :title }
+
+        p.control
+          = f.submit "追加", class: "button is-primary"

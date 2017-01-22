@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170120145534) do
+ActiveRecord::Schema.define(version: 20170122051657) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name",                   default: "", null: false
@@ -29,6 +29,14 @@ ActiveRecord::Schema.define(version: 20170120145534) do
     t.index ["email"], name: "index_admins_on_email", unique: true, using: :btree
     t.index ["name"], name: "index_admins_on_name", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true, using: :btree
+  end
+
+  create_table "musics", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "title",                    null: false
+    t.text     "lyrics",     limit: 65535
+    t.text     "sound_file", limit: 65535
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   create_table "taggings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -56,4 +64,25 @@ ActiveRecord::Schema.define(version: 20170120145534) do
     t.index ["name"], name: "index_tags_on_name", unique: true, using: :btree
   end
 
+  create_table "work_musics", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "Work_id"
+    t.integer  "Music_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["Music_id"], name: "index_work_musics_on_Music_id", using: :btree
+    t.index ["Work_id", "Music_id"], name: "index_work_musics_on_work_id_and_music_id", using: :btree
+    t.index ["Work_id"], name: "index_work_musics_on_Work_id", using: :btree
+  end
+
+  create_table "works", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "title",                                 null: false
+    t.integer  "category",                  default: 0, null: false
+    t.text     "description", limit: 65535
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+    t.index ["category"], name: "index_works_on_category", using: :btree
+  end
+
+  add_foreign_key "work_musics", "Musics"
+  add_foreign_key "work_musics", "Works"
 end

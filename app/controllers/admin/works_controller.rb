@@ -28,6 +28,6 @@ class Admin::WorksController < AdminsController
   private
 
   def work_params
-    params.require(:work).permit(:title, :description, :category, :status)
+    params.require(:work).permit(:title, :description, :category, :status, :tag_list)
   end
 end

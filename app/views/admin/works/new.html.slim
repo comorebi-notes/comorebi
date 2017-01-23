@@ -17,5 +17,10 @@
           = f.text_field :title, class: :input, autofocus: true
           = render partial: "shared/error_message", locals: { model: @work, attribute: :title }
 
+        = f.label :tags, class: :label
+        p.control
+          = text_field_tag "work[tag_list]", @work.tags.join(','), class: :input, autofocus: true
+          = render partial: "shared/error_message", locals: { model: @work, attribute: "work[tag_list]" }
+
         p.control
           = f.submit "追加", class: "button is-primary"

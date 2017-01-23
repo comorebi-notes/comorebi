@@ -19,6 +19,8 @@
         th
           | status
         th
+          | tags
+        th
           | created_at
         th
           | links
@@ -27,12 +29,17 @@
           tr
             td
               = work.title
-            th
+            td
               = work.description
-            th
-              = work.status
-            th
+            td
+              = human_work_status(work.status)
+            td
+              - work.tag_list.each do |tag|
+                span.tag.is-info
+                  = tag
+                  button.delete.is-small
+            td
               = work.created_at
-            th
-              = link_to "edit", edit_admin_work_path(work), class: :button
-              = link_to "delete", admin_work_path(work), class: :button, data: { confirm: "本当に削除しますか？" }, method: :delete
+            td
+              = link_to "編集", edit_admin_work_path(work), class: "button is-small is-primary"
+              = link_to "削除", admin_work_path(work), class: "button is-small is-danger", data: { confirm: "本当に削除しますか？" }, method: :delete

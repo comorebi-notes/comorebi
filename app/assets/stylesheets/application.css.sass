@@ -9,7 +9,20 @@ $warning: #e4a020
 
 @import "bulma"
 @import "font-awesome"
-@import "partials/*"
+// @import "partials/*"
 
 a
   transition: all .2s ease-in-out !important
+
+label.is-danger
+  color: $danger
+
+p.control
+  span.help:not(:first-of-type)
+    margin-top: 0
+
+.tag:not(:last-of-type)
+  margin-right: .25em
+
+.button:not(:last-of-type)
+  margin-right: .3em

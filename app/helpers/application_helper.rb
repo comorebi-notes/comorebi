@@ -7,7 +7,7 @@ module ApplicationHelper
     end
   end
 
-  def select_for_work_children(model_array)
+  def select_for_work(model_array)
     model_array.map do |model|
       [model[:title], model[:id]]
     end

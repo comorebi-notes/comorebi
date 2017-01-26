@@ -23,11 +23,11 @@
           = render "shared/error_message", model: @work, attribute: "work[tag_list]"
 
         = f.label :musics, class: :label
-        p.control
+        p.control.select
           / = collection_check_boxes :work, :musics, @musics, :id, :title do |music|
           /   = music.label(class: :checkbox) { music.check_box + music.text }
           /   end
-          = select_tag "work[music_ids][]", options_for_select(select_for_work_children(@musics)), autofocus: true
+          = select_tag "work[music_ids][]", options_for_select(select_for_work(@musics)), multiple: true, autofocus: true
 
         p.control
           = f.submit "追加", class: "button is-primary"

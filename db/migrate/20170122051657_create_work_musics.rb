@@ -1,8 +1,8 @@
 class CreateWorkMusics < ActiveRecord::Migration[5.0]
   def change
     create_table :work_musics do |t|
-      t.references :Work, foreign_key: true
-      t.references :Music, foreign_key: true
+      t.references :work, foreign_key: true
+      t.references :music, foreign_key: true
 
       t.timestamps
     end

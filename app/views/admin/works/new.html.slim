@@ -4,7 +4,7 @@
 .containar
   .columns
     .column.is-half.is-offset-one-quarter
-      = render partial: "shared/error_notification", locals: { model: @work }
+      = render "shared/error_notification", model: @work
 
       h1.title
         = title
@@ -15,12 +15,19 @@
         = f.label :title, class: :label
         p.control
           = f.text_field :title, class: :input, autofocus: true
-          = render partial: "shared/error_message", locals: { model: @work, attribute: :title }
+          = render "shared/error_message", model: @work, attribute: :title
 
         = f.label :tags, class: :label
         p.control
           = text_field_tag "work[tag_list]", @work.tags.join(','), class: :input, autofocus: true
-          = render partial: "shared/error_message", locals: { model: @work, attribute: "work[tag_list]" }
+          = render "shared/error_message", model: @work, attribute: "work[tag_list]"
+
+        = f.label :musics, class: :label
+        p.control
+          = collection_check_boxes :work, :musics, @musics, :id, :title do |music|
+            = music.label(class: :checkbox) { music.check_box + music.text }
+            end
+          / = f.select :musics, select_for_work_children(@musics), autofocus: true
 
         p.control
           = f.submit "追加", class: "button is-primary"

@@ -65,13 +65,13 @@ ActiveRecord::Schema.define(version: 20170122051657) do
   end
 
   create_table "work_musics", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "Work_id"
-    t.integer  "Music_id"
+    t.integer  "work_id"
+    t.integer  "music_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["Music_id"], name: "index_work_musics_on_Music_id", using: :btree
-    t.index ["Work_id", "Music_id"], name: "index_work_musics_on_work_id_and_music_id", using: :btree
-    t.index ["Work_id"], name: "index_work_musics_on_Work_id", using: :btree
+    t.index ["music_id"], name: "index_work_musics_on_music_id", using: :btree
+    t.index ["work_id", "music_id"], name: "index_work_musics_on_work_id_and_music_id", using: :btree
+    t.index ["work_id"], name: "index_work_musics_on_work_id", using: :btree
   end
 
   create_table "works", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -84,6 +84,6 @@ ActiveRecord::Schema.define(version: 20170122051657) do
     t.index ["category", "status"], name: "index_works_on_category_and_status", using: :btree
   end
 
-  add_foreign_key "work_musics", "Musics"
-  add_foreign_key "work_musics", "Works"
+  add_foreign_key "work_musics", "musics"
+  add_foreign_key "work_musics", "works"
 end

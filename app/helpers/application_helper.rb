@@ -6,4 +6,10 @@ module ApplicationHelper
     when "deleted"   then "削除済み"
     end
   end
+
+  def select_for_work_children(model_array)
+    model_array.map do |model|
+      [model[:title], model[:id]]
+    end
+  end
 end

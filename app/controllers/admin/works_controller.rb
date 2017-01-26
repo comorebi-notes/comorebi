@@ -1,4 +1,6 @@
 class Admin::WorksController < AdminsController
+  before_action :set_musics, only: [:new, :edit]
+
   def index
     @works = Work.all
   end
@@ -16,6 +18,12 @@ class Admin::WorksController < AdminsController
     end
   end
 
+  def edit
+  end
+
+  def update
+  end
+
   def destroy
     @work = Work.find(params[:id])
     if @work.destroy
@@ -28,6 +36,10 @@ class Admin::WorksController < AdminsController
   private
 
   def work_params
-    params.require(:work).permit(:title, :description, :category, :status, :tag_list)
+    params.require(:work).permit(:title, :description, :category, :status, :tag_list, :musics)
+  end
+
+  def set_musics
+    @musics = Music.all
   end
 end

@@ -24,10 +24,10 @@
 
         = f.label :musics, class: :label
         p.control
-          = collection_check_boxes :work, :musics, @musics, :id, :title do |music|
-            = music.label(class: :checkbox) { music.check_box + music.text }
-            end
-          / = f.select :musics, select_for_work_children(@musics), autofocus: true
+          / = collection_check_boxes :work, :musics, @musics, :id, :title do |music|
+          /   = music.label(class: :checkbox) { music.check_box + music.text }
+          /   end
+          = select_tag "work[music_ids][]", options_for_select(select_for_work_children(@musics)), autofocus: true
 
         p.control
           = f.submit "追加", class: "button is-primary"

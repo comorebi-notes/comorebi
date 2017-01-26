@@ -36,7 +36,7 @@ class Admin::WorksController < AdminsController
   private
 
   def work_params
-    params.require(:work).permit(:title, :description, :category, :status, :tag_list, :musics)
+    params.require(:work).permit(:title, :description, :category, :status, :tag_list, music_ids: [])
   end
 
   def set_musics

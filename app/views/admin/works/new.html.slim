@@ -17,16 +17,18 @@
           = f.text_field :title, class: :input, autofocus: true
           = render "shared/error_message", model: @work, attribute: :title
 
+        = f.label :status, class: :label
+        p.control.select
+          = f.select :status, options_for_select(@work.class.statuses), class: :input, autofocus: true
+          = render "shared/error_message", model: @work, attribute: "work[tag_list]"
+
         = f.label :tags, class: :label
         p.control
           = text_field_tag "work[tag_list]", @work.tags.join(','), class: :input, autofocus: true
           = render "shared/error_message", model: @work, attribute: "work[tag_list]"
 
         = f.label :musics, class: :label
-        p.control.select
-          / = collection_check_boxes :work, :musics, @musics, :id, :title do |music|
-          /   = music.label(class: :checkbox) { music.check_box + music.text }
-          /   end
+        p.control.select.multiple
           = select_tag "work[music_ids][]", options_for_select(select_for_work(@musics)), multiple: true, autofocus: true
 
         p.control

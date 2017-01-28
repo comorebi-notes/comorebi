@@ -14,18 +14,18 @@ ja:
         status: 公開状態
         tags: タグ
         statuses:
-          drafted:   下書き
+          drafted: 下書き
           published: 公開中
-          deleted:   削除済み
+          deleted: 削除済み
         categories:
-          others:       その他
-          vocaloid:     VOCALOID
-          song:         ボーカル
+          others: その他
+          vocaloid: VOCALOID
+          song: ボーカル
           instrumental: インスト
-          album:        アルバム
+          album: アルバム
           illustration: イラスト
-          rough:        落描き
-          comic:        マンガ
-          mv:           MV
-          movie:        映像
-          website:      Webサイト
+          rough: 落描き
+          comic: マンガ
+          mv: MV
+          movie: 映像
+          website: Webサイト

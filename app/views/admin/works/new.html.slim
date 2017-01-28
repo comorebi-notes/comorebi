@@ -17,10 +17,20 @@
           = f.text_field :title, class: :input, autofocus: true
           = render "shared/error_message", model: @work, attribute: :title
 
+        = f.label :description, class: :label
+        p.control
+          = f.text_area :description, class: :textarea, autofocus: true
+          = render "shared/error_message", model: @work, attribute: :description
+
+        = f.label :category, class: :label
+        p.control.select
+          = f.select :category, @work.localed_categories_for_select, class: :input, autofocus: true
+          = render "shared/error_message", model: @work, attribute: :category
+
         = f.label :status, class: :label
         p.control.select
-          = f.select :status, options_for_select(@work.class.statuses), class: :input, autofocus: true
-          = render "shared/error_message", model: @work, attribute: "work[tag_list]"
+          = f.select :status, @work.localed_statuses_for_select, class: :input, autofocus: true
+          = render "shared/error_message", model: @work, attribute: :status
 
         = f.label :tags, class: :label
         p.control
@@ -29,7 +39,7 @@
 
         = f.label :musics, class: :label
         p.control.select.multiple
-          = select_tag "work[music_ids][]", options_for_select(select_for_work(@musics)), multiple: true, autofocus: true
+          = select_tag "work[music_ids][]", options_for_select(@work.models_for_select(@musics)), multiple: true, autofocus: true
 
         p.control
           = f.submit "追加", class: "button is-primary"

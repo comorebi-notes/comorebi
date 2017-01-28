@@ -38,6 +38,9 @@ gem 'devise-i18n'
 # tags
 gem 'acts-as-taggable-on'
 
+# for views
+gem 'active_decorator'
+
 group :development, :test do
   gem 'awesome_print'
   gem 'bullet'

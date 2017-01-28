@@ -10,5 +10,5 @@ class Work < ApplicationRecord
     mv: 21, movie: 22,
     website: 31
   }
-  enum status: { draft: 0, published: 1, deleted: 2 }
+  enum status: { drafted: 0, published: 1, deleted: 2 }
 end

@@ -12,14 +12,4 @@ html
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
 
   body
-    = render "shared/header"
-    section.section
-      .container
-        - if notice
-          p.notification.is-info
-            = notice
-        - if alert
-          p.notification.is-danger
-            = alert
-        = yield
-    = render "shared/footer"
+    = yield

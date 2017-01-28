@@ -7,32 +7,38 @@
   p
     = link_to "新規作成", new_admin_work_path, class: "button is-primary"
 
-  h2
-    | Edit
   table.table
     thead
       tr
         th
-          | title
+          | ID
         th
-          | description
+          | タイトル
         th
-          | status
+          | 説明
         th
-          | tags
+          | カテゴリ
         th
-          | created_at
+          | 状態
         th
-          | links
+          | タグ
+        th
+          | 作成日時
+        th
+          | 操作
       tbody
         - @works.each do |work|
           tr
+            td
+              = work.id
             td
               = work.title
             td
               = work.description
             td
-              = human_work_status(work.status)
+              = work.localed_category
+            td
+              = work.localed_status
             td
               - work.tag_list.each do |tag|
                 span.tag.is-info

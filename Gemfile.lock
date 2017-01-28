@@ -31,6 +31,7 @@ GEM
       erubis (~> 2.7.0)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.0, >= 1.0.2)
+    active_decorator (0.8.0)
     activejob (5.0.1)
       activesupport (= 5.0.1)
       globalid (>= 0.3.6)
@@ -60,7 +61,7 @@ GEM
       rack (>= 0.9.0)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
-    builder (3.2.2)
+    builder (3.2.3)
     bullet (5.5.0)
       activesupport (>= 3.0.0)
       uniform_notifier (~> 1.10.0)
@@ -333,6 +334,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_decorator
   acts-as-taggable-on
   annotate
   awesome_print

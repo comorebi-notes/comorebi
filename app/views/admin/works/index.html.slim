@@ -1,0 +1,51 @@
+- title = "作品一覧"
+- content_for :title, title
+
+.content
+  h1
+    | Works
+  p
+    = link_to "新規作成", new_admin_work_path, class: "button is-primary"
+
+  table.table
+    thead
+      tr
+        th
+          | ID
+        th
+          | タイトル
+        th
+          | 説明
+        th
+          | カテゴリ
+        th
+          | 状態
+        th
+          | タグ
+        th
+          | 作成日時
+        th
+          | 操作
+      tbody
+        - @works.each do |work|
+          tr
+            td
+              = work.id
+            td
+              = work.title
+            td
+              = work.description
+            td
+              = work.localed_category
+            td
+              = work.localed_status
+            td
+              - work.tag_list.each do |tag|
+                span.tag.is-info
+                  = tag
+                  button.delete.is-small
+            td
+              = work.created_at
+            td
+              = link_to "編集", edit_admin_work_path(work), class: "button is-small is-primary"
+              = link_to "削除", admin_work_path(work), class: "button is-small is-danger", data: { confirm: "本当に削除しますか？" }, method: :delete

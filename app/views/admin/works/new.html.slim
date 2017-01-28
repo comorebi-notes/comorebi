@@ -1,0 +1,45 @@
+- title = "作品追加"
+- content_for :title, title
+
+.containar
+  .columns
+    .column.is-half.is-offset-one-quarter
+      = render "shared/error_notification", model: @work
+
+      h1.title
+        = title
+      h2.subtitle.is-6
+        | 作品の追加を行います。
+
+      = form_for @work, url: admin_works_path, method: :post do |f|
+        = f.label :title, class: :label
+        p.control
+          = f.text_field :title, class: :input, autofocus: true
+          = render "shared/error_message", model: @work, attribute: :title
+
+        = f.label :description, class: :label
+        p.control
+          = f.text_area :description, class: :textarea, autofocus: true
+          = render "shared/error_message", model: @work, attribute: :description
+
+        = f.label :category, class: :label
+        p.control.select
+          = f.select :category, @work.localed_categories_for_select, class: :input, autofocus: true
+          = render "shared/error_message", model: @work, attribute: :category
+
+        = f.label :status, class: :label
+        p.control.select
+          = f.select :status, @work.localed_statuses_for_select, class: :input, autofocus: true
+          = render "shared/error_message", model: @work, attribute: :status
+
+        = f.label :tags, class: :label
+        p.control
+          = text_field_tag "work[tag_list]", @work.tags.join(','), class: :input, autofocus: true
+          = render "shared/error_message", model: @work, attribute: "work[tag_list]"
+
+        = f.label :musics, class: :label
+        p.control.select.multiple
+          = select_tag "work[music_ids][]", options_for_select(@work.models_for_select(@musics)), multiple: true, autofocus: true
+
+        p.control
+          = f.submit "追加", class: "button is-primary"

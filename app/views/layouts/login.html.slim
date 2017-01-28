@@ -1,0 +1,15 @@
+doctype html
+html
+  head
+    title
+      - if yield(:title).present?
+        = "#{yield(:title)} | comorebi CMS"
+      - else
+        | comorebi CMS
+    = render "layouts/meta_tags", no_robots: true
+    = csrf_meta_tags
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+
+  body
+    = yield

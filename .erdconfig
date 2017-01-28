@@ -1,0 +1,4 @@
+exclude: ActiveRecord::InternalMetadata, ActiveRecord::SchemaMigration
+attributes: foreign_keys, primary_keys, content, timestamp
+filename: erd
+filetype: png

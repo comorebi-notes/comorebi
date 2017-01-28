@@ -35,6 +35,12 @@ gem 'bulma-rails', '~> 0.3.0'
 gem 'devise'
 gem 'devise-i18n'
 
+# tags
+gem 'acts-as-taggable-on'
+
+# for views
+gem 'active_decorator'
+
 group :development, :test do
   gem 'awesome_print'
   gem 'bullet'
@@ -44,7 +50,9 @@ group :development, :test do
   gem 'guard-rspec'
   gem 'pry-rails'
   gem 'pry-byebug'
+  gem 'rails-erd'
   gem 'rspec-rails'
+  gem 'spring-commands-rspec'
   gem 'rubocop'
   gem 'shoulda-matchers'
   gem 'spring'

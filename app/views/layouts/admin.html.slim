@@ -6,6 +6,7 @@ html
         = "#{yield(:title)} | comorebi CMS"
       - else
         | comorebi CMS
+    = render "layouts/meta_tags", no_robots: true
     = csrf_meta_tags
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
@@ -15,7 +16,7 @@ html
     section.section
       .container
         - if notice
-          p.notification.is-success
+          p.notification.is-info
             = notice
         - if alert
           p.notification.is-danger

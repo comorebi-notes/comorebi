@@ -52,7 +52,6 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'rails-erd'
   gem 'rspec-rails'
-  gem 'spring-commands-rspec'
   gem 'rubocop'
   gem 'shoulda-matchers'
   gem 'spring'

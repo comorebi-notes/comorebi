@@ -1,0 +1,8 @@
+{
+  "name": "comorebi",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:kero-uzura/comorebi.git",
+  "author": "kero-uzura <biruge@biruge.com>",
+  "license": "MIT"
+}

@@ -1,10 +1,12 @@
 const webpack = require('webpack')
 const path = require('path')
 const ManifestPlugin = require('webpack-manifest-plugin')
-const glob = require("glob")
 
 module.exports = {
-  entry: glob.sync('./client/js/*.js'),
+  entry: {
+    admin: "./client/app/bundles/admin/index.js",
+    portfolio: "./client/app/bundles/portfolio/index.js"
+  },
   output: {
     path: './public/dist',
     filename: '[name]-[hash].js'

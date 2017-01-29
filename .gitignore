@@ -47,7 +47,10 @@ bower.json
 # Ignore Byebug command history file.
 # .byebug_history
 
-.DS_Store
+# node.js
 node_modules/*
+public/dist
+
+.DS_Store
 
 # End of https://www.gitignore.io/api/rails

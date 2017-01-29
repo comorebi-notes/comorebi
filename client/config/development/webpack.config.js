@@ -1,12 +1,14 @@
 const path = require('path')
 const webpack = require('webpack')
-const glob = require("glob")
 
 module.exports = {
-  entry: glob.sync('./client/js/*.js'),
+  entry: {
+    admin: "./client/app/bundles/admin/index.js",
+    portfolio: "./client/app/bundles/portfolio/index.js"
+  },
   output: {
-    path: path.join(__dirname, 'public/dist'),
-    filename: '[name].js',  // このままならmain.jsが作成される
+    path: path.join(__dirname, 'public/js'),
+    filename: '[name].js',
     publicPath: 'http://localhost:4000/',
     hot: true
   },

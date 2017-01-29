@@ -62,10 +62,10 @@ end
 group :development do
   gem 'annotate'
   gem 'better_errors'
+  gem 'foreman'
   gem 'web-console', '~> 2.0'
   gem 'html2slim'
 end
-
 
 # for Heroku
 source 'https://rubygems.org'

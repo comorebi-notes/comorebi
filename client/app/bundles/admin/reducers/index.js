@@ -1,14 +1,11 @@
-import { handleActions } from 'redux-actions'
+import { routerReducer as routing } from 'react-router-redux'
+import { combineReducers } from 'redux'
+import { reducer as formReducer } from 'redux-form'
 
-export const initialState = { count: 0 }
+import admin from './admin'
 
-const reducerMap = {
-  INCREMENT_COUNTER(state, action) {
-    return {...state, count: state.count + 1}
-  },
-  DECREMENT_COUNTER(state, action) {
-    return {...state, count: state.count - 1}
-  },
-}
-
-export default handleActions(reducerMap, initialState)
+export default combineReducers({
+  routing,
+  form: formReducer,
+  admin
+})

@@ -1,15 +1,21 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import { render } from 'react-dom'
 import { Provider } from 'react-redux'
+import { Route, Router, browserHistory } from 'react-router'
+import { syncHistoryWithStore } from 'react-router-redux'
 
+import configureStore from './store'
+// import adminRoutes from './routes'
 import AppContainer from './containers/Admin'
-import configureStore from './store/index.js'
 
 const store = configureStore()
+const history = syncHistoryWithStore(browserHistory, store)
 
-ReactDOM.render(
+render(
   <Provider store={store}>
-    <AppContainer />
+    <Router history={history}>
+      <Route path="/admin" component={AppContainer} />
+    </Router>
   </Provider>,
   document.getElementById('admin-container')
 )

@@ -1,14 +1,6 @@
 import React, { Component } from 'react'
 
 export default class Counter extends Component {
-  componentDidMount() {
-    console.log('componentDidMount')
-  }
-
-  componentWillMount() {
-    console.log('componentWillMount')
-  }
-
   render() {
     const { count, actions } = this.props
     return (

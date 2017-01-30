@@ -1,0 +1,41 @@
+{
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "extends": "airbnb",
+  "plugins": [
+    "react"
+  ],
+  "rules": {
+    "indent": [2, 2],
+    "comma-dangle": 0,
+    "no-var": 1,
+    "default-case": 0,
+    "func-names": 0,
+    "react/prop-types": 0,                // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/prop-types.md
+    "react/no-multi-comp": 0,             // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-multi-comp.md
+    "react/prefer-stateless-function": 0, // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/prefer-stateless-function.md
+    "react/jsx-filename-extension": 0,    // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-filename-extension.md
+    "react/self-closing-comp": 0,         // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/self-closing-comp.md
+    "camelcase": 0,                       // http://eslint.org/docs/rules/camelcase
+    "jsx-quotes": 0,                      // http://eslint.org/docs/rules/jsx-quotes
+    "semi": 0,                            // http://eslint.org/docs/rules/semi
+    "no-multi-spaces": 0,                 // http://eslint.org/docs/rules/no-multi-spaces
+    "quotes": 0,                          // http://eslint.org/docs/rules/quotes
+    "max-len": ["error", {                // http://eslint.org/docs/rules/max-len
+      "code": 120,
+      "comments": 120
+    }]
+  },
+  "globals": {
+    "window": true,
+    "$": true,
+    "before": true,
+    "describe": true,
+    "it": true
+  }
+}

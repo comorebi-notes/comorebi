@@ -15,7 +15,10 @@ module.exports = {
   module: {
     loaders: [
       {
-        loaders: ['react-hot', 'babel?cacheDirectory=true,presets[]=es2015,presets[]=es2017,presets[]=stage-2,presets[]=react'],
+        loaders: [
+          'react-hot',
+          'babel?cacheDirectory=true,presets[]=es2015,presets[]=es2017,presets[]=stage-2,presets[]=react'
+        ],
         exclude: /node_modules/,
         test: /\.js[x]?$/
       }
@@ -23,7 +26,12 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
+    new webpack.NoErrorsPlugin(),
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify('development')
+      }
+    })
   ],
   resolve: {
     extensions: ['', '.js', '.json']

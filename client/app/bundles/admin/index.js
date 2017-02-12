@@ -12,7 +12,12 @@ const history = syncHistoryWithStore(browserHistory, store)
 
 render(
   <Provider store={store}>
-    <Router history={history} routes={adminRoutes()} />
+    <Router
+      onUpdate={() => window.scrollTo(0, 0)}
+      // notification をクリアする
+      history={history}
+      routes={adminRoutes()}
+    />
   </Provider>,
   document.getElementById('admin-container')
 )

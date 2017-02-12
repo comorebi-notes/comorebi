@@ -1,6 +1,10 @@
 import { handleActions } from 'redux-actions'
 
-export const initialState = { count: 0 }
+export const initialState = {
+  count: 0,
+  currentAdmin: window.data.admin || '',
+  notification: window.data.notification || ''
+}
 
 export default handleActions({
   INCREMENT_COUNTER: (state) => ({

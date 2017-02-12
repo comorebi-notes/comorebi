@@ -14,7 +14,6 @@ render(
   <Provider store={store}>
     <Router
       onUpdate={() => window.scrollTo(0, 0)}
-      // notification をクリアする
       history={history}
       routes={adminRoutes()}
     />

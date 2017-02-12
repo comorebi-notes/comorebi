@@ -11,9 +11,13 @@
             .box
               - if notice
                 p.notification.is-info
+                  span.icon style="margin-right: .3em"
+                    = fa_icon "check-circle"
                   = notice
               - if alert
                 p.notification.is-danger
+                  span.icon style="margin-right: .3em"
+                    = fa_icon "exclamation-triangle"
                   = alert
               = f.label :login, "アカウント名 または メールアドレス", class: :label
               p.control

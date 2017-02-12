@@ -3,7 +3,7 @@ import { Link } from 'react-router'
 
 class Header extends Component {
   render() {
-    const { admin } = this.props
+    const { currentAdmin } = this.props
     return (
       <section className="hero is-primary is-medium">
         <div className="hero-head">
@@ -19,7 +19,7 @@ class Header extends Component {
                   rails_admin
                 </a>
                 <Link to="/admin/edit" className="nav-item">
-                  { admin.name }
+                  { currentAdmin.name }
                 </Link>
                 <div className="nav-item">
                   <a href="/admin/logout" data-method="delete" className="button is-primary is-inverted" rel="nofollow">

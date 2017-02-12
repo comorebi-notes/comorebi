@@ -1,4 +1,5 @@
-function getTitle (pathArray) {
+function getTitle (path) {
+  const pathArray = path.split("/")
   switch (pathArray[1]) {
   // /admin
   case "admin":
@@ -15,9 +16,11 @@ function getTitle (pathArray) {
 }
 
 const pageTitle = path => {
-  let title = getTitle(path.split("/"))
-  if (title !== "") title += " | comorebi CMS"
-  return title
+  const title = getTitle(path)
+  const baseTitle = "comorebi CMS"
+  const separation = " | "
+
+  return title === "" ? baseTitle : title + separation + baseTitle
 }
 
 export default pageTitle

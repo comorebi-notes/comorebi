@@ -11,15 +11,15 @@ class AdminController < ApplicationController
   def set_notification
     @notification = {
       message: notice || alert,
-      type: notification_type
+      level: notification_level
     }
   end
 
-  def notification_type
+  def notification_level
     if notice
-      return :notice
+      return :info
     elsif alert
-      return :alert
+      return :error
     end
   end
 end

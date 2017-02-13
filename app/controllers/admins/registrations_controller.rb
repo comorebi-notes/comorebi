@@ -15,9 +15,9 @@ class Admins::RegistrationsController < Devise::RegistrationsController
   end
 
   # GET /resource/edit
-  # def edit
-  #   super
-  # end
+  def edit
+    redirect_to admin_path
+  end
 
   # PUT /resource
   # def update

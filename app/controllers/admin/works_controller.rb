@@ -1,4 +1,4 @@
-class Admin::WorksController < AdminsController
+class Admin::WorksController < AdminController
   before_action :set_musics, only: [:new, :edit]
 
   def index

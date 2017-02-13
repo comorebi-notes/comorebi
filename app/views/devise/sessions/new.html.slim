@@ -1,6 +1,6 @@
 - content_for :title, t(".title")
 
-= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+= form_for resource, as: resource_name, url: session_path(resource_name) do |f|
   section.hero.is-primary.is-fullheight.is-flex-mobile
     .hero-body
       .container
@@ -19,12 +19,15 @@
                   span.icon style="margin-right: .3em"
                     = fa_icon "exclamation-triangle"
                   = alert
-              = f.label :login, "アカウント名 または メールアドレス", class: :label
+
+              = f.label :name, "アカウント名", class: :label
               p.control
-                = f.text_field :login, class: :input, autofocus: true
+                = f.text_field :name, class: :input, autofocus: true
+
               = f.label :password, "パスワード", class: :label
               p.control
                 = f.password_field :password, class: :input, autocomplete: "off"
+
               - if devise_mapping.rememberable?
                 p.control
                   = f.label :remember_me, class: "label checkbox" do
@@ -33,8 +36,6 @@
               p.control
                 = f.submit "ログイン", class: "button is-primary is-fullwidth is-medium"
 
-            / p.has-text-centered
-            /   = render "devise/shared/links"
             p.has-text-centered
               small
                 | Copyright &copy; 2017 comorebi notes All Rights Reserved.

@@ -5,10 +5,10 @@ import * as Actions from '../../actions/Admin'
 
 class Counter extends Component {
   render() {
-    const { data, actions } = this.props
+    const { count, actions } = this.props
     return (
       <div>
-        <p>カウント: {data.count}回</p>
+        <p>カウント: {count}回</p>
         <button onClick={actions.increment}>++</button>
         <button onClick={actions.decrement}>--</button>
       </div>
@@ -18,7 +18,7 @@ class Counter extends Component {
 
 const mapStateToProps = state => ({
   // currentPath: state.routing.locationBeforeTransitions,
-  data: state.admin
+  count: state.main.count
 })
 
 const mapDispatchToProps = dispatch => ({

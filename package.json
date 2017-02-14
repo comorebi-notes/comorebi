@@ -17,8 +17,8 @@
     "react-dom": "^15.4.2",
     "react-helmet": "^4.0.0",
     "react-hot-loader": "^1.3.1",
-    "react-notification-system": "git+https://github.com/kero-uzura/react-notification-system#optimized-for-bulma",
-    "react-notification-system-redux": "^1.0.11",
+    "react-notification-system": "kero-uzura/react-notification-system",
+    "react-notification-system-redux": "kero-uzura/react-notification-system-redux",
     "react-redux": "^5.0.2",
     "react-router": "^3.0.2",
     "react-router-redux": "^4.0.7",
@@ -34,7 +34,7 @@
     "webpack-manifest-plugin": "^1.1.0"
   },
   "scripts": {
-    "start": "NODE_ENV=development webpack-dev-server --config client/config/development/webpack.config.js --progress --colors --inline --hot",
+    "start": "NODE_ENV=development webpack-dev-server --config client/config/development/webpack.config.js --progress --colors --inline --hot --display-error-details",
     "clean": "yarn run rimraf public/dist",
     "build": "yarn run clean && NODE_ENV=production yarn run webpack -- --config client/config/production/webpack.config.js"
   }

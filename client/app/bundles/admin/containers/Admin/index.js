@@ -14,6 +14,7 @@ class Admin extends Component {
     const { actions, initialNotification } = this.props
     if (initialNotification.message) {
       actions.setNotifications(initialNotification)
+      // クリアした方がいいかも
     }
   }
 

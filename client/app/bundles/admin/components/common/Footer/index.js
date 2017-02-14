@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 class Footer extends Component {
   render() {
     return (
-      <footer className="footer">
+      <footer className="footer is-admin">
         <div className="container">
           <div className="content has-text-centered">
             <p>
@@ -25,9 +25,16 @@ class Footer extends Component {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="icon"
-                style={{ marginLeft: ".3em" }}
               >
                 <i className="fa fa-twitter" />
+              </a>
+              <a
+                href="mailto:biruge@biruge.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="icon"
+              >
+                <i className="fa fa-envelope" />
               </a>
             </p>
           </div>

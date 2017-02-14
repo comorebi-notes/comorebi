@@ -19,11 +19,14 @@ class Header extends Component {
                   rails_admin
                 </a>
                 <Link to="/admin/edit" className="nav-item">
-                  { currentAdmin.name }
+                  @{ currentAdmin.name }
                 </Link>
                 <div className="nav-item">
                   <a href="/admin/logout" data-method="delete" className="button is-primary is-inverted" rel="nofollow">
-                    <span>ログアウト</span>
+                    <span className="icon">
+                      <i className="fa fa-sign-out" />
+                    </span>
+                    <span>Logout</span>
                   </a>
                 </div>
               </div>

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import footerLinks from '../../../constants/footerLinks'
 
 class Footer extends Component {
   render() {
@@ -12,30 +13,21 @@ class Footer extends Component {
               </small>
             </p>
             <p>
-              <a
-                href="https://github.com/kero-uzura/comorebi"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="icon"
-              >
-                <i className="fa fa-github" />
-              </a>
-              <a
-                href="https://twitter.com/kero_BIRUGE"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="icon"
-              >
-                <i className="fa fa-twitter" />
-              </a>
-              <a
-                href="mailto:biruge@biruge.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="icon"
-              >
-                <i className="fa fa-envelope" />
-              </a>
+              {
+                footerLinks.map ((link, index) => {
+                  return (
+                    <a
+                      href={link.url}
+                      className="icon"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      key={index}
+                    >
+                      <i className={`fa fa-${link.icon}`} />
+                    </a>
+                  )
+                })
+              }
             </p>
           </div>
         </div>

@@ -23,10 +23,10 @@ class Header extends Component {
                 </Link>
                 <div className="nav-item">
                   <a href="/admin/logout" data-method="delete" className="button is-primary is-inverted" rel="nofollow">
+                    <span>Logout</span>
                     <span className="icon">
                       <i className="fa fa-sign-out" />
                     </span>
-                    <span>Logout</span>
                   </a>
                 </div>
               </div>

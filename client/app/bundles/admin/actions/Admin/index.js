@@ -8,7 +8,7 @@ export const setNotifications = (customOptions) => (dispatch) => {
   const defaultOptions = {
     level: 'info',
     position: 'br',
-    autoDismiss: 5
+    autoDismiss: 500
   }
   const options = Object.assign(defaultOptions, customOptions)
   const notificationsAsType = {

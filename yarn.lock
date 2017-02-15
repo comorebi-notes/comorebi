@@ -2605,7 +2605,7 @@ react-notification-system-redux@kero-uzura/react-notification-system-redux:
 
 react-notification-system@kero-uzura/react-notification-system:
   version "0.2.11"
-  resolved "https://codeload.github.com/kero-uzura/react-notification-system/tar.gz/111f4141615bb23efae65ebd9aad0e1d05dcc19c"
+  resolved "https://codeload.github.com/kero-uzura/react-notification-system/tar.gz/19a4495558a0717e4d67ceb763d23818a3fe100d"
   dependencies:
     object-assign "^4.0.1"
 

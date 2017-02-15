@@ -17,5 +17,10 @@ export default handleActions({
   DECREMENT_COUNTER: state => ({
     ...state,
     count: state.count - 1
+  }),
+
+  CLEAR_INITIAL_NOTIFICATION: state => ({
+    ...state,
+    initialNotification: {}
   })
 }, initialState)

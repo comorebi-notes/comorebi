@@ -14,13 +14,20 @@ class Admin extends Component {
     const { actions, initialNotification } = this.props
     if (initialNotification.message) {
       actions.setNotifications(initialNotification)
-      // クリアした方がいいかも
+      actions.clearInitialNotification()
     }
   }
 
   render() {
     const { children, actions, currentPath, currentAdmin, notifications } = this.props
-    const options = { message: 'Now you can see how easy it is to use notifications<br> in React!', level: "error" }
+    const options = {
+      title: 'ログインしました。',
+      message: 'Now you can see<br> how easy it is to use notifications<br> in React!',
+      level: "error",
+      action: {
+        label: "test button!"
+      }
+    }
     const handleClick = () => actions.setNotifications(options)
 
     return (

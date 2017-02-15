@@ -14,19 +14,17 @@ class Footer extends Component {
             </p>
             <p>
               {
-                footerLinks.map ((link, index) => {
-                  return (
-                    <a
-                      href={link.url}
-                      className="icon"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      key={index}
-                    >
-                      <i className={`fa fa-${link.icon}`} />
-                    </a>
-                  )
-                })
+                footerLinks.map ((link, index) => (
+                  <a
+                    href={link.url}
+                    className="icon"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    key={index}
+                  >
+                    <i className={`fa fa-${link.icon}`} />
+                  </a>
+                ))
               }
             </p>
           </div>

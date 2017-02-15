@@ -39,4 +39,5 @@ module.exports = {
     contentBase: '../public/dist',
     port: 4000
   },
+  devtool: 'inline-source-map'
 }

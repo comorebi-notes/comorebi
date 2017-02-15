@@ -20,7 +20,7 @@ class Admin extends Component {
 
   render() {
     const { children, actions, currentPath, currentAdmin, notifications } = this.props
-    const options = { message: 'Now you can see how easy it is to use notifications in React!' }
+    const options = { message: 'Now you can see how easy it is to use notifications<br> in React!', level: "error" }
     const handleClick = () => actions.setNotifications(options)
 
     return (

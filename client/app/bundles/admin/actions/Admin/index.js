@@ -23,11 +23,11 @@ export const setNotifications = (customOptions) => (dispatch) => {
   const iconElement = `<span class="icon"><i class="fa fa-${iconClasses[options.level]}"></i></span>`
   options[iconTarget] = iconElement + options[iconTarget]
 
-  const notificationsAsType = {
+  const notificationsAsLevel = {
     success: Notifications.success(options),
     info: Notifications.info(options),
     warning: Notifications.warning(options),
     error: Notifications.error(options)
   }
-  dispatch(notificationsAsType[options.level])
+  dispatch(notificationsAsLevel[options.level])
 }

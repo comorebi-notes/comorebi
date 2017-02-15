@@ -23,7 +23,7 @@ class Admin extends Component {
     const options = {
       title: 'ログインしました。',
       message: 'Now you can see<br> how easy it is to use notifications<br> in React!',
-      level: "error",
+      level: "info",
       action: {
         label: "test button!"
       }

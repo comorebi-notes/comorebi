@@ -10,16 +10,16 @@ export const initialState = {
 }
 
 export default handleActions({
-  INCREMENT_COUNTER: state => ({
+  INCREMENT_COUNTER: (state) => ({
     ...state,
     count: state.count + 1
   }),
-  DECREMENT_COUNTER: state => ({
+  DECREMENT_COUNTER: (state) => ({
     ...state,
     count: state.count - 1
   }),
 
-  CLEAR_INITIAL_NOTIFICATION: state => ({
+  CLEAR_INITIAL_NOTIFICATION: (state) => ({
     ...state,
     initialNotification: {}
   })

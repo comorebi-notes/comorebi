@@ -34,6 +34,10 @@ module Comorebi
       g.test_framework :rspec, view_specs: false, routing_specs: false
     end
 
+    config.to_prepare do
+      DeviseController.respond_to :html, :json, :js
+    end
+
     # エラー時にクラスを付与
     config.action_view.field_error_proc = Proc.new do |html_tag, instance|
       Nokogiri::HTML.fragment(html_tag).search('input', 'textarea', 'select', 'label').add_class('is-danger').to_html.html_safe

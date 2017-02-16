@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import Helmet from 'react-helmet'
 import Notifications from 'react-notification-system-redux'
 import { bindActionCreators } from 'redux'
-import * as Actions from '../../actions/Admin'
+import * as Actions from '../../actions'
 
 import Header from '../../components/common/Header'
 import Footer from '../../components/common/Footer'

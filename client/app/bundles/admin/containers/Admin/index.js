@@ -40,7 +40,7 @@ class Admin extends Component {
         <section className="section" style={{ flexGrow: 1 }}>
           <div className="container">
             <button onClick={handleClick} className="button is-info">
-              notification!
+              notification!!
             </button>
             { children }
           </div>

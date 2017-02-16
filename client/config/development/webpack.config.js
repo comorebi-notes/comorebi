@@ -9,23 +9,25 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'public/js'),
     filename: '[name].js',
-    publicPath: 'http://localhost:4000/',
-    hot: true
+    publicPath: 'http://localhost:4000/'
   },
   module: {
-    loaders: [
+    rules: [
       {
-        loaders: [
-          'react-hot-loader/webpack',
-          'babel?cacheDirectory=true,presets[]=es2015,presets[]=es2017,presets[]=stage-2,presets[]=react'
+        use: [
+          {
+            loader: 'babel-loader',
+            query: {
+              presets: ['react', 'es2015', 'es2017', 'stage-2']
+            }
+          }
         ],
-        exclude: /node_modules/,
-        test: /\.js[x]?$/
+        exclude: /node_modules/
       }
     ]
   },
   plugins: [
-    new webpack.NoErrorsPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('development')
@@ -33,7 +35,7 @@ module.exports = {
     })
   ],
   resolve: {
-    extensions: ['', '.js', '.json']
+    extensions: ['*', '.js', '.json']
   },
   devServer: {
     contentBase: '../public/dist',

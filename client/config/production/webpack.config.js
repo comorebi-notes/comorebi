@@ -1,5 +1,4 @@
 const webpack = require('webpack')
-const path = require('path')
 const ManifestPlugin = require('webpack-manifest-plugin')
 
 module.exports = {
@@ -13,6 +12,7 @@ module.exports = {
   },
   plugins: [
     new webpack.optimize.UglifyJsPlugin({
+      sourceMap: true,
       minimize: true,
       compress: {
         warnings: false,
@@ -26,15 +26,16 @@ module.exports = {
     })
   ],
   module: {
-    loaders: [
+    rules: [
       {
-        loader: 'babel',
-        exclude: /node_modules/,
-        test: /\.js[x]?$/,
-        query: {
-          cacheDirectory: true,
-          presets: ['react', 'es2015', 'es2017', 'stage-2']
-        }
+        use: {
+          loader: 'babel-loader',
+          query: {
+            cacheDirectory: true,
+            presets: ['react', 'es2015', 'es2017', 'stage-2']
+          }
+        },
+        exclude: /node_modules/
       }
     ]
   }

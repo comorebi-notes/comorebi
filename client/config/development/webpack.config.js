@@ -16,7 +16,7 @@ module.exports = {
     loaders: [
       {
         loaders: [
-          'babel-loader',
+          'react-hot-loader/webpack',
           'babel?cacheDirectory=true,presets[]=es2015,presets[]=es2017,presets[]=stage-2,presets[]=react'
         ],
         exclude: /node_modules/,

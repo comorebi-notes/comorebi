@@ -45,11 +45,20 @@ export const editAdminSubmit = () => async (dispatch, getState) => {
   await dispatch(editAdminRequest('admin', formData, id))
   dispatch(complete())
 
-  if (getState().main.error === '') {
-    dispatch(setNotifications({ level: 'success' }))
+  if (getState().main.errors === '') {
+    dispatch(setNotifications({
+      title: "success!",
+      message: "管理者アカウント情報が更新されました。",
+      level: "success"
+    }))
   } else {
-    dispatch(setNotifications({ level: 'error' }))
-    const sweetScroll = new SweetScroll()
-    sweetScroll.to(0)
+    dispatch(setNotifications({
+      title: "error!",
+      message: "error...",
+      level: "error"
+    }))
   }
+
+  const sweetScroll = new SweetScroll()
+  sweetScroll.to(0)
 }

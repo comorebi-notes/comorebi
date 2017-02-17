@@ -7,7 +7,7 @@ import EditAdminForm from './EditAdminForm'
 
 class EditAdmin extends Component {
   render() {
-    const { actions, loading, currentAdmin } = this.props
+    const { actions, loading } = this.props
     return (
       <div className="columns">
         <div className="column is-half is-offset-one-quarter">
@@ -20,7 +20,6 @@ class EditAdmin extends Component {
           <EditAdminForm
             actions={actions}
             loading={loading}
-            currentAdmin={currentAdmin}
             onSubmit={actions.editAdminSubmit}
           />
         </div>

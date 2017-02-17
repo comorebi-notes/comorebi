@@ -1,40 +1,23 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
+
+import InputField from '../../common/InputField'
 
 class EditAdminForm extends Component {
   render() {
-    const { actions, loading, currentAdmin, handleSubmit } = this.props
+    const { loading, handleSubmit } = this.props
     return (
       <form onSubmit={handleSubmit}>
-        <label htmlFor="name" className="label">アカウント名</label>
-        <p className="control">
-          <Field name="name" component="input" type="text" className="input" />
-        </p>
+        <Field component={InputField} name="name" label="アカウント名" />
+        <Field component={InputField} name="email" label="メールアドレス" />
+        <Field component={InputField} name="password" label="パスワード" type="password">
+          <span className="help">空欄にした場合は変更されません。</span>
+        </Field>
+        <Field component={InputField} name="password_confirmation" label="パスワード (確認)" type="password" />
+        <Field component={InputField} name="current_password" label="現在のパスワード" type="password" />
 
-        <label htmlFor="email" className="label">メールアドレス</label>
-        <p className="control">
-          <Field name="email" component="input" type="text" className="input" />
-        </p>
-
-        <label htmlFor="password" className="label">パスワード</label>
-        <p className="control">
-          <Field name="password" component="input" type="password" className="input" />
-          <span className="help">
-            空欄にした場合は変更されません。
-          </span>
-        </p>
-
-        <label htmlFor="password_confirmation" className="label">パスワード (確認)</label>
-        <p className="control">
-          <Field name="password_confirmation" component="input" type="password" className="input" />
-        </p>
-
-        <label htmlFor="current_password" className="label">現在のパスワード</label>
-        <p className="control">
-          <Field name="current_password" component="input" type="password" className="input" />
-        </p>
-
-        <p className="control">
+        <p className="control with-button">
           <button type="submit" className={`button is-primary${loading ? ' is-loading' : ''}`}>更新</button>
         </p>
       </form>
@@ -42,6 +25,20 @@ class EditAdminForm extends Component {
   }
 }
 
-export default reduxForm({
+const mapStateToProps = (state) => {
+  const currentAdmin = state.main.currentAdmin
+  return {
+    initialValues: {
+      name: currentAdmin.name,
+      email: currentAdmin.email
+    }
+  }
+}
+
+EditAdminForm = reduxForm({
   form: 'admin'
 })(EditAdminForm)
+
+export default connect(
+  mapStateToProps
+)(EditAdminForm)

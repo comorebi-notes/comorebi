@@ -8,7 +8,7 @@ const initialNotification = {
 
 export const initialState = {
   loading: false,
-  error: '',
+  errors: '',
   currentAdmin,
   initialNotification
 }
@@ -23,13 +23,14 @@ export default handleActions({
     loading: false
   }),
   EDIT_ADMIN_REQUEST: {
-    next: (state) => ({
+    next: (state, action) => ({
       ...state,
-      error: '',
+      currentAdmin: JSON.parse(action.payload.config.data).admin,
+      errors: '',
     }),
     throw: (state, action) => ({
       ...state,
-      error: action.payload
+      errors: action.payload.response.data.errors
     })
   },
   CLEAR_INITIAL_NOTIFICATION: (state) => ({

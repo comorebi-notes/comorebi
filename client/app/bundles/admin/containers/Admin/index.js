@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Helmet from 'react-helmet'
 import Notifications from 'react-notification-system-redux'
-import { bindActionCreators } from 'redux'
-import * as Actions from '../../actions'
 
 import Header from '../../components/common/Header'
 import Footer from '../../components/common/Footer'
@@ -19,16 +17,7 @@ class Admin extends Component {
   }
 
   render() {
-    const { children, actions, currentPath, currentAdmin, notifications } = this.props
-    const options = {
-      title: 'ログインしました。',
-      message: 'Now you can see<br> how easy it is to use notifications<br> in React!',
-      level: "info",
-      action: {
-        label: "test button!"
-      }
-    }
-    const handleClick = () => actions.setNotifications(options)
+    const { children, currentPath, currentAdmin, notifications } = this.props
 
     return (
       <div className="hero is-fullheight">
@@ -39,9 +28,6 @@ class Admin extends Component {
 
         <section className="section" style={{ flexGrow: 1 }}>
           <div className="container">
-            <button onClick={handleClick} className="button is-info">
-              notification!!
-            </button>
             { children }
           </div>
         </section>
@@ -59,11 +45,6 @@ const mapStateToProps = state => ({
   notifications: state.notifications
 })
 
-const mapDispatchToProps = (dispatch) => ({
-  actions: bindActionCreators(Actions, dispatch)
-})
-
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+  mapStateToProps
 )(Admin)

@@ -22,10 +22,9 @@ export const setNotifications = (customOptions) => (dispatch) => {
     error: 'exclamation-triangle'
   }
   const options = Object.assign(defaultOptions, customOptions)
-
-  const iconTarget = options.title ? 'title' : 'message'
   const iconElement = `<span class="icon"><i class="fa fa-${iconClasses[options.level]}"></i></span>`
-  options[iconTarget] = iconElement + options[iconTarget]
+  options.title = options.title || `${options.level.toUpperCase()}!`
+  options.title = iconElement + options.title
 
   const notificationsAsLevel = {
     success: Notifications.success(options),
@@ -47,14 +46,12 @@ export const editAdminSubmit = () => async (dispatch, getState) => {
 
   if (getState().main.errors === '') {
     dispatch(setNotifications({
-      title: "success!",
-      message: "管理者アカウント情報が更新されました。",
+      message: "管理者アカウントが更新されました。",
       level: "success"
     }))
   } else {
     dispatch(setNotifications({
-      title: "error!",
-      message: "error...",
+      message: "管理者アカウントの更新に失敗しました。",
       level: "error"
     }))
   }

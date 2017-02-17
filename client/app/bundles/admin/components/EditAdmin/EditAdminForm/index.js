@@ -2,7 +2,9 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
 
-import InputField from '../../common/InputField'
+import InputField from '../../common/form/InputField'
+import SubmitButton from '../../common/form/SubmitButton'
+import validate from './validate'
 
 class EditAdminForm extends Component {
   render() {
@@ -12,14 +14,12 @@ class EditAdminForm extends Component {
         <Field component={InputField} name="name" label="アカウント名" />
         <Field component={InputField} name="email" label="メールアドレス" />
         <Field component={InputField} name="password" label="パスワード" type="password">
-          <span className="help">空欄にした場合は変更されません。</span>
+          <p className="help">空欄にした場合は変更されません。</p>
         </Field>
         <Field component={InputField} name="password_confirmation" label="パスワード (確認)" type="password" />
         <Field component={InputField} name="current_password" label="現在のパスワード" type="password" />
 
-        <p className="control with-button">
-          <button type="submit" className={`button is-primary${loading ? ' is-loading' : ''}`}>更新</button>
-        </p>
+        <SubmitButton label="更新" loading={loading} />
       </form>
     )
   }
@@ -36,7 +36,8 @@ const mapStateToProps = (state) => {
 }
 
 EditAdminForm = reduxForm({
-  form: 'admin'
+  form: 'admin',
+  validate
 })(EditAdminForm)
 
 export default connect(

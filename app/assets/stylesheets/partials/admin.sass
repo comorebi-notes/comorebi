@@ -4,8 +4,13 @@
       height: 2.285em
   a
     transition: all .2s ease-in-out !important
-  label.is-danger
-    color: $danger
+  form
+    .is-danger
+      label, i
+        color: $danger
+      input, select, textarea
+        color: $danger
+        border-color: $danger
 
   footer.footer.is-admin
     background-color: #52402a

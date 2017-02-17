@@ -1,15 +1,12 @@
 import 'babel-polyfill'
+import SweetScroll from 'sweet-scroll'
+
 import { createAction } from 'redux-actions'
 import Notifications from 'react-notification-system-redux'
 import * as api from '../api'
 
-export const increment = createAction('INCREMENT_COUNTER')
-export const decrement = createAction('DECREMENT_COUNTER')
-
 export const loading = createAction('LOADING')
 export const complete = createAction('COMPLETE')
-
-export const editAdminRequest = createAction('EDIT_ADMIN_REQUEST', api.editAdminRequest)
 
 export const clearInitialNotification = createAction('CLEAR_INITIAL_NOTIFICATION')
 export const setNotifications = (customOptions) => (dispatch) => {
@@ -39,6 +36,7 @@ export const setNotifications = (customOptions) => (dispatch) => {
   dispatch(notificationsAsLevel[options.level])
 }
 
+export const editAdminRequest = createAction('EDIT_ADMIN_REQUEST', api.editAdminRequest)
 export const editAdminSubmit = () => async (dispatch, getState) => {
   const formData = getState().form.admin.values || {}
   const id = getState().main.currentAdmin.id
@@ -51,6 +49,7 @@ export const editAdminSubmit = () => async (dispatch, getState) => {
     dispatch(setNotifications({ level: 'success' }))
   } else {
     dispatch(setNotifications({ level: 'error' }))
-    window.scrollTo(0, 0)
+    const sweetScroll = new SweetScroll()
+    sweetScroll.to(0)
   }
 }

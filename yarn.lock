@@ -3746,6 +3746,10 @@ supports-color@^3.1.0, supports-color@^3.1.1:
   dependencies:
     has-flag "^1.0.0"
 
+sweet-scroll@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/sweet-scroll/-/sweet-scroll-2.2.0.tgz#5085d6cab3317702b6f9a6c6a0ce9e9faf256982"
+
 symbol-observable@^1.0.2:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/symbol-observable/-/symbol-observable-1.0.4.tgz#29bf615d4aa7121bdd898b22d4b3f9bc4e2aa03d"

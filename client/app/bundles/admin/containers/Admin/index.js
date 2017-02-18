@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Helmet from 'react-helmet'
 import Notifications from 'react-notification-system-redux'
+import { bindActionCreators } from 'redux'
+import * as Actions from '../../actions'
 
 import Header from '../../components/common/Header'
 import Footer from '../../components/common/Footer'
@@ -11,7 +13,7 @@ class Admin extends Component {
   componentDidMount() {
     const { actions, initialNotification } = this.props
     if (initialNotification.message) {
-      actions.setNotifications(initialNotification)
+      actions.setNotifications(Object.assign({ noTitle: true }, initialNotification))
       actions.clearInitialNotification()
     }
   }
@@ -25,13 +27,11 @@ class Admin extends Component {
         <Notifications notifications={notifications} />
 
         <Header currentAdmin={currentAdmin} />
-
         <section className="section" style={{ flexGrow: 1 }}>
           <div className="container">
             { children }
           </div>
         </section>
-
         <Footer />
       </div>
     )
@@ -45,6 +45,11 @@ const mapStateToProps = state => ({
   notifications: state.notifications
 })
 
+const mapDispatchToProps = (dispatch) => ({
+  actions: bindActionCreators(Actions, dispatch)
+})
+
 export default connect(
-  mapStateToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(Admin)

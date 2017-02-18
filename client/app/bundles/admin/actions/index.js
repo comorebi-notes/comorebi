@@ -1,13 +1,17 @@
 import 'babel-polyfill'
-import SweetScroll from 'sweet-scroll'
 
 import { createAction } from 'redux-actions'
+import { SubmissionError } from 'redux-form'
 import Notifications from 'react-notification-system-redux'
+import messages from '../constants/messages'
 import * as api from '../api'
+import scroll from '../utils/scroll'
 
+// ============================================= Simple Actions
 export const loading = createAction('LOADING')
 export const complete = createAction('COMPLETE')
 
+// ============================================= Notifications
 export const clearInitialNotification = createAction('CLEAR_INITIAL_NOTIFICATION')
 export const setNotifications = (customOptions) => (dispatch) => {
   const defaultOptions = {
@@ -22,9 +26,14 @@ export const setNotifications = (customOptions) => (dispatch) => {
     error: 'exclamation-triangle'
   }
   const options = Object.assign(defaultOptions, customOptions)
+
   const iconElement = `<span class="icon"><i class="fa fa-${iconClasses[options.level]}"></i></span>`
-  options.title = options.title || `${options.level.toUpperCase()}!`
-  options.title = iconElement + options.title
+  if (options.noTitle) {
+    options.message = iconElement + options.message
+  } else {
+    options.title = options.title || `${options.level.toUpperCase()}!`
+    options.title = iconElement + options.title
+  }
 
   const notificationsAsLevel = {
     success: Notifications.success(options),
@@ -35,6 +44,7 @@ export const setNotifications = (customOptions) => (dispatch) => {
   dispatch(notificationsAsLevel[options.level])
 }
 
+// ============================================= Update Data
 export const editAdminRequest = createAction('EDIT_ADMIN_REQUEST', api.editAdminRequest)
 export const editAdminSubmit = () => async (dispatch, getState) => {
   const formData = getState().form.admin.values || {}
@@ -44,18 +54,12 @@ export const editAdminSubmit = () => async (dispatch, getState) => {
   await dispatch(editAdminRequest('admin', formData, id))
   dispatch(complete())
 
-  if (getState().main.errors === '') {
-    dispatch(setNotifications({
-      message: "管理者アカウントが更新されました。",
-      level: "success"
-    }))
+  const errors = getState().main.errors
+  scroll(0)
+  if (errors === '') {
+    dispatch(setNotifications(messages.editAdmin.success()))
   } else {
-    dispatch(setNotifications({
-      message: "管理者アカウントの更新に失敗しました。",
-      level: "error"
-    }))
+    dispatch(setNotifications(messages.editAdmin.error()))
+    throw new SubmissionError(errors)
   }
-
-  const sweetScroll = new SweetScroll()
-  sweetScroll.to(0)
 }

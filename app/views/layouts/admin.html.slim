@@ -2,24 +2,17 @@ doctype html
 html
   head
     title
-      - if yield(:title).present?
-        = "#{yield(:title)} | comorebi CMS"
-      - else
-        | comorebi CMS
+      | comorebi CMS
     = render "layouts/meta_tags", no_robots: true
     = csrf_meta_tags
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
 
   body
-    = render "shared/header"
-    section.section
-      .container
-        - if notice
-          p.notification.is-info
-            = notice
-        - if alert
-          p.notification.is-danger
-            = alert
-        = yield
-    = render "shared/footer"
+    javascript:
+      var data = {
+        admin: #{{ current_admin.to_json }},
+        notification: #{{ @notification.to_json }}
+      }
+
+    = yield

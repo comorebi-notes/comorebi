@@ -22,6 +22,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'json', github: 'flori/json', branch: 'v1.8'
 gem 'seed-fu'
 gem 'rails-controller-testing'
+gem 'react-rails'
 
 # admin tools
 gem 'rails_admin'
@@ -61,10 +62,10 @@ end
 group :development do
   gem 'annotate'
   gem 'better_errors'
+  gem 'foreman'
   gem 'web-console', '~> 2.0'
   gem 'html2slim'
 end
-
 
 # for Heroku
 source 'https://rubygems.org'

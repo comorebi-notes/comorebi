@@ -1,6 +1,5 @@
-// override bulma settings
 $primary: #a0ca30
-$info: #30b4e0
+$info: #30b4d0
 $success: #60d040
 $warning: #e4a020
 // $danger: #e44020
@@ -9,32 +8,4 @@ $warning: #e4a020
 
 @import "bulma"
 @import "font-awesome"
-// @import "partials/*"
-
-a
-  transition: all .2s ease-in-out !important
-
-label.is-danger
-  color: $danger
-
-// form
-p.control
-  span.help:not(:first-of-type)
-    margin-top: 0
-
-.tag:not(:last-of-type)
-  margin-right: .25em
-
-.button:not(:last-of-type)
-  margin-right: .3em
-
-.select.multiple
-  display: block
-  height: auto
-  select[multiple]
-    height: initial
-    width: 100%
-    padding: 0
-    box-shadow: inset 0 1px 2px rgba(10, 10, 10, 0.1)
-  &:after
-    content: none
+@import "partials/*"

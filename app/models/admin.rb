@@ -31,7 +31,7 @@ class Admin < ApplicationRecord
          :rememberable,
          :trackable,
          :validatable,
-         :authentication_keys => [:login]
+         authentication_keys: [:name]
 
   attr_accessor :login
   validates :name, presence: true
@@ -39,7 +39,7 @@ class Admin < ApplicationRecord
   def self.find_first_by_auth_conditions(warden_conditions)
     conditions = warden_conditions.dup
     if login = conditions.delete(:login)
-      where(conditions).where(["name = :value OR lower(email) = lower(:value)", { value: login }]).first
+      where(conditions).where(["name = :value", { value: name }]).first
     else
       where(conditions).first
     end

@@ -15,9 +15,9 @@ class Admins::RegistrationsController < Devise::RegistrationsController
   end
 
   # GET /resource/edit
-  # def edit
-  #   super
-  # end
+  def edit
+    redirect_to admin_path
+  end
 
   # PUT /resource
   # def update
@@ -41,7 +41,7 @@ class Admins::RegistrationsController < Devise::RegistrationsController
   protected
 
   def after_update_path_for(resource)
-    admin_root_path
+    admin_path
   end
 
   def configure_account_update_params

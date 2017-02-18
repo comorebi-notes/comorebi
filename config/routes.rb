@@ -11,8 +11,10 @@ Rails.application.routes.draw do
 
   root to: "top#index"
 
+  get "/admin"      , to: "admin#show"
+  get "/admin/*path", to: "admin#show"
+
   namespace :admin do
-    root to: "works#index"
     resources :works
     resources :music
   end

@@ -1,0 +1,28 @@
+.select.multiple
+  display: block
+  height: auto
+  select[multiple]
+    height: initial
+    width: 100%
+    padding: 0
+    box-shadow: inset 0 1px 2px rgba(10, 10, 10, 0.1)
+  &:after
+    content: none
+
+.tag:not(:last-of-type)
+  margin-right: .25em
+.button:not(:last-of-type)
+  margin-right: .3em
+.icon:not(:last-of-type)
+  margin-right: .4em
+
+div.control
+  margin-bottom: 0.75rem
+  p.help:not(:first-of-type)
+    margin-top: 0
+  &.with-button
+    margin-top: 1.6em
+
+.notification
+  .icon
+    margin-right: .3em

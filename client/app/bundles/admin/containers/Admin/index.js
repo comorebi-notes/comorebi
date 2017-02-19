@@ -7,6 +7,7 @@ import * as Actions from '../../actions'
 
 import Header from '../../components/common/Header'
 import Footer from '../../components/common/Footer'
+import SideMenu from '../../components/common/SideMenu'
 import pageTitle from '../../constants/pageTitle'
 
 class Admin extends Component {
@@ -29,7 +30,14 @@ class Admin extends Component {
         <Header admin={currentAdmin} />
         <section className="section" style={{ flexGrow: 1 }}>
           <div className="container">
-            { children }
+            <div className="columns">
+              <div className="column is-3">
+                <SideMenu path={currentPath} />
+              </div>
+              <div className="column">
+                { children }
+              </div>
+            </div>
           </div>
         </section>
         <Footer />

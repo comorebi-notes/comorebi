@@ -9,20 +9,18 @@ class EditAdmin extends Component {
   render() {
     const { actions, loading } = this.props
     return (
-      <div className="columns">
-        <div className="column is-half is-offset-one-quarter">
-          <h1 className="title">
-            管理者アカウントの編集
-          </h1>
-          <h2 className="subtitle is-6">
-            アカウント情報の編集を行います。
-          </h2>
-          <EditAdminForm
-            actions={actions}
-            loading={loading}
-            onSubmit={actions.editAdminSubmit}
-          />
-        </div>
+      <div>
+        <h1 className="title">
+          管理者アカウントの編集
+        </h1>
+        <h2 className="subtitle is-6">
+          アカウント情報の編集を行います。
+        </h2>
+        <EditAdminForm
+          actions={actions}
+          loading={loading}
+          onSubmit={actions.editAdminSubmit}
+        />
       </div>
     )
   }

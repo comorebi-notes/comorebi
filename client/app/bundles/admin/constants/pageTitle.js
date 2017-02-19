@@ -1,11 +1,11 @@
-function getTitle (path) {
+const getTitle = (path) => {
   const pathArray = path.split("/")
   switch (pathArray[1]) {
   // /admin
-  case "admin":
+  case 'admin':
     switch (pathArray[2]) {
     // /edit
-    case "edit":
+    case 'edit':
       return "管理者情報の編集"
     default:
       return ""

@@ -7,7 +7,7 @@ import * as Actions from '../../actions'
 
 import Header from '../../components/common/Header'
 import Footer from '../../components/common/Footer'
-import pageTitle from '../../utils/pageTitle'
+import pageTitle from '../../constants/pageTitle'
 
 class Admin extends Component {
   componentDidMount() {
@@ -26,7 +26,7 @@ class Admin extends Component {
         <Helmet title={pageTitle(currentPath)} />
         <Notifications notifications={notifications} />
 
-        <Header currentAdmin={currentAdmin} />
+        <Header admin={currentAdmin} />
         <section className="section" style={{ flexGrow: 1 }}>
           <div className="container">
             { children }

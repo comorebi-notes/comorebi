@@ -48,10 +48,9 @@ export const setNotifications = (customOptions) => (dispatch) => {
 export const editAdminRequest = createAction('EDIT_ADMIN_REQUEST', api.editAdminRequest)
 export const editAdminSubmit = () => async (dispatch, getState) => {
   const formData = getState().form.admin.values || {}
-  const id = getState().main.currentAdmin.id
 
   dispatch(loading())
-  await dispatch(editAdminRequest('admin', formData, id))
+  await dispatch(editAdminRequest('admin', formData))
   dispatch(complete())
 
   const errors = getState().main.errors

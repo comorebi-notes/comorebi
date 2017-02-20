@@ -17,7 +17,7 @@ function getParams(params) {
   return false
 }
 
-export const editAdminRequest = (target, data, id) => {
-  const params = getParams({ target, data, id })
+export const editAdminRequest = (target, data) => {
+  const params = getParams({ target, data })
   return axios.put("/admin", params, config)
 }

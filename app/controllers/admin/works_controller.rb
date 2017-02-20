@@ -3,10 +3,12 @@ class Admin::WorksController < AdminController
 
   def index
     @works = Work.all
-  end
-
-  def new
-    @work = Work.new
+    works_with_children = @works.map do |work|
+      work.attributes.merge(
+        musics: work.musics
+      )
+    end
+    render json: works_with_children
   end
 
   def create
@@ -16,9 +18,6 @@ class Admin::WorksController < AdminController
     else
       render action: :new
     end
-  end
-
-  def edit
   end
 
   def update

@@ -9,15 +9,11 @@ const config = {
   }
 }
 
-function getParams(params) {
-  switch (params.target) {
-  case 'admin':
-    return admin.getParams(params)
-  }
-  return false
-}
+export const getAllWorks = () => (
+  axios.get("/admin/works", {}, config)
+)
 
-export const editAdminRequest = (target, data) => {
-  const params = getParams({ target, data })
+export const editAdminRequest = (data) => {
+  const params = admin.getParams(data)
   return axios.put("/admin", params, config)
 }

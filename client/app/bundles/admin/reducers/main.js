@@ -9,6 +9,7 @@ const initialNotification = {
 export const initialState = {
   loading: false,
   errors: '',
+  works: '',
   currentAdmin,
   initialNotification
 }
@@ -21,6 +22,10 @@ export default handleActions({
   COMPLETE: (state) => ({
     ...state,
     loading: false
+  }),
+  GET_ALL_WORKS: (state, actions) => ({
+    ...state,
+    works: actions.payload.data
   }),
   EDIT_ADMIN_REQUEST: {
     next: (state, action) => ({

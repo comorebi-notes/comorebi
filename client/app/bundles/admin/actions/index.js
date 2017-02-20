@@ -44,17 +44,20 @@ export const setNotifications = (customOptions) => (dispatch) => {
   dispatch(notificationsAsLevel[options.level])
 }
 
-// ============================================= Update Data
+// ============================================= GET
+export const getAllWorks = createAction('GET_ALL_WORKS', api.getAllWorks)
+
+// ============================================= UPDATE
 export const editAdminRequest = createAction('EDIT_ADMIN_REQUEST', api.editAdminRequest)
 export const editAdminSubmit = () => async (dispatch, getState) => {
   const formData = getState().form.admin.values || {}
 
   dispatch(loading())
-  await dispatch(editAdminRequest('admin', formData))
+  await dispatch(editAdminRequest(formData))
   dispatch(complete())
 
-  const errors = getState().main.errors
   scroll(0)
+  const errors = getState().main.errors
   if (errors === '') {
     dispatch(setNotifications(messages.editAdmin.success()))
   } else {

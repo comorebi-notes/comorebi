@@ -1,5 +1,5 @@
 export function getParams(params) {
-  const { name, email, password, password_confirmation, current_password } = params.data
+  const { name, email, password, password_confirmation, current_password } = params
   return {
     admin: {
       name: name || '',

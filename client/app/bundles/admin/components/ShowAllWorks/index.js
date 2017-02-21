@@ -3,7 +3,10 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as Actions from '../../actions'
 
-import WorksCard from '../Card/WorksCard'
+import WorksTableHeader from '../WorksTable/WorksTableHeader'
+import WorksTableFooter from '../WorksTable/WorksTableFooter'
+import WorksTableRow from '../WorksTable/WorksTableRow'
+import tableLabel from '../../constants/tableLabel'
 
 class ShowAllWorks extends Component {
   componentDidMount() {
@@ -14,17 +17,15 @@ class ShowAllWorks extends Component {
   render() {
     const { works } = this.props
     return (
-      <div className="cards">
-        {works && works.map((work) => (
-          <WorksCard work={work} key={work.id} />
-        ))}
-        {works && works.map((work) => (
-          <WorksCard work={work} key={work.id} />
-        ))}
-        {works && works.map((work) => (
-          <WorksCard work={work} key={work.id} />
-        ))}
-      </div>
+      <table className="table with-thumbnail">
+        <WorksTableHeader columns={tableLabel.allWorks} />
+        <tbody>
+          {works && works.map((work) => (
+            <WorksTableRow work={work} key={work.id} />
+          ))}
+        </tbody>
+        <WorksTableFooter columns={tableLabel.allWorks} />
+      </table>
     )
   }
 }

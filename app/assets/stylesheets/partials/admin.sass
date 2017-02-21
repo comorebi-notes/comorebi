@@ -20,8 +20,11 @@
         color: $danger
         border-color: $danger
 
-  .cards
-    display: flex
-    flex-wrap: wrap
-    justify-content: space-between
-    align-items: flex-start
+  table.with-thumbnail
+    th, td
+      vertical-align: middle
+    figure
+      &.image.thumbnail
+        width: 40px
+        height: 40px
+        padding: 0

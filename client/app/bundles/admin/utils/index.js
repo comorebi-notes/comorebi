@@ -16,5 +16,5 @@ export const humanDate = (dateString) => {
   const hours   = (`0${date.getHours()}`).slice(-2)
   const minutes = (`0${date.getMinutes()}`).slice(-2)
   const seconds = (`0${date.getSeconds()}`).slice(-2)
-  return `${year}年${month}月${day}日 ${hours}時${minutes}分${seconds}秒`
+  return `${year}/${month}/${day} ${hours}:${minutes}:${seconds}`
 }

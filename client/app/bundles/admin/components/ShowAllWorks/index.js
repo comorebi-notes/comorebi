@@ -14,7 +14,13 @@ class ShowAllWorks extends Component {
   render() {
     const { works } = this.props
     return (
-      <div>
+      <div className="cards">
+        {works && works.map((work) => (
+          <WorksCard work={work} key={work.id} />
+        ))}
+        {works && works.map((work) => (
+          <WorksCard work={work} key={work.id} />
+        ))}
         {works && works.map((work) => (
           <WorksCard work={work} key={work.id} />
         ))}

@@ -6,13 +6,15 @@ const WorksCard = ({ work }) => {
   const image = images ? images[0] : null
   return (
     <div className="card">
-      {image && (
-        <div className="card-image">
-          <figure className="image is-4by3">
+      <div className="card-image">
+        <figure className="image is-4by3">
+          {image ? (
             <img src={image.url} alt={image.title} />
-          </figure>
-        </div>
-      )}
+          ) : (
+            <img src="http://bulma.io/images/placeholders/1280x960.png" alt="dummy" />
+          )}
+        </figure>
+      </div>
 
       <div className="card-content">
         <div className="media-content">

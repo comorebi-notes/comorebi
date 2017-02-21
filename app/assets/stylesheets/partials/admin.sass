@@ -2,6 +2,14 @@
   header
     .button
       height: 2.285em
+  footer.footer.is-admin
+    background-color: #52402a
+    .content
+      color: #fff
+    a:hover
+      color: $primary
+      opacity: .6
+
   a
     transition: all .2s ease-in-out !important
   form
@@ -12,10 +20,8 @@
         color: $danger
         border-color: $danger
 
-  footer.footer.is-admin
-    background-color: #52402a
-    .content
-      color: #fff
-    a:hover
-      color: $primary
-      opacity: .6
+  .cards
+    display: flex
+    flex-wrap: wrap
+    justify-content: space-between
+    align-items: flex-start

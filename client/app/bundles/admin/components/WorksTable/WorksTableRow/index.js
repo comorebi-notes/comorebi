@@ -5,7 +5,7 @@ const WorksTableRow = ({ work }) => {
   const { id, title, category, tags, status, musics } = work
   const image = musics.images ? musics.images[0] : null
   return (
-    <tr>
+    <tr className={status}>
       <td>
         <figure className="image thumbnail is-1by1">
           {image ? (
@@ -19,7 +19,7 @@ const WorksTableRow = ({ work }) => {
       <td>{title}</td>
       <td>{category}</td>
       <td>{tags}</td>
-      <td>{utils.renderHumanPublishStatus(status)}</td>
+      <td className="status">{utils.renderHumanPublishStatus(status)}</td>
       <td></td>
     </tr>
   )

@@ -17,7 +17,7 @@ class ShowAllWorks extends Component {
   render() {
     const { works } = this.props
     return (
-      <table className="table with-thumbnail">
+      <table className="table works with-thumbnail">
         <WorksTableHeader columns={tableLabel.allWorks} />
         <tbody>
           {works && works.map((work) => (

@@ -35,19 +35,21 @@ export const humanPublishStatus = (status) => {
 }
 
 export const renderHumanPublishStatus = (status) => {
-  let tagClass = ''
+  let icon = ''
   switch (status) {
   case 'published':
-    tagClass = 'is-info'
+    icon = 'check-circle'
     break
   case 'drafted':
+    icon = 'file-text-o'
+    break
   case 'deleted':
-    tagClass = 'is-light'
+    icon = 'trash'
     break
   }
   return (
-    <span className={`tag ${tagClass}`}>
-      {humanPublishStatus(status)}
+    <span className="icon">
+      <i className={`fa fa-${icon}`} />
     </span>
   )
 }

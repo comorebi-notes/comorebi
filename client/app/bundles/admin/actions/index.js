@@ -1,11 +1,13 @@
 import 'babel-polyfill'
 
 import { createAction } from 'redux-actions'
-import { SubmissionError } from 'redux-form'
+import { SubmissionError, formValueSelector, getFormValues } from 'redux-form'
 import Notifications from 'react-notification-system-redux'
 import messages from '../constants/messages'
 import * as api from '../api'
 import scroll from '../utils/scroll'
+
+const selector = formValueSelector('admin');
 
 // ============================================= Simple Actions
 export const loading = createAction('LOADING')
@@ -50,7 +52,7 @@ export const getAllWorks = createAction('GET_ALL_WORKS', api.getAllWorks)
 // ============================================= UPDATE
 export const editAdminRequest = createAction('EDIT_ADMIN_REQUEST', api.editAdminRequest)
 export const editAdminSubmit = () => async (dispatch, getState) => {
-  const formData = getState().form.admin.values || {}
+  const formData = getFormValues('admin')(getState()) || {}
 
   dispatch(loading())
   await dispatch(editAdminRequest(formData))

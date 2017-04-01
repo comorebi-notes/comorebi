@@ -35,7 +35,4 @@ const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(Actions, dispatch)
 })
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(EditAdmin)
+export default connect(mapStateToProps, mapDispatchToProps)(EditAdmin)

@@ -3,8 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as Actions from '../../actions'
 
-import WorksTableHeader from '../WorksTable/WorksTableHeader'
-import WorksTableFooter from '../WorksTable/WorksTableFooter'
+import WorksTableCaptions from '../WorksTable/WorksTableCaptions'
 import WorksTableRow from '../WorksTable/WorksTableRow'
 import tableLabel from '../../constants/tableLabel'
 
@@ -18,13 +17,19 @@ class ShowAllWorks extends Component {
     const { works } = this.props
     return (
       <table className="table works with-thumbnail">
-        <WorksTableHeader columns={tableLabel.allWorks} />
+        <thead>
+          <WorksTableCaptions columns={tableLabel.allWorks} />
+        </thead>
+
         <tbody>
           {works && works.map((work) => (
             <WorksTableRow work={work} key={work.id} />
           ))}
         </tbody>
-        <WorksTableFooter columns={tableLabel.allWorks} />
+
+        <tfoot>
+          <WorksTableCaptions columns={tableLabel.allWorks} />
+        </tfoot>
       </table>
     )
   }
@@ -38,7 +43,4 @@ const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators(Actions, dispatch)
 })
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ShowAllWorks)
+export default connect(mapStateToProps, mapDispatchToProps)(ShowAllWorks)

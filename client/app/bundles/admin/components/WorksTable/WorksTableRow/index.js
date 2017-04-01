@@ -6,7 +6,7 @@ const WorksTableRow = ({ work }) => {
   const image = musics.images ? musics.images[0] : null
   return (
     <tr className={status}>
-      <td>
+      <td style={{ width: 60 }}>
         <figure className="image thumbnail is-1by1">
           {image ? (
             <img src={image.url} alt={image.title} />

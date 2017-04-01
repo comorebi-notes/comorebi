@@ -46,7 +46,7 @@ class Admin extends Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   currentPath: state.routing.locationBeforeTransitions.pathname,
   currentAdmin: state.main.currentAdmin,
   initialNotification: state.main.initialNotification,
@@ -57,7 +57,4 @@ const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators(Actions, dispatch)
 })
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Admin)
+export default connect(mapStateToProps, mapDispatchToProps)(Admin)

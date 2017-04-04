@@ -3,11 +3,10 @@ class CreateWorks < ActiveRecord::Migration[5.0]
     create_table :works do |t|
       t.string :title, null: false
       t.text :description
-      t.integer :category, default: 0, null: false
       t.integer :status, default: 0, null: false
+      t.datetime :published_at, null: false
 
       t.timestamps
     end
-    add_index :works, [:category, :status]
   end
 end

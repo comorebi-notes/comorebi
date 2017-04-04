@@ -8,7 +8,7 @@ export const parseDate = (dateString) => (
   new Date(Date.parse(dateString))
 )
 
-export const humanDate = (dateString, full) => {
+export const humanDateTime = (dateString, full) => {
   const date    = parseDate(dateString)
   const year    = date.getFullYear()
   const month   = date.getMonth() + 1

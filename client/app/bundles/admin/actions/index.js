@@ -1,13 +1,12 @@
 import 'babel-polyfill'
 
 import { createAction } from 'redux-actions'
-import { SubmissionError, formValueSelector, getFormValues } from 'redux-form'
+import { SubmissionError, getFormValues } from 'redux-form'
 import Notifications from 'react-notification-system-redux'
+import notificationOptions from './notificationOptions'
 import messages from '../constants/messages'
 import * as api from '../api'
 import scroll from '../utils/scroll'
-
-const selector = formValueSelector('admin');
 
 // ============================================= Simple Actions
 export const loading = createAction('LOADING')
@@ -16,27 +15,7 @@ export const complete = createAction('COMPLETE')
 // ============================================= Notifications
 export const clearInitialNotification = createAction('CLEAR_INITIAL_NOTIFICATION')
 export const setNotifications = (customOptions) => (dispatch) => {
-  const defaultOptions = {
-    level: 'info',
-    position: 'br',
-    autoDismiss: 5
-  }
-  const iconClasses = {
-    success: 'check-circle',
-    info: 'info-circle',
-    warning: 'exclamation-circle',
-    error: 'exclamation-triangle'
-  }
-  const options = Object.assign(defaultOptions, customOptions)
-
-  const iconElement = `<span class="icon"><i class="fa fa-${iconClasses[options.level]}"></i></span>`
-  if (options.noTitle) {
-    options.message = iconElement + options.message
-  } else {
-    options.title = options.title || `${options.level.toUpperCase()}!`
-    options.title = iconElement + options.title
-  }
-
+  const options = notificationOptions(customOptions)
   const notificationsAsLevel = {
     success: Notifications.success(options),
     info: Notifications.info(options),

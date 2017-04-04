@@ -4,8 +4,7 @@ const tableLabel = {
     { label: "ID" },
     { label: "タイトル" },
     { label: "カテゴリ" },
-    { label: "タグ" },
-    { label: "状態", className: "publish" },
+    { label: "状態", className: "status" },
     { label: "公開日" }
   ]
 }

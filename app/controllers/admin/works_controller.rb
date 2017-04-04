@@ -6,6 +6,7 @@ class Admin::WorksController < AdminController
     works_with_children = @works.map do |work|
       work.attributes.merge(
         musics: work.musics,
+        categories: work.categories,
         tags: work.tags
       )
     end
@@ -36,7 +37,9 @@ class Admin::WorksController < AdminController
   private
 
   def work_params
-    params.require(:work).permit(:title, :description, :category, :status, :tag_list, music_ids: [])
+    params.require(:work).permit(
+      :title, :description, :status, :published_at, :category_list, :tag_list, music_ids: []
+    )
   end
 
   def set_musics

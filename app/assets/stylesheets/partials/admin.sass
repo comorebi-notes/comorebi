@@ -29,13 +29,24 @@
         height: 40px
         padding: 0
   table.works
+    th:first-child
+      width: 60px
+    .status
+      text-align: center
     tr.published
       td.status
         color: $info
     tr.drafted
-      background-color: lighten($warning, 45%)
+      background-color: #fffaf2
+      &:hover
+        background-color: #fcecda
       td.status
         color: $warning
     tr.deleted
-      color: lighten($text, 35%)
-      background-color: #eaeaea
+      color: lighten($text, 30%)
+      background-color: #eeeeee
+      &:hover
+        background-color: #dddddd
+    .tag
+      font-size: 12px
+      margin: .2em

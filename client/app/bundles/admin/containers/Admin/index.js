@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Helmet from 'react-helmet'
 import Notifications from 'react-notification-system-redux'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import { bindActionCreators } from 'redux'
 import * as Actions from '../../actions'
 
@@ -26,7 +27,6 @@ class Admin extends Component {
       <div className="hero is-fullheight">
         <Helmet title={pageTitle(currentPath)} />
         <Notifications notifications={notifications} />
-
         <Header admin={currentAdmin} />
         <section className="section" style={{ flexGrow: 1 }}>
           <div className="container">
@@ -35,7 +35,17 @@ class Admin extends Component {
                 <SideMenu path={currentPath} />
               </div>
               <div className="column">
-                { children }
+                <ReactCSSTransitionGroup
+                  component="div"
+                  className="transition-container"
+                  transitionName="admin"
+                  transitionAppear
+                  transitionAppearTimeout={300}
+                  transitionEnterTimeout={300}
+                  transitionLeaveTimeout={300}
+                >
+                  {children && React.cloneElement(children, { key: currentPath })}
+                </ReactCSSTransitionGroup>
               </div>
             </div>
           </div>

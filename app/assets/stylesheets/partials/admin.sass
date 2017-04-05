@@ -37,13 +37,13 @@
       td.status
         color: $info
     tr.drafted
-      background-color: #fffaf2
+      background-color: lighten($warning, 45%)
       &:hover
-        background-color: #fcecda
+        background-color: lighten($warning, 40%)
       td.status
         color: $warning
     tr.deleted
-      color: lighten($text, 30%)
+      color: lighten($text, 20%)
       background-color: #eeeeee
       &:hover
         background-color: #dddddd

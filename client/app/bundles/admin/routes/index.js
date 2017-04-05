@@ -1,12 +1,14 @@
 import React from 'react'
-import { Route } from 'react-router'
+import { Route, IndexRoute } from 'react-router'
 
-import Admin from '../containers/Admin'
+import AdminContainer from '../containers/Admin'
 import EditAdmin from '../components/EditAdmin'
+import ShowAllWorks from '../components/ShowAllWorks'
 
 export default function adminRoutes() {
   return (
-    <Route path='/admin' component={Admin}>
+    <Route path='/admin' component={AdminContainer}>
+      <IndexRoute component={ShowAllWorks} />
       <Route path='edit' component={EditAdmin} />
     </Route>
   )

@@ -14,7 +14,7 @@ class Footer extends Component {
             </p>
             <p>
               {
-                footerLinks.map ((link, index) => (
+                footerLinks.map((link, index) => (
                   <a
                     href={link.url}
                     className="icon"

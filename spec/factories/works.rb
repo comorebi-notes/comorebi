@@ -1,6 +1,10 @@
+require 'faker'
+
 FactoryGirl.define do
   factory :work do
-    title "test work"
-    description "test..."
+    title        { generate :title }
+    description  { generate :description }
+    status       :published
+    published_at { generate :time }
   end
 end

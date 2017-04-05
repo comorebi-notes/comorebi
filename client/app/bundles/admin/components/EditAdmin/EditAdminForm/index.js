@@ -40,6 +40,4 @@ EditAdminForm = reduxForm({
   validate
 })(EditAdminForm)
 
-export default connect(
-  mapStateToProps
-)(EditAdminForm)
+export default connect(mapStateToProps)(EditAdminForm)

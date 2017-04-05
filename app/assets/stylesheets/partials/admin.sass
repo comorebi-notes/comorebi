@@ -2,6 +2,14 @@
   header
     .button
       height: 2.285em
+  footer.footer.is-admin
+    background-color: #52402a
+    .content
+      color: #fff
+    a:hover
+      color: $primary
+      opacity: .6
+
   a
     transition: all .2s ease-in-out !important
   form
@@ -12,10 +20,33 @@
         color: $danger
         border-color: $danger
 
-  footer.footer.is-admin
-    background-color: #52402a
-    .content
-      color: #fff
-    a:hover
-      color: $primary
-      opacity: .6
+  table.with-thumbnail
+    th, td
+      vertical-align: middle
+    figure
+      &.image.thumbnail
+        width: 40px
+        height: 40px
+        padding: 0
+  table.works
+    th:first-child
+      width: 60px
+    .status
+      text-align: center
+    tr.published
+      td.status
+        color: $info
+    tr.drafted
+      background-color: lighten($warning, 45%)
+      &:hover
+        background-color: lighten($warning, 40%)
+      td.status
+        color: $warning
+    tr.deleted
+      color: lighten($text, 20%)
+      background-color: #eeeeee
+      &:hover
+        background-color: #dddddd
+    .tag
+      font-size: 12px
+      margin: .2em

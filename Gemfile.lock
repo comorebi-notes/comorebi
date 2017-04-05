@@ -31,7 +31,6 @@ GEM
       erubis (~> 2.7.0)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.0, >= 1.0.2)
-    active_decorator (0.8.0)
     activejob (5.0.1)
       activesupport (= 5.0.1)
       globalid (>= 0.3.6)
@@ -100,6 +99,8 @@ GEM
     factory_girl_rails (4.8.0)
       factory_girl (~> 4.8.0)
       railties (>= 3.0.0)
+    faker (1.7.3)
+      i18n (~> 0.5)
     ffi (1.9.14)
     font-awesome-rails (4.7.0.1)
       railties (>= 3.2, < 5.1)
@@ -348,7 +349,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  active_decorator
   acts-as-taggable-on
   annotate
   awesome_print
@@ -361,6 +361,7 @@ DEPENDENCIES
   devise
   devise-i18n
   factory_girl_rails
+  faker
   font-awesome-rails
   foreman
   guard-rspec

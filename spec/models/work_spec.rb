@@ -14,9 +14,8 @@ describe Work, type: :model do
     expect(work).not_to be_valid
   end
 
-  it "have default category and status" do
+  it "have default status" do
     work = Work.new(title: "hoge")
-    expect(work.category).to eq("others")
     expect(work.status).to eq("drafted")
   end
 

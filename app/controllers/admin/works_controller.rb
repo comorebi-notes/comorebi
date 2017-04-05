@@ -13,6 +13,7 @@ class Admin::WorksController < AdminController
     render json: works_with_children
   end
 
+  # ajax 用に書き換え
   def create
     @work = Work.new(work_params)
     if @work.save
@@ -22,9 +23,11 @@ class Admin::WorksController < AdminController
     end
   end
 
+  # ajax 用に書き換え
   def update
   end
 
+  # ajax 用に書き換え
   def destroy
     @work = Work.find(params[:id])
     if @work.destroy
@@ -40,9 +43,5 @@ class Admin::WorksController < AdminController
     params.require(:work).permit(
       :title, :description, :status, :published_at, :category_list, :tag_list, music_ids: []
     )
-  end
-
-  def set_musics
-    @musics = Music.all
   end
 end

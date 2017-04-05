@@ -40,7 +40,7 @@ gem 'devise-i18n'
 gem 'acts-as-taggable-on'
 
 # for views
-gem 'active_decorator'
+# gem 'active_decorator'
 
 group :development, :test do
   gem 'awesome_print'
@@ -48,6 +48,7 @@ group :development, :test do
   gem 'byebug'
   gem 'database_cleaner'
   gem 'factory_girl_rails'
+  gem "faker"
   gem 'guard-rspec'
   gem 'pry-rails'
   gem 'pry-byebug'

@@ -39,8 +39,6 @@ class Admin extends Component {
                   component="div"
                   className="transition-container"
                   transitionName="admin"
-                  transitionAppear
-                  transitionAppearTimeout={300}
                   transitionEnterTimeout={300}
                   transitionLeaveTimeout={300}
                 >

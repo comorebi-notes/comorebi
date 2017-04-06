@@ -37,7 +37,6 @@ export const editAdminSubmit = () => async (dispatch, getState) => {
   await dispatch(editAdminRequest(formData))
   dispatch(complete())
 
-  scroll(0)
   const errors = getState().main.errors
   if (errors === '') {
     dispatch(setNotifications(messages.editAdmin.success()))

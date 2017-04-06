@@ -1,22 +1,18 @@
 .transition-container
   position: relative
   & > *
-    position: absolute
+    width: 100%
 
 .admin-enter
   opacity: 0
+  float: left
   &.admin-enter-active
     opacity: 1
     transition: opacity .3s ease-in-out
 
 .admin-leave
   opacity: 1
+  position: absolute
   &.admin-leave-active
     opacity: 0
-    transition: opacity .3s ease-in-out
-
-.admin-appear
-  opacity: 0
-  &.admin-appear-active
-    opacity: 1
     transition: opacity .3s ease-in-out

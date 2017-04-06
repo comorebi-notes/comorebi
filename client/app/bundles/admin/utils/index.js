@@ -1,6 +1,11 @@
 import React from 'react'
 // import { Link } from 'react-router'
 
+export const zeroPadding = (num, length) => {
+  const zeros = Array(length + 1).join('0')
+  return (zeros + num).slice(-length);
+}
+
 export const isActivePath = (path, target) => (path === target ? 'is-active' : '')
 
 export const parseDate = (dateString) => (
@@ -10,12 +15,12 @@ export const parseDate = (dateString) => (
 
 export const humanDateTime = (dateString, full) => {
   const date    = parseDate(dateString)
-  const year    = date.getFullYear()
-  const month   = date.getMonth() + 1
-  const day     = date.getDate()
-  const hours   = (`0${date.getHours()}`).slice(-2)
-  const minutes = (`0${date.getMinutes()}`).slice(-2)
-  const seconds = (`0${date.getSeconds()}`).slice(-2)
+  const year    = zeroPadding(date.getFullYear(),  4)
+  const month   = zeroPadding(date.getMonth() + 1, 2)
+  const day     = zeroPadding(date.getDate(),      2)
+  const hours   = zeroPadding(date.getHours(),     2)
+  const minutes = zeroPadding(date.getMinutes(),   2)
+  const seconds = zeroPadding(date.getSeconds(),   2)
   const isFull  = full || false
 
   if (isFull) {

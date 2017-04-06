@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react'
+import { browserHistory } from 'react-router'
 import * as utils from '../../../utils'
 
 class WorksTableRow extends PureComponent {
@@ -6,7 +7,10 @@ class WorksTableRow extends PureComponent {
     const { id, title, categories, status, images, published_at } = this.props.work
     const image = images ? images[0] : null
     return (
-      <tr className={status}>
+      <tr
+        className={status}
+        onClick={() => browserHistory.push(`admin/works/${id}`)}
+      >
         <td style={{ width: 60 }}>
           <figure className="image thumbnail is-1by1">
             {image ? (

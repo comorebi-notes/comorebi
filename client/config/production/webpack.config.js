@@ -1,3 +1,4 @@
+const path = require('path')
 const webpack = require('webpack')
 const ManifestPlugin = require('webpack-manifest-plugin')
 
@@ -7,24 +8,9 @@ module.exports = {
     portfolio: "./client/app/bundles/portfolio/index.js"
   },
   output: {
-    path: './public/dist',
+    path: path.join(__dirname, '../../../public/dist'),
     filename: '[name]-[hash].js'
   },
-  plugins: [
-    new webpack.optimize.UglifyJsPlugin({
-      sourceMap: true,
-      minimize: true,
-      compress: {
-        warnings: false,
-      },
-    }),
-    new ManifestPlugin(),
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify('production')
-      }
-    })
-  ],
   module: {
     rules: [
       {
@@ -38,5 +24,20 @@ module.exports = {
         exclude: /node_modules/
       }
     ]
-  }
+  },
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify('production')
+      }
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      sourceMap: true,
+      minimize: true,
+      compress: {
+        warnings: false,
+      },
+    }),
+    new ManifestPlugin()
+  ]
 }

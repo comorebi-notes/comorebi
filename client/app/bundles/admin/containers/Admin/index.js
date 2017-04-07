@@ -8,7 +8,6 @@ import * as Actions from '../../actions'
 
 import Header from '../../components/common/Header'
 import Footer from '../../components/common/Footer'
-import SideMenu from '../../components/common/SideMenu'
 import pageTitle from '../../constants/pageTitle'
 
 class Admin extends Component {
@@ -27,25 +26,18 @@ class Admin extends Component {
       <div className="hero is-fullheight">
         <Helmet title={pageTitle(currentPath)} />
         <Notifications notifications={notifications} />
-        <Header admin={currentAdmin} />
+        <Header admin={currentAdmin} path={currentPath} />
         <section className="section" style={{ flexGrow: 1 }}>
           <div className="container">
-            <div className="columns">
-              <div className="column is-3">
-                <SideMenu path={currentPath} />
-              </div>
-              <div className="column">
-                <ReactCSSTransitionGroup
-                  component="div"
-                  className="transition-container"
-                  transitionName="admin"
-                  transitionEnterTimeout={300}
-                  transitionLeaveTimeout={300}
-                >
-                  {children && React.cloneElement(children, { key: currentPath })}
-                </ReactCSSTransitionGroup>
-              </div>
-            </div>
+            <ReactCSSTransitionGroup
+              component="div"
+              className="transition-container"
+              transitionName="admin"
+              transitionEnterTimeout={300}
+              transitionLeaveTimeout={300}
+            >
+              {children && React.cloneElement(children, { key: currentPath })}
+            </ReactCSSTransitionGroup>
           </div>
         </section>
         <Footer />

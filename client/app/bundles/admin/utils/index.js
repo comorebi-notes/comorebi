@@ -6,7 +6,10 @@ export const zeroPadding = (num, length) => {
   return (zeros + num).slice(-length);
 }
 
-export const isActivePath = (path, target) => (path === target ? 'is-active' : '')
+export const isActivePath = (path, target, prefix) => {
+  const url = prefix ? [prefix, target].join('/') : target
+  return path === url ? 'is-active' : ''
+}
 
 export const parseDate = (dateString) => (
   // 2017-01-29T00:13:31.000+09:00

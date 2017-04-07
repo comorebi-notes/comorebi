@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :works, except: [:new, :edit]
-    resources :music
+    resources :musics
   end
 
   get "/admin"      , to: "admin#show"

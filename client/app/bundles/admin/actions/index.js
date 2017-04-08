@@ -9,7 +9,7 @@ import messages from '../constants/messages'
 import * as api from '../api'
 
 // ============================================= Simple Actions
-export const loading = createAction('LOADING')
+export const loading  = createAction('LOADING')
 export const complete = createAction('COMPLETE')
 
 // ============================================= Notifications
@@ -27,6 +27,11 @@ export const setNotifications = (customOptions) => (dispatch) => {
 
 // ============================================= GET
 export const getAllWorks = createAction('GET_ALL_WORKS', api.getAllWorks)
+export const getAllWorksAsync = () => async (dispatch) => {
+  dispatch(loading())
+  await dispatch(getAllWorks())
+  dispatch(complete())
+}
 
 // ============================================= UPDATE
 export const editAdminRequest = createAction('EDIT_ADMIN_REQUEST', api.editAdminRequest)

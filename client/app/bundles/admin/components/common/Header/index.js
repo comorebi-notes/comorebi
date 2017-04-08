@@ -38,7 +38,7 @@ class Header extends PureComponent {
                 ))}
               </div>
               <div className="nav-right nav-menu" style={{ flex: 0 }}>
-                <a href="/rails_admin" className="nav-item">
+                <a href="/rails_admin" className="nav-item" target="_blank" rel="noopener noreferrer">
                   rails_admin
                 </a>
                 <Link to="/admin/edit" className="nav-item">

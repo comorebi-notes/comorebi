@@ -5,23 +5,26 @@ import * as Actions from '../../actions'
 
 import WorksTableCaptions from '../WorksTable/WorksTableCaptions'
 import WorksTableRow from '../WorksTable/WorksTableRow'
+import Loading from '../WorksTable/Loading'
 import tableLabel from '../../constants/tableLabel'
 
 class ShowAllWorks extends Component {
   componentDidMount() {
     const { actions } = this.props
-    actions.getAllWorks()
+    actions.getAllWorksAsync()
   }
 
   render() {
-    const { works } = this.props
-    const captions = <WorksTableCaptions columns={tableLabel} />
+    const { loading, works } = this.props
+    const captions = !loading && <WorksTableCaptions columns={tableLabel} />
     return (
       <table className="table works with-thumbnail">
         <thead>{captions}</thead>
 
         <tbody>
-          {works && works.map((work) => (
+          {loading ? (
+            <Loading colspan={tableLabel.length} />
+          ) : works && works.map((work) => (
             <WorksTableRow work={work} key={work.id} />
           ))}
         </tbody>
@@ -33,6 +36,7 @@ class ShowAllWorks extends Component {
 }
 
 const mapStateToProps = (state) => ({
+  loading: state.main.loading,
   works: state.main.works
 })
 

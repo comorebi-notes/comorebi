@@ -9,7 +9,7 @@ class WorksTableRow extends PureComponent {
     return (
       <tr
         className={status}
-        onClick={() => browserHistory.push(`admin/works/${id}`)}
+        onClick={() => browserHistory.push(`/admin/works/${id}`)}
       >
         <td className="thumbnail">
           <figure className="image thumbnail is-1by1">

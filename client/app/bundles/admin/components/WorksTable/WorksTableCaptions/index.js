@@ -1,13 +1,18 @@
-import React from 'react'
+import React, { PureComponent } from 'react'
 
-const WorksTableCaptions = ({ columns }) => (
-  <tr>
-    {columns.map((column) => (
-      <th key={column.label} className={column.className || ''}>
-        {column.label}
-      </th>
-    ))}
-  </tr>
-)
+class WorksTableCaptions extends PureComponent {
+  render() {
+    const { columns } = this.props
+    return (
+      <tr>
+        {columns.map((column) => (
+          <th key={column.label} className={column.className || ''}>
+            {column.label}
+          </th>
+        ))}
+      </tr>
+    )
+  }
+}
 
 export default WorksTableCaptions

@@ -11,7 +11,7 @@ class WorksTableRow extends PureComponent {
         className={status}
         onClick={() => browserHistory.push(`admin/works/${id}`)}
       >
-        <td style={{ width: 60 }}>
+        <td className="thumbnail">
           <figure className="image thumbnail is-1by1">
             {image ? (
               <img src={image.url} alt={image.title} />
@@ -20,15 +20,15 @@ class WorksTableRow extends PureComponent {
             )}
           </figure>
         </td>
-        <th>{id}</th>
-        <td>{title}</td>
-        <td className="is-hidden-mobile">
+        <th className="id">{id}</th>
+        <td className="works-title">{title}</td>
+        <td className="category is-hidden-mobile">
           {categories.map((category) => (
             <span className="tag is-info" key={category.id}>{category.name}</span>
           ))}
         </td>
-        <td className="is-hidden-mobile status">{utils.renderHumanPublishStatus(status)}</td>
-        <td>{utils.humanDateTime(published_at)}</td>
+        <td className="status is-hidden-mobile">{utils.renderHumanPublishStatus(status)}</td>
+        <td className="published_at">{utils.humanDateTime(published_at)}</td>
       </tr>
     )
   }

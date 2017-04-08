@@ -15,11 +15,10 @@ class ShowAllWorks extends Component {
 
   render() {
     const { works } = this.props
+    const captions = <WorksTableCaptions columns={tableLabel} />
     return (
       <table className="table works with-thumbnail">
-        <thead>
-          <WorksTableCaptions columns={tableLabel.allWorks} />
-        </thead>
+        <thead>{captions}</thead>
 
         <tbody>
           {works && works.map((work) => (
@@ -27,9 +26,7 @@ class ShowAllWorks extends Component {
           ))}
         </tbody>
 
-        <tfoot>
-          <WorksTableCaptions columns={tableLabel.allWorks} />
-        </tfoot>
+        <tfoot>{captions}</tfoot>
       </table>
     )
   }

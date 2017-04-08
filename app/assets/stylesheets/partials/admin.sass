@@ -34,8 +34,15 @@
         height: 40px
         padding: 0
   table.works
-    .status
-      text-align: center
+    td, th
+      // &.thumbnail
+      &.id
+        text-align: center
+      // &.works-title
+      // &.category
+      &.status
+        text-align: center
+      // &.published_at
     tr
       cursor: pointer  
       &.published
@@ -55,3 +62,7 @@
     .tag
       font-size: 12px
       margin: .2em
+
+  @media screen and (max-width: $tablet)
+    table.works
+      font-size: .8rem

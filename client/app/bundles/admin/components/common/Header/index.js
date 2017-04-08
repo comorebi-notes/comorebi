@@ -9,9 +9,11 @@ class Header extends PureComponent {
   render() {
     const { admin, path } = this.props
     const rootPath = "/admin"
-    const itemClassName = (url) => classNames(
-      "nav-item", "is-tab", "is-hidden-mobile",
-      { "is-active": isActivePath(path, url, rootPath) }
+    const itemClassName = (url) => (
+      classNames(
+        "nav-item", "is-tab", "is-hidden-mobile",
+        { "is-active": isActivePath(path, url, rootPath) }
+      )
     )
 
     return (

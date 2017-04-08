@@ -26,7 +26,9 @@ class Admin extends Component {
       <div className="hero is-fullheight">
         <Helmet title={pageTitle(currentPath)} />
         <Notifications notifications={notifications} />
+
         <Header admin={currentAdmin} path={currentPath} />
+
         <section className="section" style={{ flexGrow: 1 }}>
           <div className="container">
             <ReactCSSTransitionGroup
@@ -40,6 +42,7 @@ class Admin extends Component {
             </ReactCSSTransitionGroup>
           </div>
         </section>
+
         <Footer />
       </div>
     )

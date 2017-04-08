@@ -1,13 +1,11 @@
 class Admin::WorksController < AdminController
-  before_action :set_musics, only: [:new, :edit]
-
   def index
     @works = Work.all
     works_with_children = @works.map do |work|
       work.attributes.merge(
-        musics: work.musics,
+        musics:     work.musics,
         categories: work.categories,
-        tags: work.tags
+        tags:       work.tags
       )
     end
     render json: works_with_children
@@ -41,7 +39,9 @@ class Admin::WorksController < AdminController
 
   def work_params
     params.require(:work).permit(
-      :title, :description, :status, :published_at, :category_list, :tag_list, music_ids: []
+      :title, :description, :status, :published_at,
+      :category_list, :tag_list,
+      music_ids: []
     )
   end
 end

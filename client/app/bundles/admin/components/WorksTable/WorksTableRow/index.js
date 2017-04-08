@@ -22,12 +22,12 @@ class WorksTableRow extends PureComponent {
         </td>
         <th>{id}</th>
         <td>{title}</td>
-        <td>
+        <td className="is-hidden-mobile">
           {categories.map((category) => (
             <span className="tag is-info" key={category.id}>{category.name}</span>
           ))}
         </td>
-        <td className="status">{utils.renderHumanPublishStatus(status)}</td>
+        <td className="is-hidden-mobile status">{utils.renderHumanPublishStatus(status)}</td>
         <td>{utils.humanDateTime(published_at)}</td>
       </tr>
     )

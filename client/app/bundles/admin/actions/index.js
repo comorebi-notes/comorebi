@@ -3,10 +3,10 @@ import 'babel-polyfill'
 import { createAction } from 'redux-actions'
 import { SubmissionError, getFormValues } from 'redux-form'
 import Notifications from 'react-notification-system-redux'
+
 import notificationOptions from './notificationOptions'
 import messages from '../constants/messages'
 import * as api from '../api'
-import scroll from '../utils/scroll'
 
 // ============================================= Simple Actions
 export const loading = createAction('LOADING')

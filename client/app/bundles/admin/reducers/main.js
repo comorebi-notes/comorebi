@@ -1,9 +1,10 @@
 import { handleActions } from 'redux-actions'
 
 const currentAdmin = window.data.admin || ''
+const windowNotification = window.data.notification || {}
 const initialNotification = {
-  message: window.data.notification.message || '',
-  level: window.data.notification.level || ''
+  message: windowNotification.message || '',
+  level:   windowNotification.level   || ''
 }
 
 export const initialState = {
@@ -15,14 +16,8 @@ export const initialState = {
 }
 
 export default handleActions({
-  LOADING: (state) => ({
-    ...state,
-    loading: true
-  }),
-  COMPLETE: (state) => ({
-    ...state,
-    loading: false
-  }),
+  LOADING:  (state) => ({ ...state, loading: true }),
+  COMPLETE: (state) => ({ ...state, loading: false }),
   GET_ALL_WORKS: (state, actions) => ({
     ...state,
     works: actions.payload.data

@@ -11,11 +11,17 @@ Rails.application.routes.draw do
 
   root to: "top#index"
 
-  namespace :admin do
+  namespace :admin, constraints: OnlyAjaxRequest.new do
     resources :works, except: [:new, :edit]
     resources :musics
   end
 
-  get "/admin"      , to: "admin#show"
+  get "/admin",       to: "admin#show"
   get "/admin/*path", to: "admin#show"
+
+  class OnlyAjaxRequest
+    def matches?(request)
+      request.xhr?
+    end
+  end
 end

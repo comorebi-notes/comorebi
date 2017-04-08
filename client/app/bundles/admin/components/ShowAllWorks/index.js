@@ -5,7 +5,7 @@ import * as Actions from '../../actions'
 
 import WorksTableCaptions from '../WorksTable/WorksTableCaptions'
 import WorksTableRow from '../WorksTable/WorksTableRow'
-import Loading from '../WorksTable/Loading'
+import Loading from '../common/LoadingTableRow'
 import tableLabel from '../../constants/tableLabel'
 
 class ShowAllWorks extends Component {
@@ -17,6 +17,7 @@ class ShowAllWorks extends Component {
   render() {
     const { loading, works } = this.props
     const captions = !loading && <WorksTableCaptions columns={tableLabel} />
+
     return (
       <table className="table works with-thumbnail">
         <thead>{captions}</thead>

@@ -18,18 +18,18 @@ export const parseDate = (dateString) => (
 
 export const humanDateTime = (dateString, full) => {
   const date    = parseDate(dateString)
-  const year    = zeroPadding(date.getFullYear(),  4)
-  const month   = zeroPadding(date.getMonth() + 1, 2)
-  const day     = zeroPadding(date.getDate(),      2)
-  const hours   = zeroPadding(date.getHours(),     2)
-  const minutes = zeroPadding(date.getMinutes(),   2)
-  const seconds = zeroPadding(date.getSeconds(),   2)
+  const yyyy = zeroPadding(date.getFullYear(),  4)
+  const MM   = zeroPadding(date.getMonth() + 1, 2)
+  const dd   = zeroPadding(date.getDate(),      2)
+  const hh   = zeroPadding(date.getHours(),     2)
+  const mm   = zeroPadding(date.getMinutes(),   2)
+  const ss   = zeroPadding(date.getSeconds(),   2)
   const isFull  = full || false
 
   if (isFull) {
-    return `${year}/${month}/${day} ${hours}:${minutes}:${seconds}`
+    return `${yyyy}/${MM}/${dd} ${hh}:${mm}:${ss}`
   } else {
-    return `${year}/${month}/${day}`
+    return `${yyyy}/${MM}/${dd}`
   }
 }
 
@@ -60,4 +60,23 @@ export const renderHumanPublishStatus = (status) => {
       <i className={`fa fa-${icon}`} />
     </span>
   )
+}
+
+export const getId = (path) => parseInt(path.split('/')[3], 10)
+export const findWork = (works, id) => works.filter(work => work.id === id)[0]
+
+export const setupWorkForEdit = (works, currentPath) => {
+  const id = getId(currentPath)
+  const work = works ? findWork(works, id) : {}
+  if (Object.keys(work).length) {
+    const date = parseDate(work.published_at)
+    const yyyy = zeroPadding(date.getFullYear(),  4)
+    const MM   = zeroPadding(date.getMonth() + 1, 2)
+    const dd   = zeroPadding(date.getDate(),      2)
+    const hh   = zeroPadding(date.getHours(),     2)
+    const mm   = zeroPadding(date.getMinutes(),   2)
+    const ss   = zeroPadding(date.getSeconds(),   2)
+    work.published_at = `${yyyy}-${MM}-${dd}T${hh}:${mm}:${ss}`
+  }
+  return work
 }

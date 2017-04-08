@@ -11,9 +11,8 @@ export default function adminRoutes() {
     <Route path='/admin' component={AdminContainer}>
       <IndexRoute component={ShowAllWorks} />
       <Route path='edit' component={EditAdmin} />
-      <Route path='works' component={ShowAllWorks}>
-        <Route path=':id' component={EditWork} />
-      </Route>
+      <Route path='works' component={ShowAllWorks} />
+      <Route path='works/:id' component={EditWork} />
     </Route>
   )
 }

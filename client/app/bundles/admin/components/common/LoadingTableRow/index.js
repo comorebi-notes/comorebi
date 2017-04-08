@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 
-class Loading extends PureComponent {
+class LoadingTableRow extends PureComponent {
   render() {
     const { colspan } = this.props
     return (
@@ -16,4 +16,4 @@ class Loading extends PureComponent {
   }
 }
 
-export default Loading
+export default LoadingTableRow

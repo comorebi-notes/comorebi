@@ -27,10 +27,14 @@ export const setNotifications = (customOptions) => (dispatch) => {
 
 // ============================================= GET
 export const getAllWorks = createAction('GET_ALL_WORKS', api.getAllWorks)
-export const getAllWorksAsync = () => async (dispatch) => {
-  dispatch(loading())
-  await dispatch(getAllWorks())
-  dispatch(complete())
+export const getAllWorksAsync = (force) => async (dispatch, getState) => {
+  const works = getState().main.works
+  const worksCount = works ? works.length : 0
+  if (force || worksCount === 0) {
+    dispatch(loading())
+    await dispatch(getAllWorks())
+    dispatch(complete())
+  }
 }
 
 // ============================================= UPDATE

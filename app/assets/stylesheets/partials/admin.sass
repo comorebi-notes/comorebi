@@ -7,6 +7,7 @@
       border-bottom-color: $info
   footer.footer.is-admin
     background-color: #52402a
+    z-index: 1
     .content
       color: #fff
     a:hover
@@ -77,6 +78,15 @@
     text-align: center
     padding: 6em
 
+  .select-datetime
+    display: flex
+    justify-content: space-between
+    max-width: 400px
+    > div:first-of-type
+      width: calc(60% - .4em)
+    > div:last-of-type
+      width: calc(40% - .4em)
+
   @media screen and (max-width: $tablet)
     table.works
-      font-size: .8rem
+      font-size: .9rem

@@ -76,7 +76,8 @@ export const setupWorkForEdit = (works, currentPath) => {
     const hh   = zeroPadding(date.getHours(),     2)
     const mm   = zeroPadding(date.getMinutes(),   2)
     const ss   = zeroPadding(date.getSeconds(),   2)
-    work.published_at = `${yyyy}-${MM}-${dd}T${hh}:${mm}:${ss}`
+    work.published_date = `${yyyy}-${MM}-${dd}`
+    work.published_time = `${hh}:${mm}:${ss}`
   }
   return work
 }

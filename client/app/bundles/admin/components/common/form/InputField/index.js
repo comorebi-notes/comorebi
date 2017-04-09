@@ -1,6 +1,8 @@
 import React from 'react'
 import classNames from 'classnames'
 
+import ErrorField from '../ErrorField'
+
 const InputField = ({ input, name, type, label, placeholder, children, meta: { touched, error } }) => {
   const inputType = type || 'text'
   const isError = touched && error
@@ -16,16 +18,7 @@ const InputField = ({ input, name, type, label, placeholder, children, meta: { t
         )
         }
         {children}
-        {isError && (
-          <span className="icon is-small">
-            <i className="fa fa-warning" />
-          </span>
-        )}
-        {isError && (
-          <p className="help is-danger">
-            {error}
-          </p>
-        )}
+        {isError && <ErrorField error={error} /> }
       </div>
     </div>
   )

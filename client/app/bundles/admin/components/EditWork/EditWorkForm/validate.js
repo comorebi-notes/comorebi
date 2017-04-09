@@ -1,4 +1,4 @@
-import { createValidator, required, email } from '../../../utils/validation'
+import { createValidator, required } from '../../../utils/validation'
 
 const validate = createValidator({
   title: [required],

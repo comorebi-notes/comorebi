@@ -3,7 +3,8 @@ import { connect } from 'react-redux'
 import { Field, Fields, reduxForm } from 'redux-form'
 
 import InputField from '../../common/form/InputField'
-import SelectDatetimeFields from '../../common/form/SelectDatetimeFields'
+import PublishedDatetimeFields from '../../common/form/PublishedDatetimeFields'
+import PublishStatusFields from '../../common/form/PublishStatusFields'
 import SubmitButton from '../../common/form/SubmitButton'
 import validate from './validate'
 import * as utils from '../../../utils'
@@ -16,7 +17,12 @@ class EditWorkForm extends Component {
         <Field component={InputField} name="title" label="作品名" />
         <Field component={InputField} name="description" label="説明文" type="textarea" />
         <Fields
-          component={SelectDatetimeFields}
+          component={PublishStatusFields}
+          names={["status"]}
+          label="状態"
+        />
+        <Fields
+          component={PublishedDatetimeFields}
           names={["published_date", "published_time"]}
           label="公開日"
         />

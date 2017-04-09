@@ -18,10 +18,10 @@ Rails.application.routes.draw do
 
   get "/admin",       to: "admin#show"
   get "/admin/*path", to: "admin#show"
+end
 
-  class OnlyAjaxRequest
-    def matches?(request)
-      request.xhr?
-    end
+class OnlyAjaxRequest
+  def matches?(request)
+    request.xhr?
   end
 end

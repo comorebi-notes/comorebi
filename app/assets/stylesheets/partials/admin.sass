@@ -81,7 +81,7 @@
   .select-datetime
     display: flex
     justify-content: space-between
-    max-width: 400px
+    max-width: 320px
     > div:first-of-type
       width: calc(60% - .4em)
     > div:last-of-type
@@ -97,3 +97,6 @@
   @media screen and (max-width: $tablet)
     table.works
       font-size: .9rem
+    .select-status
+      > *
+        flex-grow: 1

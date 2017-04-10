@@ -54,3 +54,5 @@ export const editAdminSubmit = () => async (dispatch, getState) => {
     throw new SubmissionError(errors)
   }
 }
+
+export const addTag = createAction('ADD_TAG')

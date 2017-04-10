@@ -18,10 +18,19 @@ export const initialState = {
 export default handleActions({
   LOADING:  (state) => ({ ...state, loading: true }),
   COMPLETE: (state) => ({ ...state, loading: false }),
-  GET_ALL_WORKS: (state, actions) => ({
-    ...state,
-    works: actions.payload.data
-  }),
+  GET_ALL_WORKS: (state, actions) => {
+    const data = actions.payload.data
+    return {
+      ...state,
+      works:      data.works,
+      categories: data.categories,
+      tags:       data.tags
+    }
+  },
+  ADD_TAG: (state, action) => {
+    state[action.payload.target].push(action.payload.name)
+    return { ...state }
+  },
   EDIT_ADMIN_REQUEST: {
     next: (state, action) => ({
       ...state,

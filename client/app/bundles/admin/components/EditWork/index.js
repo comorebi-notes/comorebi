@@ -11,10 +11,8 @@ class EditWork extends Component {
     const { actions } = this.props
     actions.getAllWorksAsync()
   }
-
   render() {
     const { actions, loading, works } = this.props
-
     return (
       <div>
         <h1 className="title">

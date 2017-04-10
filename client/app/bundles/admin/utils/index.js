@@ -1,5 +1,5 @@
 import React from 'react'
-// import { Link } from 'react-router'
+import classNames from 'classnames'
 
 export const zeroPadding = (num, length) => {
   const zeros = Array(length + 1).join('0')
@@ -17,7 +17,7 @@ export const parseDate = (dateString) => (
 )
 
 export const humanDateTime = (dateString, full) => {
-  const date    = parseDate(dateString)
+  const date = parseDate(dateString)
   const yyyy = zeroPadding(date.getFullYear(),  4)
   const MM   = zeroPadding(date.getMonth() + 1, 2)
   const dd   = zeroPadding(date.getDate(),      2)
@@ -33,34 +33,18 @@ export const humanDateTime = (dateString, full) => {
   }
 }
 
-export const humanPublishStatus = (status) => {
-  switch (status) {
-  case 'published': return '公開'
-  case 'drafted':   return '下書き'
-  case 'deleted':   return '削除'
-  default: return ''
-  }
+const statuses = {
+  published: { label: "公開",   icon: "check-circle" },
+  drafted:   { label: "下書き", icon: "file-text-o" },
+  deleted:   { label: "削除",   icon: "trash" }
 }
 
-export const renderHumanPublishStatus = (status) => {
-  let icon = ''
-  switch (status) {
-  case 'published':
-    icon = 'check-circle'
-    break
-  case 'drafted':
-    icon = 'file-text-o'
-    break
-  case 'deleted':
-    icon = 'trash'
-    break
-  }
-  return (
-    <span className="icon">
-      <i className={`fa fa-${icon}`} />
-    </span>
-  )
-}
+export const publishStatusLabel = (status) => statuses[status].label
+export const publishStatusIcon  = (status) => (
+  <span className="icon">
+    <i className={classNames("fa", `fa-${statuses[status].icon}`)} />
+  </span>
+)
 
 export const getId = (path) => parseInt(path.split('/')[3], 10)
 export const findWork = (works, id) => works.filter(work => work.id === id)[0]
@@ -68,7 +52,7 @@ export const findWork = (works, id) => works.filter(work => work.id === id)[0]
 export const setupWorkForEdit = (works, currentPath) => {
   const id = getId(currentPath)
   const work = works ? findWork(works, id) : {}
-  if (Object.keys(work).length) {
+  if (work && Object.keys(work).length) {
     const date = parseDate(work.published_at)
     const yyyy = zeroPadding(date.getFullYear(),  4)
     const MM   = zeroPadding(date.getMonth() + 1, 2)

@@ -4,11 +4,15 @@ class Admin::WorksController < AdminController
     works_with_children = @works.map do |work|
       work.attributes.merge(
         # musics:     work.musics,
-        categories: work.categories,
-        tags:       work.tags
+        categories: work.category_list,
+        tags:       work.tag_list
       )
     end
-    render json: works_with_children
+    render json: {
+      works: works_with_children,
+      categories: Work.tags_on("categories").map(&:name),
+      tags: Work.tags_on("tags").map(&:name)
+    }
   end
 
   # ajax 用に書き換え

@@ -1,3 +1,9 @@
+class OnlyAjaxRequest
+  def matches?(request)
+    request.xhr?
+  end
+end
+
 Rails.application.routes.draw do
   mount RailsAdmin::Engine => "/rails_admin", as: "rails_admin"
   devise_for :admins, path: :admin, path_names: {
@@ -18,10 +24,4 @@ Rails.application.routes.draw do
 
   get "/admin",       to: "admin#show"
   get "/admin/*path", to: "admin#show"
-end
-
-class OnlyAjaxRequest
-  def matches?(request)
-    request.xhr?
-  end
 end

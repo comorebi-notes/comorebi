@@ -10,11 +10,18 @@ class MultiselectField extends Component {
   }
   handleCreate(name) {
     const { input, onCreate } = this.props
-    input.value.push(name)
-    onCreate({ name, target: input.name })
+    if (input.value.filter(value => value === name).length === 0) {
+      input.value.push(name)
+      onCreate({ name, target: input.name })
+    }
   }
   render() {
     const { input, data, label, valueField, textField } = this.props
+    const messages = {
+      createNew:   "を作成",
+      emptyList:   "not found.",
+      emptyFilter: "not found."
+    }
     return (
       <div>
         <label htmlFor={input.name} className="label">{label}</label>
@@ -25,6 +32,7 @@ class MultiselectField extends Component {
             onCreate={this.handleCreate}
             value={input.value || []}
             data={data}
+            messages={messages}
             valueField={valueField}
             textField={textField}
           />

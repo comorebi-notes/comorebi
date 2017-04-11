@@ -1,0 +1,84 @@
+#admin-container
+  .rw-multiselect
+    border: none
+    box-shadow: none
+    .rw-multiselect-wrapper
+      .rw-input
+        width: 100%
+        margin-top: .2em
+        border: 1px solid #dbdbdb
+        border-radius: 3px
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075)
+        &:hover
+          border-color: #b5b5b5
+        &:active
+          border-color: $primary
+  .rw-multiselect-taglist
+    > li
+      font-size: .9em
+      border: none
+      padding: .4em .4em .4em 1em
+      border-radius: 2rem
+      margin: 0 .3em .3em 0
+      > span
+        vertical-align: text-bottom
+  .categories .rw-multiselect-taglist > li
+    background-color: $info
+    color: white
+  .tags .rw-multiselect-taglist > li
+    background-color: $light
+    border: 2px solid darken($light, 10%)
+  .rw-list
+    padding: .3em
+    .rw-list-option
+      padding: .2em 1em
+      margin: .2em .3em .2em 0
+      display: inline-block
+      border: 2px solid $light
+      background-color: $light
+      border-radius: 1rem
+      &:hover
+        border-color: darken($light, 20%)
+      &.rw-state-focus
+        border-color: lighten($info, 15%)
+        background: none
+        &:hover
+          border-color: $info
+    &.rw-multiselect-create-tag
+      border-color: $light
+      padding-top: .6em
+      > .rw-list-option
+        padding: .3em 1em
+  .rw-tag-btn
+    margin-left: .4em
+    background-color: rgba(10, 10, 10, 0.2)
+    border-radius: 1rem
+    display: inline-block
+    font-size: 1rem
+    height: 20px
+    width: 20px
+    outline: none
+    position: relative
+    vertical-align: top
+    text-indent: 100%
+    white-space: nowrap
+    overflow: hidden
+    &:hover
+      background-color: rgba(10, 10, 10, 0.3)
+    &:before, &:after
+      background-color: white
+      content: ""
+      display: block
+      position: absolute
+      top: 50%
+      left: 50%
+      -webkit-transform: translateX(-50%) translateY(-50%) rotate(45deg)
+      transform: translateX(-50%) translateY(-50%) rotate(45deg)
+      -webkit-transform-origin: center center
+      transform-origin: center center
+    &:before
+      height: 2px
+      width: 50%
+    &:after
+      height: 50%
+      width: 2px

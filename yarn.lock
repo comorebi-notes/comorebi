@@ -1309,7 +1309,7 @@ create-hmac@^1.1.0, create-hmac@^1.1.2:
     create-hash "^1.1.0"
     inherits "^2.0.1"
 
-create-react-class@^15.5.1:
+create-react-class@^15.5.1, create-react-class@^15.5.2:
   version "15.5.2"
   resolved "https://registry.yarnpkg.com/create-react-class/-/create-react-class-15.5.2.tgz#6a8758348df660b88326a0e764d569f274aad681"
   dependencies:
@@ -1994,7 +1994,7 @@ faye-websocket@~0.11.0:
   dependencies:
     websocket-driver ">=0.5.1"
 
-fbjs@^0.8.4, fbjs@^0.8.9:
+fbjs@^0.8.1, fbjs@^0.8.4, fbjs@^0.8.9:
   version "0.8.12"
   resolved "https://registry.yarnpkg.com/fbjs/-/fbjs-0.8.12.tgz#10b5d92f76d45575fd63a217d4ea02bea2f8ed04"
   dependencies:
@@ -3654,7 +3654,7 @@ promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
-prop-types@^15.0.0, prop-types@^15.5.4, prop-types@^15.5.6, prop-types@^15.5.7, prop-types@~15.5.7:
+prop-types@^15.0.0, prop-types@^15.5.4, prop-types@^15.5.6:
   version "15.5.7"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.5.7.tgz#231c4f29cdd82e355011d4889386ca9059544dd1"
   dependencies:
@@ -3740,9 +3740,9 @@ rc@^1.1.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-react-addons-css-transition-group@^15.4.2:
-  version "15.5.2"
-  resolved "https://registry.yarnpkg.com/react-addons-css-transition-group/-/react-addons-css-transition-group-15.5.2.tgz#ea7e0a9f0e1c27ca426da4efd3559915bd42ead2"
+react-addons-css-transition-group@~15.4:
+  version "15.4.2"
+  resolved "https://registry.yarnpkg.com/react-addons-css-transition-group/-/react-addons-css-transition-group-15.4.2.tgz#b7828834dfa14229fe07750e331e8a8cb6fb7745"
   dependencies:
     fbjs "^0.8.4"
     object-assign "^4.1.0"
@@ -3755,14 +3755,13 @@ react-deep-force-update@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/react-deep-force-update/-/react-deep-force-update-2.0.1.tgz#4f7f6c12c3e7de42f345992a3c518236fa1ecad3"
 
-react-dom@^15.4.2:
-  version "15.5.4"
-  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-15.5.4.tgz#ba0c28786fd52ed7e4f2135fe0288d462aef93da"
+react-dom@~15.4:
+  version "15.4.2"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-15.4.2.tgz#015363f05b0a1fd52ae9efdd3a0060d90695208f"
   dependencies:
-    fbjs "^0.8.9"
+    fbjs "^0.8.1"
     loose-envify "^1.1.0"
     object-assign "^4.1.0"
-    prop-types "~15.5.7"
 
 react-helmet@^4.0.0:
   version "4.0.0"
@@ -3790,9 +3789,10 @@ react-notification-system-redux@kero-uzura/react-notification-system-redux:
     react-notification-system kero-uzura/react-notification-system
 
 react-notification-system@kero-uzura/react-notification-system:
-  version "0.2.11"
-  resolved "https://codeload.github.com/kero-uzura/react-notification-system/tar.gz/2fc9321b1afd9e116f9b13484b4c4bc1b2a7bc62"
+  version "0.2.13"
+  resolved "https://codeload.github.com/kero-uzura/react-notification-system/tar.gz/40af608cb815b06673437370c02c870637766790"
   dependencies:
+    create-react-class "^15.5.2"
     object-assign "^4.0.1"
 
 react-proxy@^1.1.7:
@@ -3865,14 +3865,13 @@ react-widgets@^3.4.6:
     deconstruct-number-format "0.0.1"
     format-number-with-string "0.0.2"
 
-react@^15.4.2:
-  version "15.5.4"
-  resolved "https://registry.yarnpkg.com/react/-/react-15.5.4.tgz#fa83eb01506ab237cdc1c8c3b1cea8de012bf047"
+react@~15.4:
+  version "15.4.2"
+  resolved "https://registry.yarnpkg.com/react/-/react-15.4.2.tgz#41f7991b26185392ba9bae96c8889e7e018397ef"
   dependencies:
-    fbjs "^0.8.9"
+    fbjs "^0.8.4"
     loose-envify "^1.1.0"
     object-assign "^4.1.0"
-    prop-types "^15.5.7"
 
 read-pkg-up@^1.0.1:
   version "1.0.1"

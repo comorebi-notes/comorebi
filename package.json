@@ -51,8 +51,8 @@
     "webpack-manifest-plugin": "^1.1.0"
   },
   "scripts": {
-    "start": "NODE_ENV=development webpack-dev-server --config client/config/development/webpack.config.js --progress --colors --inline --hot",
+    "start": "NODE_ENV=development webpack-dev-server --config client/config/webpack.development.config.js --progress --colors --inline --hot",
     "clean": "yarn run rimraf public/dist",
-    "build": "yarn run clean && NODE_ENV=production yarn run webpack -- --config client/config/production/webpack.config.js"
+    "build": "yarn run clean && NODE_ENV=production yarn run webpack -- --config client/config/webpack.production.config.js"
   }
 }

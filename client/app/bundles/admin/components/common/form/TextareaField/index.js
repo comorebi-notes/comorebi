@@ -3,14 +3,13 @@ import classNames from 'classnames'
 
 import ErrorField from '../ErrorField'
 
-const InputField = ({ input, type, label, placeholder, children, meta: { touched, error } }) => {
-  const inputType = type || 'text'
+const TextareaField = ({ input, label, placeholder, children, meta: { touched, error } }) => {
   const isError = touched && error
   return (
     <div className={classNames({ 'is-danger': isError })}>
       <label htmlFor={input.name} className="label">{label}</label>
       <div className="control has-icon has-icon-right">
-        <input {...input} type={inputType} className="input" placeholder={placeholder} />
+        <textarea {...input} className="textarea" placeholder={placeholder} />
         {children}
         {isError && <ErrorField error={error} /> }
       </div>
@@ -18,4 +17,4 @@ const InputField = ({ input, type, label, placeholder, children, meta: { touched
   )
 }
 
-export default InputField
+export default TextareaField

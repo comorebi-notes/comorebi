@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Field, Fields, reduxForm } from 'redux-form'
 
 import InputField from '../../common/form/InputField'
+import TextareaField from '../../common/form/TextareaField'
 import PublishedDatetimeFields from '../../common/form/PublishedDatetimeFields'
 import PublishStatusFields from '../../common/form/PublishStatusFields'
 import MultiselectField from '../../common/form/MultiselectField'
@@ -15,8 +16,8 @@ class EditWorkForm extends Component {
     const { actions, loading, handleSubmit, categories, tags } = this.props
     return (
       <form onSubmit={handleSubmit}>
-        <Field  component={InputField} name="title" label="作品名" />
-        <Field  component={InputField} name="description" label="説明文" type="textarea" />
+        <Field component={InputField} name="title" label="作品名" />
+        <Field component={TextareaField} name="description" label="説明文" />
         <Fields component={PublishStatusFields} names={["status"]} label="状態" />
         <Fields component={PublishedDatetimeFields} names={["published_date", "published_time"]} label="公開日" />
         <Field

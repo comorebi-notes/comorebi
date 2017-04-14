@@ -3,7 +3,7 @@ class Admin::WorksController < AdminController
     @works = Work.all
     works_with_children = @works.map do |work|
       work.attributes.merge(
-        # musics:     work.musics,
+        musics:     work.music_ids,
         categories: work.category_list,
         tags:       work.tag_list
       )

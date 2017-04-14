@@ -9,7 +9,7 @@ import Loading from '../common/Loading'
 class EditWork extends Component {
   componentDidMount() {
     const { actions } = this.props
-    actions.getAllWorksAsync()
+    actions.getAllWorksAsync("editWork")
   }
   render() {
     const { actions, loading, works } = this.props
@@ -36,7 +36,7 @@ class EditWork extends Component {
 }
 
 const mapStateToProps = state => ({
-  loading: state.main.loading,
+  loading: state.main.loading.editWork,
   works: state.main.works
 })
 

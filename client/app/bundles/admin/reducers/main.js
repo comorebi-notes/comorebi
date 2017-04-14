@@ -16,8 +16,14 @@ export const initialState = {
 }
 
 export default handleActions({
-  LOADING:  (state) => ({ ...state, loading: true }),
-  COMPLETE: (state) => ({ ...state, loading: false }),
+  LOADING:  (state, actions) => ({
+    ...state,
+    loading: { [actions.payload]: true }
+  }),
+  COMPLETE: (state, actions) => ({
+    ...state,
+    loading: { [actions.payload]: false }
+  }),
   GET_ALL_WORKS: (state, actions) => {
     const data = actions.payload.data
     return {

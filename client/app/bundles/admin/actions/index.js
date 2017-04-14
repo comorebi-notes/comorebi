@@ -27,14 +27,10 @@ export const setNotifications = (customOptions) => (dispatch) => {
 
 // ============================================= GET
 export const getAllWorks = createAction('GET_ALL_WORKS', api.getAllWorks)
-export const getAllWorksAsync = (force) => async (dispatch, getState) => {
-  const works = getState().main.works
-  const worksCount = works ? works.length : 0
-  if (force || worksCount === 0) {
-    dispatch(loading())
-    await dispatch(getAllWorks())
-    dispatch(complete())
-  }
+export const getAllWorksAsync = (target) => async (dispatch) => {
+  dispatch(loading(target))
+  await dispatch(getAllWorks())
+  dispatch(complete(target))
 }
 
 // ============================================= UPDATE
@@ -42,9 +38,9 @@ export const editAdminRequest = createAction('EDIT_ADMIN_REQUEST', api.editAdmin
 export const editAdminSubmit = () => async (dispatch, getState) => {
   const formData = getFormValues('admin')(getState()) || {}
 
-  dispatch(loading())
+  dispatch(loading("editAdmin"))
   await dispatch(editAdminRequest(formData))
-  dispatch(complete())
+  dispatch(complete("editAdmin"))
 
   const errors = getState().main.errors
   if (errors === '') {

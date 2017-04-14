@@ -11,7 +11,7 @@ import tableLabel from '../../constants/tableLabel'
 class ShowAllWorks extends Component {
   componentDidMount() {
     const { actions } = this.props
-    actions.getAllWorksAsync()
+    actions.getAllWorksAsync("showAllWorks")
   }
 
   render() {
@@ -37,7 +37,7 @@ class ShowAllWorks extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  loading: state.main.loading,
+  loading: state.main.loading.showAllWorks,
   works: state.main.works
 })
 

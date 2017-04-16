@@ -6,6 +6,12 @@ export const zeroPadding = (num, length) => {
   return (zeros + num).slice(-length);
 }
 
+export const flatten = (array) => (
+  array.reduce((p, c) => (
+    Array.isArray(c) ? p.concat(flatten(c)) : p.concat(c)
+  ), [])
+)
+
 export const isActivePath = (path, target, prefix) => {
   const url = prefix ? [prefix, target].join('/') : target
   return path === url ? 'is-active' : ''
@@ -65,3 +71,27 @@ export const setupWorkForEdit = (works, currentPath) => {
   }
   return work
 }
+
+export const workItemIcon = (type) => {
+  const icons = {
+    musics: "music"
+  }
+  return (
+    <span className="icon">
+      <i className={classNames("fa", `fa-${icons[type]}`)} />
+    </span>
+  )
+}
+
+export const unselectedWorkItems = (workItems, ids) => (
+  workItems.map((workItem) => ({
+    title: workItem.title,
+    items: workItem.items.filter((item) => !ids[workItem.title].includes(item.id))
+  }))
+)
+export const targetSection = (workItems, type) => (
+  workItems.filter((items) => items.title === type)[0]
+)
+export const selectedItem = (workItems, type, id) => (
+  targetSection(workItems, type).items.filter((item) => item.id === id)[0]
+)

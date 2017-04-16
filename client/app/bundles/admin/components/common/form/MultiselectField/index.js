@@ -35,6 +35,7 @@ class MultiselectField extends Component {
             messages={messages}
             valueField={valueField}
             textField={textField}
+            duration={0}
           />
         </div>
       </div>

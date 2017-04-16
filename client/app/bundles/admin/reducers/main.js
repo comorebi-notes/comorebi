@@ -8,7 +8,7 @@ const initialNotification = {
 }
 
 export const initialState = {
-  loading: false,
+  loading: {},
   errors: '',
   works: '',
   currentAdmin,
@@ -29,6 +29,7 @@ export default handleActions({
     return {
       ...state,
       works:      data.works,
+      musics:     data.musics,
       categories: data.categories,
       tags:       data.tags
     }

@@ -3,15 +3,16 @@ class Admin::WorksController < AdminController
     @works = Work.all
     works_with_children = @works.map do |work|
       work.attributes.merge(
-        musics:     work.music_ids,
+        music_ids:  work.music_ids,
         categories: work.category_list,
         tags:       work.tag_list
       )
     end
     render json: {
-      works: works_with_children,
+      works:      works_with_children,
+      musics:     Music.all,
       categories: Work.tags_on("categories").map(&:name),
-      tags: Work.tags_on("tags").map(&:name)
+      tags:       Work.tags_on("tags").map(&:name)
     }
   end
 

@@ -14,8 +14,8 @@
 class Work < ApplicationRecord
   has_many :work_musics, dependent: :destroy
   has_many :musics, through: :work_musics
-  acts_as_taggable_on :categories, :tags
 
+  acts_as_taggable_on :categories, :tags
   enum status: { drafted: 0, published: 1, deleted: 2 }
 
   validates :title, presence: true

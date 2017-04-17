@@ -77,7 +77,7 @@ export const workItemIcon = (type) => {
     musics: "music"
   }
   return (
-    <span className="icon">
+    <span className="icon with-text">
       <i className={classNames("fa", `fa-${icons[type]}`)} />
     </span>
   )

@@ -19,17 +19,19 @@ const PublishStatusFields = ({ status, label }) => {
   }
 
   return (
-    <div className="field">
+    <div className="select-status">
       <label htmlFor="status" className="label">{label}</label>
-      <div className="select-status control has-addons">
+      <div className="field has-addons">
         {statusesData.map((data) => (
-          <label className={buttonClassName(data.name)} key={data.name}>
-            <span className="icon">
-              <i className={`fa fa-${data.icon}`} />
-            </span>
-            <span>{data.caption}</span>
-            <Field name={status.input.name} component="input" type="radio" value={data.name} />
-          </label>
+          <p className="control" key={data.name}>
+            <label className={buttonClassName(data.name)}>
+              <span className="icon with-text">
+                <i className={classNames("fa", `fa-${data.icon}`)} />
+              </span>
+              <span>{data.caption}</span>
+              <Field name={status.input.name} component="input" type="radio" value={data.name} />
+            </label>
+          </p>
         ))}
       </div>
     </div>

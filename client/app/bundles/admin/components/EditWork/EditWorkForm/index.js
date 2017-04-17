@@ -27,6 +27,14 @@ class EditWorkForm extends Component {
         <div className="columns">
           <div className="column">
             <Field
+              component={SelectWorkItemField}
+              name="item_ids"
+              label="登録作品"
+              workItems={workItems}
+            />
+          </div>
+          <div className="column">
+            <Field
               component={MultiselectField}
               name="categories"
               label="カテゴリー"
@@ -42,14 +50,6 @@ class EditWorkForm extends Component {
             />
             <Fields component={PublishStatusFields} names={names.status} label="状態" />
             <Fields component={PublishedDatetimeFields} names={names.published_at} label="公開日" />
-          </div>
-          <div className="column">
-            <Field
-              component={SelectWorkItemField}
-              name="item_ids"
-              label="登録作品"
-              workItems={workItems}
-            />
           </div>
         </div>
 

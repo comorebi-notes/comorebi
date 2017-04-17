@@ -83,7 +83,7 @@ class SelectWorkItemField extends Component {
     }
     const theme = {
       input: "input",
-      suggestionsContainerOpen: "box",
+      suggestionsContainerOpen: "box suggestionsContainerOpen",
       suggestion: "media",
       suggestionHighlighted: "suggestionHighlighted"
     }
@@ -105,26 +105,38 @@ class SelectWorkItemField extends Component {
               inputProps={inputProps}
               theme={theme}
             />
-            <div className="selected-item">
-              {item_ids && (
-                Object.keys(item_ids).map((type) => (
-                  item_ids[type].length > 0 && (
-                    <div key={type}>
-                      {this.renderSectionTitle(utils.targetSection(workItems, type))}
-                      {item_ids[type].map((id) =>
-                        <SelectedItem
-                          item={utils.selectedItem(workItems, type, id)}
-                          type={type}
-                          key={id}
-                          handleDelete={this.handleDelete}
-                          showDeleteButton
-                        />
-                      )}
-                    </div>
-                  )
-                ))
-              )}
-            </div>
+          </div>
+          <div className="field is-grouped">
+            <p className="control">
+              <a className="button is-primary">
+                新規作成
+              </a>
+            </p>
+            <p className="control">
+              <a className="button">
+                すべて解除
+              </a>
+            </p>
+          </div>
+          <div className="selected-item">
+            {item_ids && (
+              Object.keys(item_ids).map((type) => (
+                item_ids[type].length > 0 && (
+                  <div key={type}>
+                    {this.renderSectionTitle(utils.targetSection(workItems, type))}
+                    {item_ids[type].map((id) =>
+                      <SelectedItem
+                        item={utils.selectedItem(workItems, type, id)}
+                        type={type}
+                        key={id}
+                        handleDelete={this.handleDelete}
+                        showDeleteButton
+                      />
+                    )}
+                  </div>
+                )
+              ))
+            )}
           </div>
         </div>
       </div>

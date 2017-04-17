@@ -91,9 +91,9 @@
       width: calc(40% - .4em)
   .select-status
     .button
-      padding: 1.3em 1em
-      &.is-warning
-        color: white
+      padding: 1.3em
+      .icon
+        margin-right: .4em
     input
       display: none
   .select-work-item
@@ -113,8 +113,6 @@
       opacity: .6
       &:not(:first-child)
         margin-top: 1.5rem
-      .icon
-        margin-right: .3em
     .id
       margin-right: .8em
     .date
@@ -131,5 +129,7 @@
     table.works
       font-size: .9rem
     .select-status
-      > *
+      .field > *
         flex-grow: 1
+        .button
+          width: 100%

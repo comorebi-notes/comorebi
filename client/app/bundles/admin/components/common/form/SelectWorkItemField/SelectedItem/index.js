@@ -34,7 +34,7 @@ class SelectedItem extends PureComponent {
           </div>
         </div>
         <div className="media-right">
-          <button className="delete" onClick={this.handleDelete} />
+          <button type="button" className="delete" onClick={this.handleDelete} />
         </div>
       </article>
     )

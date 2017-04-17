@@ -16,13 +16,13 @@ export const complete = createAction('COMPLETE')
 export const clearInitialNotification = createAction('CLEAR_INITIAL_NOTIFICATION')
 export const setNotifications = (customOptions) => (dispatch) => {
   const options = notificationOptions(customOptions)
-  const notificationsAsLevel = {
+  const notificationsByLevel = {
     success: Notifications.success(options),
     info: Notifications.info(options),
     warning: Notifications.warning(options),
     error: Notifications.error(options)
   }
-  dispatch(notificationsAsLevel[options.level])
+  dispatch(notificationsByLevel[options.level])
 }
 
 // ============================================= GET

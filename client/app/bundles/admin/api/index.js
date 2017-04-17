@@ -9,9 +9,7 @@ const config = {
   }
 }
 
-export const getAllWorks = () => (
-  axios.get("/admin/works", {}, config)
-)
+export const getAllWorks = () => axios.get("/admin/works", {}, config)
 
 export const editAdminRequest = (data) => {
   const params = admin.getParams(data)

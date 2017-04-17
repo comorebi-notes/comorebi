@@ -63,19 +63,20 @@ const mapStateToProps = (state) => {
   const currentPath = state.routing.locationBeforeTransitions.pathname
   const works = state.main.works
   const work = utils.setupWorkForEdit(works, currentPath)
+  const initialValues = work ? {
+    title:          work.title,
+    description:    work.description,
+    status:         work.status,
+    categories:     work.categories,
+    tags:           work.tags,
+    published_date: work.published_date,
+    published_time: work.published_time,
+    item_ids: {
+      musics: work.music_ids
+    }
+  } : {}
   return {
-    initialValues: {
-      title:          work.title,
-      description:    work.description,
-      status:         work.status,
-      categories:     work.categories,
-      tags:           work.tags,
-      published_date: work.published_date,
-      published_time: work.published_time,
-      item_ids: {
-        musics: work.music_ids
-      }
-    },
+    initialValues,
     categories: state.main.categories,
     tags: state.main.tags,
     workItems: [

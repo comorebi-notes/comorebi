@@ -10,8 +10,10 @@ class MultiselectField extends Component {
   }
   handleCreate(name) {
     const { input, onCreate } = this.props
-    if (input.value.filter(value => value === name).length === 0) {
-      input.value.push(name)
+    const items = input.value
+    if (items.filter(value => value === name).length === 0) {
+      items.push(name)
+      input.onChange(items)
       onCreate({ name, target: input.name })
     }
   }

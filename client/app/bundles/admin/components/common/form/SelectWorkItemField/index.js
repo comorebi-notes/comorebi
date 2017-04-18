@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Autosuggest from 'react-autosuggest'
 
 import SuggestionItem from './SuggestionItem'
-import SelectedItem from './SelectedItem'
+import SelectedItems from './SelectedItems'
 import * as utils from '../../../../utils'
 
 class SelectWorkItemField extends Component {
@@ -21,7 +21,8 @@ class SelectWorkItemField extends Component {
       'getSuggestionValue',
       'renderSuggestion',
       'renderSectionTitle',
-      'handleDelete'
+      'handleDelete',
+      'handleAllDelete'
     ]
     bindFunctions.map((name) => (this[name] = this[name].bind(this)))
   }
@@ -38,8 +39,14 @@ class SelectWorkItemField extends Component {
     const { workItems, input } = this.props
     const item_ids = input.value
     const target = workItems[sectionIndex].title
-    if (!item_ids[target].includes(suggestion.id)) {
-      item_ids[target].push(suggestion.id)
+    const targetItemIds = item_ids[target] || []
+    if (!targetItemIds.includes(suggestion.id)) {
+      if (item_ids[target]) {
+        item_ids[target].push(suggestion.id)
+      } else {
+        item_ids[target] = [suggestion.id]
+      }
+      input.onChange(item_ids)
     }
     this.setState({ value: '' })
     if (method === 'enter') event.preventDefault()
@@ -63,9 +70,10 @@ class SelectWorkItemField extends Component {
     const item_ids = this.props.input.value
     const index = item_ids[target].indexOf(id)
     if (index >= 0) item_ids[target].splice(index, 1)
+    this.props.input.onChange(item_ids)
     this.onSuggestionsClearRequested()
-    event.preventDefault()
   }
+  handleAllDelete = () => this.props.input.onChange([])
   renderSuggestion = (suggestion) => (<SuggestionItem item={suggestion} />)
   renderSectionTitle = (section) => (
     <h4 className="title is-4">
@@ -73,18 +81,19 @@ class SelectWorkItemField extends Component {
       {section.title}
     </h4>
   )
+
   render () {
     const { input, label, placeholder, workItems } = this.props
     const item_ids = input.value
     const inputProps = {
-      value:       this.state.value,
       placeholder,
-      onChange:    this.onChange
+      value: this.state.value,
+      onChange: this.onChange
     }
     const theme = {
       input: "input",
-      suggestionsContainerOpen: "box suggestionsContainerOpen",
       suggestion: "media",
+      suggestionsContainerOpen: "box suggestionsContainerOpen",
       suggestionHighlighted: "suggestionHighlighted"
     }
     return (
@@ -113,31 +122,17 @@ class SelectWorkItemField extends Component {
               </a>
             </p>
             <p className="control">
-              <a className="button">
+              <button type="button" className="button" onClick={this.handleAllDelete}>
                 すべて解除
-              </a>
+              </button>
             </p>
           </div>
-          <div className="selected-item">
-            {item_ids && (
-              Object.keys(item_ids).map((type) => (
-                item_ids[type].length > 0 && (
-                  <div key={type}>
-                    {this.renderSectionTitle(utils.targetSection(workItems, type))}
-                    {item_ids[type].map((id) =>
-                      <SelectedItem
-                        item={utils.selectedItem(workItems, type, id)}
-                        type={type}
-                        key={id}
-                        handleDelete={this.handleDelete}
-                        showDeleteButton
-                      />
-                    )}
-                  </div>
-                )
-              ))
-            )}
-          </div>
+          <SelectedItems
+            items={workItems}
+            ids={item_ids}
+            renderSectionTitle={this.renderSectionTitle}
+            handleDelete={this.handleDelete}
+          />
         </div>
       </div>
     )

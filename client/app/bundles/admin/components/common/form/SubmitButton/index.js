@@ -1,11 +1,12 @@
 import React from 'react'
 import classNames from 'classnames'
 
-const SubmitButton = ({ loading, label, color }) => {
+const SubmitButton = ({ loading, label, color, size }) => {
   const colorClassName = color || 'is-primary'
   const buttonClassName = classNames(
     "button", colorClassName,
-    { "is-loading": loading }
+    { "is-loading": loading },
+    { [`is-${size}`]: size }
   )
   return (
     <div className="control with-button">

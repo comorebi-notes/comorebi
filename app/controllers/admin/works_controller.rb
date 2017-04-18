@@ -28,6 +28,12 @@ class Admin::WorksController < AdminController
 
   # ajax 用に書き換え
   def update
+    @work = Work.find(params[:id])
+    if @work.update(work_params)
+      render json: @work
+    else
+      render json: @item.errors, status: :unprocessable_entity
+    end
   end
 
   # ajax 用に書き換え
@@ -45,7 +51,7 @@ class Admin::WorksController < AdminController
   def work_params
     params.require(:work).permit(
       :title, :description, :status, :published_at,
-      :category_list, :tag_list,
+      category_list: [], tag_list: [],
       music_ids: []
     )
   end

@@ -14,7 +14,7 @@ class SelectedItem extends PureComponent {
   render () {
     const { item } = this.props
     return (
-      <article className="media">
+      <article className="card media">
         <div className="media-content">
           <div className="content">
             <div>

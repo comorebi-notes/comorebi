@@ -20,7 +20,7 @@ const PublishStatusFields = ({ status, label }) => {
 
   return (
     <div className="select-status">
-      <label htmlFor="status" className="label">{label}</label>
+      {label && <label htmlFor="status" className="label">{label}</label>}
       <div className="control field has-addons">
         {statusesData.map((data) => (
           <p className="control" key={data.name}>

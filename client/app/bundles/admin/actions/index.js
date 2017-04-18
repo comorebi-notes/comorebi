@@ -38,15 +38,32 @@ export const editAdminRequest = createAction('EDIT_ADMIN_REQUEST', api.editAdmin
 export const editAdminSubmit = () => async (dispatch, getState) => {
   const formData = getFormValues('admin')(getState()) || {}
 
-  dispatch(loading("editAdmin"))
+  dispatch(loading('editAdmin'))
   await dispatch(editAdminRequest(formData))
-  dispatch(complete("editAdmin"))
+  dispatch(complete('editAdmin'))
 
   const errors = getState().main.errors
   if (errors === '') {
     dispatch(setNotifications(messages.editAdmin.success()))
   } else {
     dispatch(setNotifications(messages.editAdmin.error()))
+    throw new SubmissionError(errors)
+  }
+}
+
+export const editWorkRequest = createAction('EDIT_WORK_REQUEST', api.editWorkRequest)
+export const editWorkSubmit = () => async (dispatch, getState) => {
+  const formData = getFormValues('work')(getState()) || {}
+
+  dispatch(loading('editWork'))
+  await dispatch(editWorkRequest(formData))
+  dispatch(complete('editWork'))
+
+  const errors = getState().main.errors
+  if (errors === '') {
+    dispatch(setNotifications(messages.editWork.success()))
+  } else {
+    dispatch(setNotifications(messages.editWork.error()))
     throw new SubmissionError(errors)
   }
 }

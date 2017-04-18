@@ -23,37 +23,31 @@ class EditWorkForm extends Component {
       <form onSubmit={handleSubmit}>
         <Field component={InputField} name="title" label="作品名" />
         <Field component={TextareaField} name="description" label="説明文" />
+        <Field
+          component={SelectWorkItemField}
+          name="item_ids"
+          label="登録作品"
+          workItems={workItems}
+          actions={actions}
+        />
+        <Field
+          component={MultiselectField}
+          name="categories"
+          label="カテゴリー"
+          data={categories}
+          onCreate={actions.addTag}
+        />
+        <Field
+          component={MultiselectField}
+          name="tags"
+          label="タグ"
+          data={tags}
+          onCreate={actions.addTag}
+        />
+        <Fields component={PublishStatusFields} names={names.status} label="状態" />
+        <Fields component={PublishedDatetimeFields} names={names.published_at} label="公開日" />
 
-        <div className="columns">
-          <div className="column">
-            <Field
-              component={SelectWorkItemField}
-              name="item_ids"
-              label="登録作品"
-              workItems={workItems}
-            />
-          </div>
-          <div className="column">
-            <Field
-              component={MultiselectField}
-              name="categories"
-              label="カテゴリー"
-              data={categories}
-              onCreate={actions.addTag}
-            />
-            <Field
-              component={MultiselectField}
-              name="tags"
-              label="タグ"
-              data={tags}
-              onCreate={actions.addTag}
-            />
-            <Fields component={PublishStatusFields} names={names.status} label="状態" />
-            <Fields component={PublishedDatetimeFields} names={names.published_at} label="公開日" />
-          </div>
-        </div>
-
-        <SubmitButton label="更新" loading={loading} />
+        <SubmitButton label="更新する" loading={loading} />
       </form>
     )
   }

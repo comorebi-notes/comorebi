@@ -84,10 +84,13 @@ export const workItemIcon = (type) => {
 }
 
 export const unselectedWorkItems = (workItems, ids) => (
-  workItems.map((workItem) => ({
-    title: workItem.title,
-    items: workItem.items.filter((item) => !ids[workItem.title].includes(item.id))
-  }))
+  workItems.map((workItem) => {
+    const targetItemIds = ids[workItem.title] || []
+    return {
+      title: workItem.title,
+      items: workItem.items.filter((item) => (!targetItemIds.includes(item.id)))
+    }
+  })
 )
 export const targetSection = (workItems, type) => (
   workItems.filter((items) => items.title === type)[0]

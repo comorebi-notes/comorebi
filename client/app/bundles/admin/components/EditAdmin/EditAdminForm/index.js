@@ -19,7 +19,7 @@ class EditAdminForm extends Component {
         <Field component={InputField} name="password_confirmation" label="パスワード (確認)" type="password" />
         <Field component={InputField} name="current_password" label="現在のパスワード" type="password" />
 
-        <SubmitButton label="更新" loading={loading} />
+        <SubmitButton label="更新する" loading={loading} />
       </form>
     )
   }

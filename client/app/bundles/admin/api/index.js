@@ -1,7 +1,6 @@
 import axios from 'axios'
 
-import * as admin from './admin'
-import * as work from './work'
+import getParams from './getParams'
 
 axios.defaults.headers['X-Requested-With'] = 'XMLHttpRequest'
 const config = {
@@ -13,11 +12,11 @@ const config = {
 export const getAllWorks = () => axios.get("/admin/works", {}, config)
 
 export const editAdminRequest = (data) => {
-  const params = admin.getParams(data)
+  const params = getParams(data, "editAdmin")
   return axios.put("/admin", params, config)
 }
 
-export const editWorkRequest = (data) => {
-  const params = work.getParams(data)
-  return axios.put(`/admin/works/${1}`, params, config)
+export const editWorkRequest = (data, id) => {
+  const params = getParams(data, "editWork")
+  return axios.put(`/admin/works/${id}`, params, config)
 }

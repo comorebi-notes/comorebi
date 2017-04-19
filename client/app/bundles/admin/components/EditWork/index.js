@@ -21,12 +21,12 @@ class EditWork extends Component {
         <h2 className="subtitle is-6">
           作品情報の編集を行います。
         </h2>
-        {loading ? (
+        {loading.editWork ? (
           <Loading />
         ) : works && (
           <EditWorkForm
             actions={actions}
-            loading={loading}
+            loading={loading.editWorkSubmit}
             onSubmit={actions.editWorkSubmit}
           />
         )}
@@ -36,7 +36,7 @@ class EditWork extends Component {
 }
 
 const mapStateToProps = state => ({
-  loading: state.main.loading.editWork,
+  loading: state.main.loading,
   works: state.main.works
 })
 

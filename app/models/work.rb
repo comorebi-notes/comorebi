@@ -19,4 +19,12 @@ class Work < ApplicationRecord
   enum status: { drafted: 0, published: 1, deleted: 2 }
 
   validates :title, presence: true
+
+  def decorate
+    self.attributes.merge(
+      music_ids:  music_ids,
+      categories: category_list,
+      tags:       tag_list
+    )
+  end
 end

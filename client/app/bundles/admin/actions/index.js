@@ -2,11 +2,13 @@ import 'babel-polyfill'
 
 import { createAction } from 'redux-actions'
 import { SubmissionError, getFormValues } from 'redux-form'
+import { push } from 'react-router-redux'
 import Notifications from 'react-notification-system-redux'
 
 import notificationOptions from './notificationOptions'
 import messages from '../constants/messages'
 import * as api from '../api'
+import * as utils from '../utils'
 
 // ============================================= Simple Actions
 export const loading  = createAction('LOADING')
@@ -37,10 +39,11 @@ export const getAllWorksAsync = (target) => async (dispatch) => {
 export const editAdminRequest = createAction('EDIT_ADMIN_REQUEST', api.editAdminRequest)
 export const editAdminSubmit = () => async (dispatch, getState) => {
   const formData = getFormValues('admin')(getState()) || {}
+  const loadingTarget = 'editAdminSubmit'
 
-  dispatch(loading('editAdmin'))
+  dispatch(loading(loadingTarget))
   await dispatch(editAdminRequest(formData))
-  dispatch(complete('editAdmin'))
+  dispatch(complete(loadingTarget))
 
   const errors = getState().main.errors
   if (errors === '') {
@@ -53,17 +56,21 @@ export const editAdminSubmit = () => async (dispatch, getState) => {
 
 export const editWorkRequest = createAction('EDIT_WORK_REQUEST', api.editWorkRequest)
 export const editWorkSubmit = () => async (dispatch, getState) => {
-  const formData = getFormValues('work')(getState()) || {}
+  const state = getState()
+  const formData = getFormValues('work')(state) || {}
+  const id = utils.getId(state.routing.locationBeforeTransitions.pathname)
+  const loadingTarget = 'editWorkSubmit'
 
-  dispatch(loading('editWork'))
-  await dispatch(editWorkRequest(formData))
-  dispatch(complete('editWork'))
+  dispatch(loading(loadingTarget))
+  await dispatch(editWorkRequest(formData, id))
+  dispatch(complete(loadingTarget))
 
   const errors = getState().main.errors
   if (errors === '') {
-    dispatch(setNotifications(messages.editWork.success()))
+    dispatch(setNotifications(messages.editWork.success(formData.title)))
+    dispatch(push("/admin"))
   } else {
-    dispatch(setNotifications(messages.editWork.error()))
+    dispatch(setNotifications(messages.editWork.error(formData.title)))
     throw new SubmissionError(errors)
   }
 }

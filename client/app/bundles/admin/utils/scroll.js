@@ -1,10 +1,11 @@
 import SweetScroll from 'sweet-scroll'
 
-const scroll = (options) => {
+const scroll = (target, options) => {
   const sweetScroll = new SweetScroll({
+    ...options,
     easing: 'easeInOutQuad'
   })
-  sweetScroll.to(options)
+  sweetScroll.to(target)
 }
 
 export default scroll

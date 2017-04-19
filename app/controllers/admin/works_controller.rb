@@ -1,15 +1,8 @@
 class Admin::WorksController < AdminController
   def index
-    @works = Work.all
-    works_with_children = @works.map do |work|
-      work.attributes.merge(
-        music_ids:  work.music_ids,
-        categories: work.category_list,
-        tags:       work.tag_list
-      )
-    end
+    works = Work.all.map(&:decorate)
     render json: {
-      works:      works_with_children,
+      works:      works,
       musics:     Music.all,
       categories: Work.tags_on("categories").map(&:name),
       tags:       Work.tags_on("tags").map(&:name)
@@ -26,13 +19,12 @@ class Admin::WorksController < AdminController
     end
   end
 
-  # ajax 用に書き換え
   def update
-    @work = Work.find(params[:id])
-    if @work.update(work_params)
-      render json: @work
+    work = Work.find(params[:id])
+    if work.update(work_params)
+      render json: work.decorate
     else
-      render json: @item.errors, status: :unprocessable_entity
+      render json: work.errors, status: :unprocessable_entity
     end
   end
 

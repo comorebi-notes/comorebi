@@ -49,6 +49,21 @@ export default handleActions({
       errors: action.payload.response.data.errors
     })
   },
+  EDIT_WORK_REQUEST: {
+    next: (state, action) => {
+      const newWork = action.payload.data
+      const target = state.works.findIndex((work) => work.id === newWork.id)
+      state.works.splice(target, 1, newWork)
+      return {
+        ...state,
+        errors: '',
+      }
+    },
+    throw: (state, action) => ({
+      ...state,
+      errors: action.payload.data.errors
+    })
+  },
   CLEAR_INITIAL_NOTIFICATION: (state) => ({
     ...state,
     initialNotification: {}

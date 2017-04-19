@@ -1,4 +1,5 @@
 #admin-container
+  overflow: hidden
   header
     .button
       height: 2.285em
@@ -13,7 +14,6 @@
     a:hover
       color: $primary
       opacity: .6
-
   a
     transition: all .2s ease-in-out !important
   form
@@ -23,6 +23,9 @@
       input, select, textarea
         color: $danger
         border-color: $danger
+  .notifications-wrapper
+    strong
+      color: white
 
   table.with-thumbnail
     th:first-child

@@ -4259,7 +4259,7 @@ react-notification-system-redux@kero-uzura/react-notification-system-redux:
 
 react-notification-system@kero-uzura/react-notification-system:
   version "0.2.13"
-  resolved "https://codeload.github.com/kero-uzura/react-notification-system/tar.gz/40af608cb815b06673437370c02c870637766790"
+  resolved "https://codeload.github.com/kero-uzura/react-notification-system/tar.gz/97aa161fb0582deee98dff9c991c02a57f0e2a52"
   dependencies:
     create-react-class "^15.5.2"
     object-assign "^4.0.1"

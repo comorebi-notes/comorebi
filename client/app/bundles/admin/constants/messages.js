@@ -10,12 +10,12 @@ const messages = {
     })
   },
   editWork: {
-    success: () => ({
-      message: "作品が更新されました。",
+    success: (title) => ({
+      message: `作品<strong>「${title}」</strong>が更新されました。`,
       level: "success"
     }),
-    error: () => ({
-      message: "作品の更新に失敗しました。",
+    error: (title) => ({
+      message: `作品<strong>「${title}」</strong>の更新に失敗しました。`,
       level: "error"
     })
   }

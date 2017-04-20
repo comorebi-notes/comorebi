@@ -1,6 +1,7 @@
 const path = require('path')
 const webpack = require('webpack')
 const ManifestPlugin = require('webpack-manifest-plugin')
+const CompressionPlugin = require("compression-webpack-plugin");
 
 const devServerPort = 4000
 
@@ -73,6 +74,14 @@ function getPlugins (env) {
           sequences: true,
           booleans: true
         },
+      }),
+      new webpack.optimize.AggressiveMergingPlugin(),
+      new CompressionPlugin({
+        asset: "[path].gz[query]",
+        algorithm: "gzip",
+        test: /\.(js|html)$/,
+        threshold: 10240,
+        minRatio: 0.8
       })
     )
     plugins.push(new ManifestPlugin())

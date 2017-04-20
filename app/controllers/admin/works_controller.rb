@@ -1,6 +1,6 @@
 class Admin::WorksController < AdminController
   def index
-    works = Work.all.map(&:decorate)
+    works = Work.all.map(&:with_children)
     render json: {
       works:      works,
       musics:     Music.all,
@@ -22,7 +22,7 @@ class Admin::WorksController < AdminController
   def update
     work = Work.find(params[:id])
     if work.update(work_params)
-      render json: work.decorate
+      render json: work.with_children
     else
       render json: work.errors, status: :unprocessable_entity
     end

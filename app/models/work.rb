@@ -20,7 +20,7 @@ class Work < ApplicationRecord
 
   validates :title, presence: true
 
-  def decorate
+  def with_children
     self.attributes.merge(
       music_ids:  music_ids,
       categories: category_list,

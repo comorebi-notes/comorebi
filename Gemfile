@@ -29,7 +29,7 @@ gem 'rails_admin'
 gem 'rails_admin-i18n'
 
 # CSS
-gem 'bulma-rails', '~> 0.3.0'
+gem 'bulma-rails', '~> 0.4.0'
 # gem 'compass-rails'
 
 # authentication

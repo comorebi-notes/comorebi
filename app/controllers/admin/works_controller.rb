@@ -1,16 +1,12 @@
 class Admin::WorksController < AdminController
-  before_action :set_musics, only: [:new, :edit]
-
   def index
-    @works = Work.all
-    works_with_children = @works.map do |work|
-      work.attributes.merge(
-        musics: work.musics,
-        categories: work.categories,
-        tags: work.tags
-      )
-    end
-    render json: works_with_children
+    works = Work.all.map(&:with_children)
+    render json: {
+      works:      works,
+      musics:     Music.all,
+      categories: Work.tags_on("categories").map(&:name),
+      tags:       Work.tags_on("tags").map(&:name)
+    }
   end
 
   # ajax 用に書き換え
@@ -23,8 +19,13 @@ class Admin::WorksController < AdminController
     end
   end
 
-  # ajax 用に書き換え
   def update
+    work = Work.find(params[:id])
+    if work.update(work_params)
+      render json: work.with_children
+    else
+      render json: work.errors, status: :unprocessable_entity
+    end
   end
 
   # ajax 用に書き換え
@@ -41,7 +42,9 @@ class Admin::WorksController < AdminController
 
   def work_params
     params.require(:work).permit(
-      :title, :description, :status, :published_at, :category_list, :tag_list, music_ids: []
+      :title, :description, :status, :published_at,
+      category_list: [], tag_list: [],
+      music_ids: []
     )
   end
 end

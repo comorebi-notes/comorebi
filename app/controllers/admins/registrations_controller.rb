@@ -16,7 +16,7 @@ class Admins::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/edit
   def edit
-    redirect_to admin_path
+    render 'admin/show'
   end
 
   # PUT /resource

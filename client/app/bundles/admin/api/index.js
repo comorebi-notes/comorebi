@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-import getParams from './getParams'
+import * as getParams from './getParams'
 
 axios.defaults.headers['X-Requested-With'] = 'XMLHttpRequest'
 const config = {
@@ -12,11 +12,11 @@ const config = {
 export const getAllWorks = () => axios.get("/admin/works", {}, config)
 
 export const editAdminRequest = (data) => {
-  const params = getParams(data, "editAdmin")
+  const params = getParams.editAdmin(data)
   return axios.put("/admin", params, config)
 }
 
 export const editWorkRequest = (data, id) => {
-  const params = getParams(data, "editWork")
+  const params = getParams.editWork(data)
   return axios.put(`/admin/works/${id}`, params, config)
 }

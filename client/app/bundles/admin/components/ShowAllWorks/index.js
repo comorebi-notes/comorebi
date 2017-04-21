@@ -3,8 +3,9 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as Actions from '../../actions'
 
-import WorksTableCaptions from '../WorksTable/WorksTableCaptions'
-import WorksTableRow from '../WorksTable/WorksTableRow'
+import WorksUtilBar from '../common/WorksUtilBar'
+import WorksTableCaptions from './WorksTableCaptions'
+import WorksTableRow from './WorksTableRow'
 import Loading from '../common/LoadingTableRow'
 import tableLabel from '../../constants/tableLabel'
 
@@ -19,19 +20,20 @@ class ShowAllWorks extends Component {
     const captions = !loading && <WorksTableCaptions columns={tableLabel} />
 
     return (
-      <table className="table works with-thumbnail">
-        <thead>{captions}</thead>
-
-        <tbody>
-          {loading ? (
-            <Loading colspan={tableLabel.length} />
-          ) : works && works.map((work) => (
-            <WorksTableRow work={work} key={work.id} />
-          ))}
-        </tbody>
-
-        <tfoot>{captions}</tfoot>
-      </table>
+      <div>
+        <WorksUtilBar />
+        <table className="table works with-thumbnail">
+          <thead>{captions}</thead>
+          <tbody>
+            {loading ? (
+              <Loading colspan={tableLabel.length} />
+            ) : works && works.map((work) => (
+              <WorksTableRow work={work} key={work.id} />
+            ))}
+          </tbody>
+          <tfoot>{captions}</tfoot>
+        </table>
+      </div>
     )
   }
 }

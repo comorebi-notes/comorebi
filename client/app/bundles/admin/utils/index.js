@@ -58,13 +58,17 @@ const filterWorksByWord = (works, word) => (
   ))
 )
 
+export const trimFilterWords = (words) => (
+  words.trim().split(/\s+/)
+)
+
 export const filterWorks = (works, filters) => {
   if (Object.keys(filters).length === 0) return works
   const { words, tags } = filters
   if (words.length === 0 && tags.length === 0) return works
 
   let filteredWorks = works
-  words.map((word) => (filteredWorks = filterWorksByWord(filteredWorks, word)))
+  trimFilterWords(words).map((word) => (filteredWorks = filterWorksByWord(filteredWorks, word)))
   return filteredWorks
 }
 

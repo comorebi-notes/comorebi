@@ -9,8 +9,8 @@ class WorksUtilBar extends Component {
     this.props.handleInput(e.target.value)
   }
   render() {
-    const { count, filters } = this.props
-    const words = filters.words ? filters.words.join(" ") : ""
+    const { count, totalCount, filters } = this.props
+    const words = filters.words ? filters.words : ""
     return (
       <nav className="level">
         <div className="level-left">
@@ -32,7 +32,11 @@ class WorksUtilBar extends Component {
           </div>
           <div className="level-item">
             <p className="subtitle is-5">
-              <strong>{count}</strong> 作品
+              <strong>{count}</strong>
+              {count !== totalCount && (
+                <span> / {totalCount}</span>
+              )}
+              {' '}作品
             </p>
           </div>
         </div>

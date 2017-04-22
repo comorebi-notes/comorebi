@@ -36,18 +36,14 @@ export default handleActions({
     }
   },
   CHANGE_FILTER_WORDS: (state, action) => {
-    const words = action.payload.trim().split(/\s+/)
-    if (!words) {
-      return state
+    const words = action.payload
+    const filters = Object.assign({}, state.filters)
+    if (words === '') {
+      delete filters.words
     } else {
-      const filters = Object.assign({}, state.filters)
-      if (words[0] === '') {
-        delete filters.words
-      } else {
-        filters.words = words
-      }
-      return Object.assign({}, state, { filters })
+      filters.words = words
     }
+    return Object.assign({}, state, { filters })
   },
   CLEAR_FILTERS: (state) => ({
     ...state,

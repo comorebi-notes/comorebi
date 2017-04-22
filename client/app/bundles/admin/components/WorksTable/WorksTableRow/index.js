@@ -1,11 +1,13 @@
 import React, { PureComponent } from 'react'
 import { browserHistory } from 'react-router'
+import Highlighter from 'react-highlight-words'
 
 import * as utils from '../../../utils'
 
 class WorksTableRow extends PureComponent {
   render () {
-    const { id, title, categories, status, images, published_at } = this.props.work
+    const { work, filters } = this.props
+    const { id, title, categories, status, images, published_at } = work
     const image = images ? images[0] : null
     return (
       <tr
@@ -22,7 +24,14 @@ class WorksTableRow extends PureComponent {
           </figure>
         </td>
         <th className="id">{id}</th>
-        <td className="works-title">{title}</td>
+        <td className="works-title">
+          {filters && filters.words ? (
+            <Highlighter
+              searchWords={utils.trimFilterWords(filters.words)}
+              textToHighlight={title}
+            />
+          ) : title}
+        </td>
         <td className="category is-hidden-mobile">
           {categories.map((category) => (
             <span className="tag is-info" key={category}>{category}</span>

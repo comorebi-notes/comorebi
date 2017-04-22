@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux'
 import * as Actions from '../../actions'
 
 import WorksUtilBar from '../common/WorksUtilBar'
-import WorksTable from './WorksTable'
+import WorksTable from '../WorksTable'
 import Loading from '../common/Loading'
 import * as utils from '../../utils'
 
@@ -15,16 +15,21 @@ class ShowAllWorks extends Component {
   }
   render() {
     const { actions, loading, works, filters } = this.props
+    const filteredWorks = utils.filterWorks(works, filters)
     return (
       <div>
         {loading ? <Loading /> : (
           <div>
             <WorksUtilBar
-              count={works.length}
+              count={filteredWorks.length}
+              totalCount={works.length}
               filters={filters}
               handleInput={actions.changeFilterWords}
             />
-            <WorksTable works={utils.filterWorks(works, filters)} />
+            <WorksTable
+              works={filteredWorks}
+              filters={filters}
+            />
           </div>
         )}
       </div>

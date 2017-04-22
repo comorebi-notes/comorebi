@@ -62,11 +62,14 @@ const filterWorksByWord = (works, word) => (
 const filterWorksByStatus = (works, status) => (
   works.filter((work) => work.status === status)
 )
+const filterWorksByCategory = (works, category) => (
+  works.filter((work) => work.categories.includes(category))
+)
 
 export const filterWorks = (works, filters) => {
   if (Object.keys(filters).length === 0) return works
-  const { words, status, tags } = filters
-  if (!words.length && !status.length && !tags.length) return works
+  const { words, status, categories } = filters
+  if (!words.length && !status.length && !categories.length) return works
 
   let filteredWorks = works
   if (words.length) {
@@ -74,6 +77,9 @@ export const filterWorks = (works, filters) => {
   }
   if (status.length) {
     filteredWorks = filterWorksByStatus(filteredWorks, status)
+  }
+  if (categories.length) {
+    categories.map((category) => (filteredWorks = filterWorksByCategory(filteredWorks, category)))
   }
   return filteredWorks
 }

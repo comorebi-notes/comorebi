@@ -9,7 +9,7 @@ const initialNotification = {
 const initialFilters = {
   words: "",
   status: "",
-  tags: []
+  categories: []
 }
 
 export const initialState = {
@@ -48,6 +48,21 @@ export default handleActions({
   CHANGE_FILTERING_STATUS: (state, action) => {
     const filters = Object.assign({}, state.filters)
     filters.status = action.payload
+    return Object.assign({}, state, { filters })
+  },
+  ADD_FILTERING_CATEGORIES: (state, action) => {
+    const filters = Object.assign({}, state.filters)
+    const newCategory = action.payload
+    if (!filters.categories.includes(newCategory)) {
+      filters.categories = filters.categories.concat(newCategory)
+    }
+    return Object.assign({}, state, { filters })
+  },
+  DELETE_FILTERING_CATEGORIES: (state, action) => {
+    const filters = Object.assign({}, state.filters)
+    const targetCategory = action.payload
+    const newCategories = filters.categories.filter((category) => category !== targetCategory)
+    filters.categories = newCategories
     return Object.assign({}, state, { filters })
   },
   CLEAR_FILTERS: (state) => ({

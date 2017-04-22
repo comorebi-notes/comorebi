@@ -6,7 +6,7 @@ import tableLabel from '../../constants/tableLabel'
 
 class WorksTable extends Component {
   render () {
-    const { works, filters } = this.props
+    const { works, filters, actions } = this.props
     const captions = <WorksTableCaptions columns={tableLabel} />
     return (
       <table className="table works with-thumbnail">
@@ -16,6 +16,7 @@ class WorksTable extends Component {
             <WorksTableRow
               work={work}
               filters={filters}
+              actions={actions}
               key={work.id}
             />
           ))}

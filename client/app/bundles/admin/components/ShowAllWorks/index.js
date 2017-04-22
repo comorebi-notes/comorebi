@@ -30,6 +30,7 @@ class ShowAllWorks extends Component {
             <WorksTable
               works={filteredWorks}
               filters={filters}
+              actions={actions}
             />
           </div>
         )}

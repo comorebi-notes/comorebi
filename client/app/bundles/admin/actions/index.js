@@ -14,9 +14,11 @@ import * as utils from '../utils'
 export const loading  = createAction('LOADING')
 export const complete = createAction('COMPLETE')
 export const addTag   = createAction('ADD_TAG')
-export const changeFilteringWords  = createAction('CHANGE_FILTERING_WORDS')
-export const changeFilteringStatus = createAction('CHANGE_FILTERING_STATUS')
-export const clearFilters          = createAction('CLEAR_FILTERS')
+export const changeFilteringWords      = createAction('CHANGE_FILTERING_WORDS')
+export const changeFilteringStatus     = createAction('CHANGE_FILTERING_STATUS')
+export const addFilteringCategories    = createAction('ADD_FILTERING_CATEGORIES')
+export const deleteFilteringCategories = createAction('DELETE_FILTERING_CATEGORIES')
+export const clearFilters              = createAction('CLEAR_FILTERS')
 
 // ============================================= Notifications
 export const clearInitialNotification = createAction('CLEAR_INITIAL_NOTIFICATION')

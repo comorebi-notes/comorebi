@@ -7,8 +7,9 @@ import FilteringStatusField from './FilteringStatusField'
 class WorksUtilBar extends Component {
   constructor() {
     super()
-    this.changeWords = this.changeWords.bind(this)
-    this.changeStatus = this.changeStatus.bind(this)
+    this.changeWords    = this.changeWords.bind(this)
+    this.changeStatus   = this.changeStatus.bind(this)
+    this.deleteCategory = this.deleteCategory.bind(this)
   }
   changeWords(e) {
     this.props.actions.changeFilteringWords(e.target.value)
@@ -16,24 +17,41 @@ class WorksUtilBar extends Component {
   changeStatus(e) {
     this.props.actions.changeFilteringStatus(e.target.value)
   }
+  deleteCategory(category) {
+    this.props.actions.deleteFilteringCategories(category)
+  }
   render() {
     const { count, totalCount, filters } = this.props
     return (
       <nav className="level works-util-bar">
         <div className="level-left">
+          <p className="level-item">
+            <a className="button is-primary">新規作成</a>
+          </p>
           <div className="level-item">
             <FilteringWordsField words={filters.words} handleChange={this.changeWords} />
           </div>
-          <div className="level-item">
-            <WorksCount count={count} totalCount={totalCount} />
+          <div className="level-item select is-hidden-mobile">
+            <FilteringStatusField handleChange={this.changeStatus} />
+          </div>
+          <div className="level-item is-hidden-mobile">
+            {filters.categories.map((category) => (
+              <span
+                className="tag can-click is-info is-medium"
+                onClick={() => this.deleteCategory(category)}
+                key={category}
+              >
+                {category}
+                <span className="delete" />
+              </span>
+            ))}
           </div>
         </div>
 
         <div className="level-right">
-          <FilteringStatusField filteringStatus={filters.status} handleChange={this.changeStatus} />
-          <p className="level-item">
-            <a className="button is-primary">新規作成</a>
-          </p>
+          <div className="level-item">
+            <WorksCount count={count} totalCount={totalCount} />
+          </div>
         </div>
       </nav>
     )

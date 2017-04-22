@@ -28,6 +28,11 @@
   .notifications-wrapper
     strong
       color: white
+  .tag.can-click
+    cursor: pointer
+    // transition: opacity .2s ease-in-out
+    &:hover
+      opacity: .7
 
   table.with-thumbnail
     th:first-child
@@ -77,6 +82,7 @@
           background-color: lighten($text, 60%)
           &:hover
             background-color: lighten($text, 55%)
+
   div.loading
     color: lighten($text, 50%)
     background-color: #fcfcfc

@@ -52,14 +52,12 @@ export const publishStatusIcon  = (status) => (
   </span>
 )
 
+export const trimFilterWords = (words) => words.trim().split(/\s+/)
+
 const filterWorksByWord = (works, word) => (
   works.filter((work) => (
     work.title.includes(word) || work.description.includes(word)
   ))
-)
-
-export const trimFilterWords = (words) => (
-  words.trim().split(/\s+/)
 )
 
 export const filterWorks = (works, filters) => {
@@ -68,7 +66,9 @@ export const filterWorks = (works, filters) => {
   if (words.length === 0 && tags.length === 0) return works
 
   let filteredWorks = works
-  trimFilterWords(words).map((word) => (filteredWorks = filterWorksByWord(filteredWorks, word)))
+  if (words.length !== 0) {
+    trimFilterWords(words).map((word) => (filteredWorks = filterWorksByWord(filteredWorks, word)))
+  }
   return filteredWorks
 }
 

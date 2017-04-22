@@ -6,12 +6,13 @@ const initialNotification = {
   message: windowNotification.message || '',
   level:   windowNotification.level   || ''
 }
+const initialFilters = { words: "", tags: [] }
 
 export const initialState = {
   loading: {},
   errors: '',
   works: '',
-  filters: {},
+  filters: initialFilters,
   currentAdmin,
   initialNotification
 }
@@ -38,16 +39,12 @@ export default handleActions({
   CHANGE_FILTER_WORDS: (state, action) => {
     const words = action.payload
     const filters = Object.assign({}, state.filters)
-    if (words === '') {
-      delete filters.words
-    } else {
-      filters.words = words
-    }
+    filters.words = words
     return Object.assign({}, state, { filters })
   },
   CLEAR_FILTERS: (state) => ({
     ...state,
-    filters: {}
+    filters: initialFilters
   }),
   ADD_TAG: (state, action) => {
     state[action.payload.target].push(action.payload.name)

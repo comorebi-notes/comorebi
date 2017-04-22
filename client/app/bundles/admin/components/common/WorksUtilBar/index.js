@@ -10,7 +10,6 @@ class WorksUtilBar extends Component {
   }
   render() {
     const { count, totalCount, filters } = this.props
-    const words = filters.words ? filters.words : ""
     return (
       <nav className="level">
         <div className="level-left">
@@ -21,7 +20,7 @@ class WorksUtilBar extends Component {
                   className="input"
                   type="text"
                   placeholder="search..."
-                  value={words}
+                  value={filters.words}
                   onChange={this.handleInput}
                 />
                 <span className="icon is-small">

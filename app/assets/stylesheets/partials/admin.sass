@@ -124,6 +124,18 @@
       background-color: darken($light, 5%)
     .selected-item
       margin-bottom: 2em
+  .works-util-bar
+    label
+      transition: all .2s ease-in-out
+      &.checked
+        font-weight: bold
+        cursor: default
+      &:not(.checked)
+        color: $primary
+        &:hover
+          color: $text
+      input[type=radio]
+        display: none
 
   @media screen and (max-width: $tablet)
     .section

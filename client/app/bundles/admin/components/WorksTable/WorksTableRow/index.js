@@ -27,7 +27,7 @@ class WorksTableRow extends PureComponent {
         <td className="works-title">
           {filters && filters.words ? (
             <Highlighter
-              searchWords={utils.trimFilterWords(filters.words)}
+              searchWords={utils.splitFilteringWords(filters.words)}
               textToHighlight={title}
             />
           ) : title}

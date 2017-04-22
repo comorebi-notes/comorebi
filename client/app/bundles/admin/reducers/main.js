@@ -6,7 +6,11 @@ const initialNotification = {
   message: windowNotification.message || '',
   level:   windowNotification.level   || ''
 }
-const initialFilters = { words: "", tags: [] }
+const initialFilters = {
+  words: "",
+  status: "",
+  tags: []
+}
 
 export const initialState = {
   loading: {},
@@ -36,10 +40,14 @@ export default handleActions({
       tags:       data.tags
     }
   },
-  CHANGE_FILTER_WORDS: (state, action) => {
-    const words = action.payload
+  CHANGE_FILTERING_WORDS: (state, action) => {
     const filters = Object.assign({}, state.filters)
-    filters.words = words
+    filters.words = action.payload
+    return Object.assign({}, state, { filters })
+  },
+  CHANGE_FILTERING_STATUS: (state, action) => {
+    const filters = Object.assign({}, state.filters)
+    filters.status = action.payload
     return Object.assign({}, state, { filters })
   },
   CLEAR_FILTERS: (state) => ({

@@ -11,6 +11,7 @@ import * as utils from '../../utils'
 class ShowAllWorks extends Component {
   componentDidMount() {
     const { actions } = this.props
+    actions.clearFilters()
     actions.getAllWorksAsync("showAllWorks")
   }
   render() {
@@ -24,7 +25,7 @@ class ShowAllWorks extends Component {
               count={filteredWorks.length}
               totalCount={works.length}
               filters={filters}
-              handleInput={actions.changeFilterWords}
+              actions={actions}
             />
             <WorksTable
               works={filteredWorks}

@@ -17,7 +17,6 @@ const PublishStatusFields = ({ status, label }) => {
       { "is-dark":    value === statusesData[2].name && value === name }
     )
   }
-
   return (
     <div className="select-status">
       {label && <label htmlFor="status" className="label">{label}</label>}

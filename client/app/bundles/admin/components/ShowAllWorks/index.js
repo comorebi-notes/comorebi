@@ -4,35 +4,29 @@ import { bindActionCreators } from 'redux'
 import * as Actions from '../../actions'
 
 import WorksUtilBar from '../common/WorksUtilBar'
-import WorksTableCaptions from './WorksTableCaptions'
-import WorksTableRow from './WorksTableRow'
-import Loading from '../common/LoadingTableRow'
-import tableLabel from '../../constants/tableLabel'
+import WorksTable from './WorksTable'
+import Loading from '../common/Loading'
+import * as utils from '../../utils'
 
 class ShowAllWorks extends Component {
   componentDidMount() {
     const { actions } = this.props
     actions.getAllWorksAsync("showAllWorks")
   }
-
   render() {
-    const { loading, works } = this.props
-    const captions = !loading && <WorksTableCaptions columns={tableLabel} />
-
+    const { actions, loading, works, filters } = this.props
     return (
       <div>
-        <WorksUtilBar />
-        <table className="table works with-thumbnail">
-          <thead>{captions}</thead>
-          <tbody>
-            {loading ? (
-              <Loading colspan={tableLabel.length} />
-            ) : works && works.map((work) => (
-              <WorksTableRow work={work} key={work.id} />
-            ))}
-          </tbody>
-          <tfoot>{captions}</tfoot>
-        </table>
+        {loading ? <Loading /> : (
+          <div>
+            <WorksUtilBar
+              count={works.length}
+              filters={filters}
+              handleInput={actions.changeFilterWords}
+            />
+            <WorksTable works={utils.filterWorks(works, filters)} />
+          </div>
+        )}
       </div>
     )
   }
@@ -40,7 +34,8 @@ class ShowAllWorks extends Component {
 
 const mapStateToProps = (state) => ({
   loading: state.main.loading.showAllWorks,
-  works: state.main.works
+  works: state.main.works,
+  filters: state.main.filters
 })
 
 const mapDispatchToProps = (dispatch) => ({

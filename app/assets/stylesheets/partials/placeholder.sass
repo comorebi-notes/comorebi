@@ -1,0 +1,23 @@
+$placeholder-color: #bbb
+
+input, textarea
+  &:placeholder-shown
+    color: $placeholder-color
+
+  /* Google Chrome, Safari, Opera 15+, Android, iOS */
+  &::-webkit-input-placeholder
+    color: $placeholder-color
+
+  /* Firefox 18- */
+  &:-moz-placeholder
+    color: $placeholder-color
+    opacity: 1
+
+  /* Firefox 19+ */
+  &::-moz-placeholder
+    color: $placeholder-color
+    opacity: 1
+
+  /* IE 10+ */
+  &:-ms-input-placeholder
+    color: $placeholder-color

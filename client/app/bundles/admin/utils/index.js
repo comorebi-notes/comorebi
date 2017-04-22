@@ -52,6 +52,22 @@ export const publishStatusIcon  = (status) => (
   </span>
 )
 
+const filterWorksByWord = (works, word) => (
+  works.filter((work) => (
+    work.title.includes(word) || work.description.includes(word)
+  ))
+)
+
+export const filterWorks = (works, filters) => {
+  if (Object.keys(filters).length === 0) return works
+  const { words, tags } = filters
+  if (words.length === 0 && tags.length === 0) return works
+
+  let filteredWorks = works
+  words.map((word) => (filteredWorks = filterWorksByWord(filteredWorks, word)))
+  return filteredWorks
+}
+
 export const getId = (path) => parseInt(path.split('/')[3], 10)
 export const findWork = (works, id) => works.filter(work => work.id === id)[0]
 

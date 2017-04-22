@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react'
 import { browserHistory } from 'react-router'
+
 import * as utils from '../../../utils'
 
 class WorksTableRow extends PureComponent {

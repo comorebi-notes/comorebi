@@ -1,35 +1,48 @@
-import React, { PureComponent } from 'react'
+import React, { Component } from 'react'
 
-class WorksUtilBar extends PureComponent {
+class WorksUtilBar extends Component {
+  constructor() {
+    super()
+    this.handleInput = this.handleInput.bind(this)
+  }
+  handleInput(e) {
+    this.props.handleInput(e.target.value)
+  }
   render() {
+    const { count, filters } = this.props
+    const words = filters.words ? filters.words.join(" ") : ""
     return (
       <nav className="level">
         <div className="level-left">
           <div className="level-item">
-            <p className="subtitle is-5">
-              <strong>123</strong> posts
-            </p>
-          </div>
-          <div className="level-item">
             <div className="field has-addons">
-              <p className="control">
-                <input className="input" type="text" placeholder="Find a post" />
-              </p>
-              <p className="control">
-                <button className="button">
-                  Search
-                </button>
+              <p className="control has-icon has-icon-left">
+                <input
+                  className="input"
+                  type="text"
+                  placeholder="search..."
+                  value={words}
+                  onChange={this.handleInput}
+                />
+                <span className="icon is-small">
+                  <i className="fa fa-search" />
+                </span>
               </p>
             </div>
+          </div>
+          <div className="level-item">
+            <p className="subtitle is-5">
+              <strong>{count}</strong> 作品
+            </p>
           </div>
         </div>
 
         <div className="level-right">
-          <p className="level-item"><strong>All</strong></p>
-          <p className="level-item"><a>Published</a></p>
-          <p className="level-item"><a>Drafts</a></p>
-          <p className="level-item"><a>Deleted</a></p>
-          <p className="level-item"><a className="button is-primary">New</a></p>
+          <p className="level-item"><strong>すべて</strong></p>
+          <p className="level-item"><a>公開</a></p>
+          <p className="level-item"><a>下書き</a></p>
+          <p className="level-item"><a>削除</a></p>
+          <p className="level-item"><a className="button is-primary">新規作成</a></p>
         </div>
       </nav>
     )

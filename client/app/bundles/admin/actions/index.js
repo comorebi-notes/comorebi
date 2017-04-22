@@ -13,6 +13,9 @@ import * as utils from '../utils'
 // ============================================= Simple Actions
 export const loading  = createAction('LOADING')
 export const complete = createAction('COMPLETE')
+export const addTag   = createAction('ADD_TAG')
+export const changeFilterWords = createAction('CHANGE_FILTER_WORDS')
+export const clearFilters      = createAction('CLEAR_FILTERS')
 
 // ============================================= Notifications
 export const clearInitialNotification = createAction('CLEAR_INITIAL_NOTIFICATION')
@@ -30,6 +33,7 @@ export const setNotifications = (customOptions) => (dispatch) => {
 // ============================================= GET
 export const getAllWorks = createAction('GET_ALL_WORKS', api.getAllWorks)
 export const getAllWorksAsync = (target) => async (dispatch) => {
+  dispatch(clearFilters())
   dispatch(loading(target))
   await dispatch(getAllWorks())
   dispatch(complete(target))
@@ -74,5 +78,3 @@ export const editWorkSubmit = () => async (dispatch, getState) => {
     throw new SubmissionError(errors)
   }
 }
-
-export const addTag = createAction('ADD_TAG')

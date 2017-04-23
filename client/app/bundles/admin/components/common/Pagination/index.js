@@ -38,13 +38,13 @@ class Pagination extends PureComponent {
     return (
       <nav className="pagination is-right">
         <ul className="pagination-list">
-          {prev !== min &&   <li>{paginateItem(min)}</li>}
+          {prev !== min && <li>{paginateItem(min)}</li>}
           {prev > min + 1 && <li><span className="pagination-ellipsis">&hellip;</span></li>}
           {pageRange.map((num) => (
             <li key={num}>{paginateItem(num)}</li>
           ))}
           {next < max - 1 && <li><span className="pagination-ellipsis">&hellip;</span></li>}
-          {next !== max   && <li>{paginateItem(max)}</li>}
+          {next !== max && <li>{paginateItem(max)}</li>}
         </ul>
       </nav>
     )
@@ -52,7 +52,7 @@ class Pagination extends PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-  page: state.main.filters.page
+  page: state.filters.page
 })
 
 const mapDispatchToProps = (dispatch) => ({

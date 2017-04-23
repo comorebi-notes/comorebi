@@ -47,7 +47,7 @@ class ShowAllWorks extends Component {
 const mapStateToProps = (state) => ({
   loading: state.main.loading.showAllWorks,
   works: state.main.works,
-  filters: state.main.filters
+  filters: state.filters
 })
 
 const mapDispatchToProps = (dispatch) => ({

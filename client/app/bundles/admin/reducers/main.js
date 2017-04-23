@@ -6,19 +6,12 @@ const initialNotification = {
   message: windowNotification.message || '',
   level:   windowNotification.level   || ''
 }
-const initialFilters = {
-  words: "",
-  status: "",
-  categories: [],
-  page: 1
-}
 
 export const initialState = {
   loading: {},
   errors: '',
   modal: false,
   works: '',
-  filters: initialFilters,
   currentAdmin,
   initialNotification
 }
@@ -41,44 +34,6 @@ export default handleActions({
       categories: data.categories,
       tags:       data.tags
     }
-  },
-  CHANGE_FILTERING_WORDS: (state, action) => {
-    const filters = Object.assign({}, state.filters)
-    filters.words = action.payload
-    filters.page = 1
-    return Object.assign({}, state, { filters })
-  },
-  CHANGE_FILTERING_STATUS: (state, action) => {
-    const filters = Object.assign({}, state.filters)
-    filters.status = action.payload
-    filters.page = 1
-    return Object.assign({}, state, { filters })
-  },
-  ADD_FILTERING_CATEGORIES: (state, action) => {
-    const filters = Object.assign({}, state.filters)
-    const newCategory = action.payload
-    if (!filters.categories.includes(newCategory)) {
-      filters.categories = filters.categories.concat(newCategory)
-    }
-    filters.page = 1
-    return Object.assign({}, state, { filters })
-  },
-  DELETE_FILTERING_CATEGORIES: (state, action) => {
-    const filters = Object.assign({}, state.filters)
-    const targetCategory = action.payload
-    const newCategories = filters.categories.filter((category) => category !== targetCategory)
-    filters.categories = newCategories
-    filters.page = 1
-    return Object.assign({}, state, { filters })
-  },
-  CLEAR_FILTERS: (state) => ({
-    ...state,
-    filters: initialFilters
-  }),
-  CHANGE_PAGE: (state, action) => {
-    const filters = Object.assign({}, state.filters)
-    filters.page = parseInt(action.payload, 10)
-    return Object.assign({}, state, { filters })
   },
   ADD_TAG: (state, action) => {
     state[action.payload.target].push(action.payload.name)

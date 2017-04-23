@@ -73,7 +73,7 @@ class SelectWorkItemField extends Component {
     this.props.input.onChange(item_ids)
     this.onSuggestionsClearRequested()
   }
-  handleAllDelete = () => this.props.input.onChange([])
+  handleAllDelete = () => this.props.input.onChange({})
   renderSuggestion = (suggestion) => (<SuggestionItem item={suggestion} />)
   renderSectionTitle = (section) => (
     <h4 className="title is-4">

@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
+import { browserHistory } from 'react-router'
 
 import InputField from '../../common/form/InputField'
-import SubmitButton from '../../common/form/SubmitButton'
+import Button from '../../common/form/Button'
 import validate from './validate'
 
 class EditAdminForm extends Component {
@@ -19,7 +20,24 @@ class EditAdminForm extends Component {
         <Field component={InputField} name="password_confirmation" label="パスワード (確認)" type="password" />
         <Field component={InputField} name="current_password" label="現在のパスワード" type="password" />
 
-        <SubmitButton label="更新する" loading={loading} />
+        <div className="field is-grouped with-button">
+          <div className="control">
+            <Button
+              type="submit"
+              label="更新"
+              loading={loading}
+              icon="upload"
+            />
+          </div>
+          <div className="control">
+            <Button
+              color="default"
+              label="キャンセル"
+              disabled={loading}
+              handleClick={() => browserHistory.push("/admin")}
+            />
+          </div>
+        </div>
       </form>
     )
   }

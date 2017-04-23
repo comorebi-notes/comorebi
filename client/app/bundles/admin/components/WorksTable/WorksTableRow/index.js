@@ -1,16 +1,28 @@
 import React, { PureComponent } from 'react'
 import { browserHistory } from 'react-router'
+import Highlighter from 'react-highlight-words'
+
 import * as utils from '../../../utils'
 
 class WorksTableRow extends PureComponent {
+  constructor() {
+    super()
+    this.handleClickRow   = this.handleClickRow.bind(this)
+    this.changeCategories = this.changeCategories.bind(this)
+  }
+  handleClickRow() {
+    browserHistory.push(`/admin/works/${this.props.work.id}`)
+  }
+  changeCategories(e) {
+    this.props.actions.addFilteringCategories(e.target.firstChild.data)
+    e.stopPropagation()
+  }
   render () {
-    const { id, title, categories, status, images, published_at } = this.props.work
+    const { work, filters } = this.props
+    const { id, title, categories, status, images, published_at } = work
     const image = images ? images[0] : null
     return (
-      <tr
-        className={status}
-        onClick={() => browserHistory.push(`/admin/works/${id}`)}
-      >
+      <tr className={status} onClick={this.handleClickRow}>
         <td className="thumbnail">
           <figure className="image thumbnail is-1by1">
             {image ? (
@@ -21,10 +33,23 @@ class WorksTableRow extends PureComponent {
           </figure>
         </td>
         <th className="id">{id}</th>
-        <td className="works-title">{title}</td>
+        <td className="works-title">
+          {filters && filters.words ? (
+            <Highlighter
+              searchWords={utils.splitFilteringWords(filters.words)}
+              textToHighlight={title}
+            />
+          ) : title}
+        </td>
         <td className="category is-hidden-mobile">
           {categories.map((category) => (
-            <span className="tag is-info" key={category}>{category}</span>
+            <span
+              className="tag can-click is-info"
+              onClick={this.changeCategories}
+              key={category}
+            >
+              {category}
+            </span>
           ))}
         </td>
         <td className="status is-hidden-mobile">{utils.publishStatusIcon(status)}</td>

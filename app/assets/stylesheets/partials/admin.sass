@@ -18,14 +18,26 @@
     transition: all .2s ease-in-out !important
   form
     .is-danger
-      label, i
+      label, .icon i
         color: $danger
       input, select, textarea
         color: $danger
         border-color: $danger
+  mark
+    background-color: #fe6
   .notifications-wrapper
     strong
       color: white
+  .tag.can-click
+    cursor: pointer
+    // transition: opacity .2s ease-in-out
+    &:hover
+      opacity: .7
+  .modal
+    .modal-card-foot
+      justify-content: flex-end
+  .pagination
+    margin: 2em 0
 
   table.with-thumbnail
     th:first-child
@@ -55,7 +67,7 @@
         cursor: pointer
         &.loading, &.empty
           color: lighten($text, 50%)
-          height: 6em
+          height: 8em
           cursor: auto
           &:hover
             background-color: inherit
@@ -75,6 +87,7 @@
           background-color: lighten($text, 60%)
           &:hover
             background-color: lighten($text, 55%)
+
   div.loading
     color: lighten($text, 50%)
     background-color: #fcfcfc
@@ -122,6 +135,21 @@
       background-color: darken($light, 5%)
     .selected-item
       margin-bottom: 2em
+      .card
+        opacity: 0
+        animation: fadein .5s ease 0s 1 forwards
+  .works-util-bar
+    label
+      transition: all .2s ease-in-out
+      &.checked
+        font-weight: bold
+        cursor: default
+      &:not(.checked)
+        color: $primary
+        &:hover
+          color: $text
+      input[type=radio]
+        display: none
 
   @media screen and (max-width: $tablet)
     .section
@@ -133,3 +161,7 @@
         flex-grow: 1
         .button
           width: 100%
+
+@keyframes fadein
+  100%
+    opacity: 1

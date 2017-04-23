@@ -20,7 +20,7 @@ class EditAdmin extends Component {
           <EditAdminForm
             actions={actions}
             loading={loading}
-            onSubmit={actions.editAdminSubmit}
+            onSubmit={actions.updateAdminSubmit}
           />
         </div>
       </div>
@@ -29,7 +29,7 @@ class EditAdmin extends Component {
 }
 
 const mapStateToProps = state => ({
-  loading: state.main.loading.editAdminSubmit
+  loading: state.main.loading.updateAdmin
 })
 
 const mapDispatchToProps = dispatch => ({

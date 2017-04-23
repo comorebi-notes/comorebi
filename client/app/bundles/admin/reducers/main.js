@@ -10,22 +10,23 @@ const initialNotification = {
 export const initialState = {
   loading: {},
   errors: '',
+  modal: false,
   works: '',
   currentAdmin,
   initialNotification
 }
 
 export default handleActions({
-  LOADING:  (state, actions) => ({
+  LOADING:  (state, action) => ({
     ...state,
-    loading: { [actions.payload]: true }
+    loading: { [action.payload]: true }
   }),
-  COMPLETE: (state, actions) => ({
+  COMPLETE: (state, action) => ({
     ...state,
-    loading: { [actions.payload]: false }
+    loading: { [action.payload]: false }
   }),
-  GET_ALL_WORKS: (state, actions) => {
-    const data = actions.payload.data
+  GET_ALL_WORKS: (state, action) => {
+    const data = action.payload.data
     return {
       ...state,
       works:      data.works,
@@ -38,7 +39,7 @@ export default handleActions({
     state[action.payload.target].push(action.payload.name)
     return { ...state }
   },
-  EDIT_ADMIN_REQUEST: {
+  UPDATE_ADMIN_REQUEST: {
     next: (state, action) => ({
       ...state,
       currentAdmin: JSON.parse(action.payload.config.data).admin,
@@ -49,19 +50,34 @@ export default handleActions({
       errors: action.payload.response.data.errors
     })
   },
-  EDIT_WORK_REQUEST: {
-    next: (state, action) => {
-      const newWork = action.payload.data
-      const target = state.works.findIndex((work) => work.id === newWork.id)
-      state.works.splice(target, 1, newWork)
-      return {
-        ...state,
-        errors: '',
-      }
-    },
+  UPDATE_WORK_REQUEST: {
+    next: (state) => ({
+      ...state,
+      errors: ''
+    }),
     throw: (state, action) => ({
       ...state,
-      errors: action.payload.data.errors
+      errors: action.payload.response.data.errors
+    })
+  },
+  CREATE_WORK_REQUEST: {
+    next: (state) => ({
+      ...state,
+      errors: ''
+    }),
+    throw: (state, action) => ({
+      ...state,
+      errors: action.payload.response.data.errors
+    })
+  },
+  DESTROY_WORK_REQUEST: {
+    next: (state) => ({
+      ...state,
+      errors: ''
+    }),
+    throw: (state, action) => ({
+      ...state,
+      errors: action.payload.response.data.errors
     })
   },
   CLEAR_INITIAL_NOTIFICATION: (state) => ({

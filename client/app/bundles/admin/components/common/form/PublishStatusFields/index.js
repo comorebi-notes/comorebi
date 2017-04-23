@@ -6,7 +6,7 @@ const PublishStatusFields = ({ status, label }) => {
   const statusesData = [
     { name: "published", caption: "公開",   icon: "check-circle" },
     { name: "drafted",   caption: "下書き", icon: "file-text-o" },
-    { name: "deleted",   caption: "削除",   icon: "trash" }
+    { name: "deleted",   caption: "削除",   icon: "ban" }
   ]
   const buttonClassName = (name) => {
     const value = status.input.value
@@ -17,7 +17,6 @@ const PublishStatusFields = ({ status, label }) => {
       { "is-dark":    value === statusesData[2].name && value === name }
     )
   }
-
   return (
     <div className="select-status">
       {label && <label htmlFor="status" className="label">{label}</label>}

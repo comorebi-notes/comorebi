@@ -18,7 +18,7 @@ const SelectDatetimeFields = (fields) => {
       <div className="select-datetime">
         {fieldsData.map((data) => (
           <div className={errorClassName(data.field)} key={data.field.input.name}>
-            <div className="control">
+            <div className="control has-icon has-icon-right">
               <input {...data.field.input} className="input" type={data.type} placeholder={data.placeholder} />
               {isError(data.field) && <ErrorField error={data.field.meta.error} />}
             </div>

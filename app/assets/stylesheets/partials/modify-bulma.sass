@@ -3,16 +3,19 @@ html
 
 .button
   font-family: "FontAwesome"
-  height: 2.35em
+  height: 2.35rem
   &.with-icon
     .icon
-      margin-left: -.2em !important
-      margin-right: .5em !important
-      margin-buttom
+      font-size: .75em
+      margin-top: -.4em
+      margin-left: -.1em !important
+      margin-right: .8em !important
       display: block
-      i
-        color: white !important
-  &:is-warning
+    &.is-success, &.is-warning, &.is-info, &.is-danger
+      .icon
+        i
+          color: white !important
+  &.is-warning
     color: white
     &:hover
       color: white
@@ -41,8 +44,8 @@ div.control
     margin-top: 0
 .control, .field
   &.with-button
-    text-align: center
-    justify-content: center
+    // text-align: center
+    // justify-content: center
     margin-top: 1.6em
 
 .notification

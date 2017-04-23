@@ -104,6 +104,16 @@ export default handleActions({
       errors: action.payload.response.data.errors
     })
   },
+  DESTROY_WORK_REQUEST: {
+    next: (state) => ({
+      ...state,
+      errors: ''
+    }),
+    throw: (state, action) => ({
+      ...state,
+      errors: action.payload.response.data.errors
+    })
+  },
   CLEAR_INITIAL_NOTIFICATION: (state) => ({
     ...state,
     initialNotification: {}

@@ -103,3 +103,25 @@ export const createWorkSubmit = () => async (dispatch, getState) => {
     throw new SubmissionError(errors)
   }
 }
+
+// ============================================= DESTROY
+export const destroyWorkRequest = createAction('DESTROY_WORK_REQUEST', api.destroyWorkRequest)
+export const destroyWorkSubmit = () => async (dispatch, getState) => {
+  const state = getState()
+  const formData = getFormValues('work')(state) || {}
+  const id = utils.getId(state.routing.locationBeforeTransitions.pathname)
+  const loadingTarget = 'destroyWork'
+
+  dispatch(loading(loadingTarget))
+  await dispatch(destroyWorkRequest(id))
+  dispatch(complete(loadingTarget))
+
+  const errors = getState().main.errors
+  if (errors === '') {
+    dispatch(setNotifications(messages.destroyWork.success(formData.title)))
+    dispatch(push(rootPath))
+  } else {
+    dispatch(setNotifications(messages.destroyWork.error(formData.title)))
+    throw new SubmissionError(errors)
+  }
+}

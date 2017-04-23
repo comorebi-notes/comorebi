@@ -3,8 +3,8 @@ import classNames from 'classnames'
 
 class Button extends PureComponent {
   render() {
-    const { loading, label, type, color, size, icon, handleClick } = this.props
-    const colorClassName = color || 'is-primary'
+    const { loading, label, type, color, size, icon, disabled, handleClick } = this.props
+    const colorClassName = color === "default" ? "" : (color || 'is-primary')
     const buttonType = type || "button"
     const buttonClassName = classNames(
       "button", colorClassName,
@@ -13,7 +13,12 @@ class Button extends PureComponent {
       { "with-icon": icon }
     )
     return (
-      <button type={buttonType} className={buttonClassName} onClick={handleClick}>
+      <button
+        type={buttonType}
+        className={buttonClassName}
+        onClick={handleClick}
+        disabled={disabled}
+      >
         {icon && !loading && (
           <span className="icon">
             <i className={classNames("fa", `fa-${icon}`)} />

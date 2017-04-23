@@ -23,5 +23,9 @@ export const updateWorkRequest = (data, id) => {
 
 export const createWorkRequest = (data) => {
   const params = getParams.createWork(data)
-  return axios.post(`/admin/works`, params, config)
+  return axios.post("/admin/works", params, config)
 }
+
+export const destroyWorkRequest = (id) => (
+  axios.delete(`/admin/works/${id}`, config)
+)

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Field, Fields, reduxForm } from 'redux-form'
+import { browserHistory } from 'react-router'
 
 import InputField from '../../common/form/InputField'
 import TextareaField from '../../common/form/TextareaField'
@@ -15,10 +16,10 @@ import * as utils from '../../../utils'
 class EditWorkForm extends Component {
   constructor() {
     super()
-    this.handleDelete = this.handleDelete.bind(this)
+    this.handleDestroy = this.handleDestroy.bind(this)
   }
-  handleDelete() {
-    this.props.actions.destroyWork()
+  handleDestroy() {
+    this.props.actions.destroyWorkSubmit()
   }
   render() {
     const { actions, loading, handleSubmit, categories, tags, workItems } = this.props
@@ -66,10 +67,18 @@ class EditWorkForm extends Component {
           <div className="control">
             <Button
               color="is-danger"
-              label="完全削除"
-              loading={loading}
+              label="消去"
+              disabled={loading}
               icon="ban"
-              onClick={this.handleDestroy}
+              handleClick={this.handleDestroy}
+            />
+          </div>
+          <div className="control">
+            <Button
+              color="default"
+              label="キャンセル"
+              disabled={loading}
+              handleClick={() => browserHistory.push("/admin")}
             />
           </div>
         </div>

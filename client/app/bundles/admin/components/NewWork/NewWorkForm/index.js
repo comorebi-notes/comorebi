@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Field, Fields, reduxForm } from 'redux-form'
+import { browserHistory } from 'react-router'
 
 import InputField from '../../common/form/InputField'
 import TextareaField from '../../common/form/TextareaField'
@@ -46,8 +47,23 @@ class NewWorkForm extends Component {
         <Fields component={PublishStatusFields} names={names.status} label="状態" />
         <Fields component={PublishedDatetimeFields} names={names.published_at} label="公開日" />
 
-        <div className="control with-button">
-          <Button type="submit" label="作成" loading={loading} />
+        <div className="field is-grouped with-button">
+          <div className="control">
+            <Button
+              type="submit"
+              label="作成"
+              loading={loading}
+              icon="plus-circle"
+            />
+          </div>
+          <div className="control">
+            <Button
+              color="default"
+              label="キャンセル"
+              loading={loading}
+              handleClick={() => browserHistory.push("/admin")}
+            />
+          </div>
         </div>
       </form>
     )

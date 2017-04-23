@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
 
 import InputField from '../../common/form/InputField'
-import SubmitButton from '../../common/form/SubmitButton'
+import Button from '../../common/form/Button'
 import validate from './validate'
 
 class EditAdminForm extends Component {
@@ -19,7 +19,9 @@ class EditAdminForm extends Component {
         <Field component={InputField} name="password_confirmation" label="パスワード (確認)" type="password" />
         <Field component={InputField} name="current_password" label="現在のパスワード" type="password" />
 
-        <SubmitButton label="更新する" loading={loading} />
+        <div className="control with-button">
+          <Button type="submit" label="更新" loading={loading} />
+        </div>
       </form>
     )
   }

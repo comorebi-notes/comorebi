@@ -18,7 +18,9 @@ class Work < ApplicationRecord
   acts_as_taggable_on :categories, :tags
   enum status: { drafted: 0, published: 1, deleted: 2 }
 
-  validates :title, presence: true
+  validates :title,        presence: true
+  validates :description,  presence: true
+  validates :published_at, presence: true
 
   def with_children
     self.attributes.merge(

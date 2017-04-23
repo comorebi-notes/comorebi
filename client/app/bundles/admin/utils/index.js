@@ -97,9 +97,9 @@ export const setupWorkForEdit = (works, currentPath) => {
     const dd   = zeroPadding(date.getDate(),      2)
     const hh   = zeroPadding(date.getHours(),     2)
     const mm   = zeroPadding(date.getMinutes(),   2)
-    const ss   = zeroPadding(date.getSeconds(),   2)
+    // const ss   = zeroPadding(date.getSeconds(),   2)
     work.published_date = `${yyyy}-${MM}-${dd}`
-    work.published_time = `${hh}:${mm}:${ss}`
+    work.published_time = `${hh}:${mm}`
   }
   return work
 }
@@ -109,7 +109,7 @@ export const workItemIcon = (type) => {
     musics: "music"
   }
   return (
-    <span className="icon with-text">
+    <span style={{ marginRight: '.4em' }}>
       <i className={classNames("fa", `fa-${icons[type]}`)} />
     </span>
   )

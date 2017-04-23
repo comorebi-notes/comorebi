@@ -18,7 +18,7 @@
     transition: all .2s ease-in-out !important
   form
     .is-danger
-      label, i
+      label, .icon i
         color: $danger
       input, select, textarea
         color: $danger
@@ -130,6 +130,9 @@
       background-color: darken($light, 5%)
     .selected-item
       margin-bottom: 2em
+      .card
+        opacity: 0
+        animation: fadein .5s ease 0s 1 forwards
   .works-util-bar
     label
       transition: all .2s ease-in-out
@@ -153,3 +156,7 @@
         flex-grow: 1
         .button
           width: 100%
+
+@keyframes fadein
+  100%
+    opacity: 1

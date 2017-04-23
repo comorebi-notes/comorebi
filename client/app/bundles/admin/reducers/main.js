@@ -73,7 +73,7 @@ export default handleActions({
     state[action.payload.target].push(action.payload.name)
     return { ...state }
   },
-  EDIT_ADMIN_REQUEST: {
+  UPDATE_ADMIN_REQUEST: {
     next: (state, action) => ({
       ...state,
       currentAdmin: JSON.parse(action.payload.config.data).admin,
@@ -84,20 +84,24 @@ export default handleActions({
       errors: action.payload.response.data.errors
     })
   },
-  EDIT_WORK_REQUEST: {
-    next: (state, action) => {
-      const newState = Object.assign({}, state)
-      const newWork = action.payload.data
-      const target = state.works.findIndex((work) => work.id === newWork.id)
-      newState.works.splice(target, 1, newWork)
-      return {
-        ...newState,
-        errors: '',
-      }
-    },
+  UPDATE_WORK_REQUEST: {
+    next: (state) => ({
+      ...state,
+      errors: ''
+    }),
     throw: (state, action) => ({
       ...state,
-      errors: action.payload.data.errors
+      errors: action.payload.response.data.errors
+    })
+  },
+  CREATE_WORK_REQUEST: {
+    next: (state) => ({
+      ...state,
+      errors: ''
+    }),
+    throw: (state, action) => ({
+      ...state,
+      errors: action.payload.response.data.errors
     })
   },
   CLEAR_INITIAL_NOTIFICATION: (state) => ({

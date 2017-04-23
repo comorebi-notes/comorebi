@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router'
 
 import WorksCount from './WorksCount'
 import FilteringWordsField from './FilteringWordsField'
@@ -22,11 +23,14 @@ class WorksUtilBar extends Component {
   }
   render() {
     const { count, totalCount, filters } = this.props
+    const newWorkPath = "/admin/works/new"
     return (
       <nav className="level works-util-bar">
         <div className="level-left">
           <p className="level-item">
-            <a className="button is-primary">新規作成</a>
+            <Link to={newWorkPath} className="button is-primary">
+              新規作成
+            </Link>
           </p>
           <div className="level-item">
             <FilteringWordsField words={filters.words} handleChange={this.changeWords} />

@@ -11,12 +11,17 @@ const config = {
 
 export const getAllWorks = () => axios.get("/admin/works", {}, config)
 
-export const editAdminRequest = (data) => {
-  const params = getParams.editAdmin(data)
+export const updateAdminRequest = (data) => {
+  const params = getParams.updateAdmin(data)
   return axios.put("/admin", params, config)
 }
 
-export const editWorkRequest = (data, id) => {
-  const params = getParams.editWork(data)
+export const updateWorkRequest = (data, id) => {
+  const params = getParams.updateWork(data)
   return axios.put(`/admin/works/${id}`, params, config)
+}
+
+export const createWorkRequest = (data) => {
+  const params = getParams.createWork(data)
+  return axios.post(`/admin/works`, params, config)
 }

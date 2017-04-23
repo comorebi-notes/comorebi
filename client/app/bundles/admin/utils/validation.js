@@ -1,57 +1,69 @@
-const isEmpty = value => value === undefined || value === null || value === ''
+const isEmpty = (value) => (value === undefined || value === null || value === '')
 
-export function required(value) {
-  if (isEmpty(value)) {
-    return '必須項目です。'
-  }
-}
+export const required = (value) => (
+  isEmpty(value) && (
+    '必須項目です。'
+  )
+)
 
-export function maxLength(max) {
-  return value => {
-    if (!isEmpty(value) && value.length > max) {
-      return '文字数が多すぎます。'
-    }
-  }
-}
+export const maxLength = (max) => (
+  (value) => (!isEmpty(value) && value.length > max) && (
+    '文字数が多すぎます。'
+  )
+)
 
-export function minLength(min) {
-  return value => {
-    if (!isEmpty(value) && value.length < min) {
-      return '文字数が少なすぎます。'
-    }
-  }
-}
+export const minLength = (min) => (
+  (value) => (!isEmpty(value) && value.length < min) && (
+    '文字数が少なすぎます。'
+  )
+)
 
-export function rangeOfNumbers(min, max) {
-  return value => {
-    if (value < min || value > max) {
-      return `${min}〜${max} の範囲で入力してください。`
-    }
-  }
-}
+export const rangeOfNumbers = (min, max) => (
+  (value) => (value < min || value > max) && (
+    `${min}〜${max} の範囲で入力してください。`
+  )
+)
 
-export function integer(value) {
-  if (!isEmpty(value) && String(parseInt(value, 10)) !== String(value)) {
-    return '整数を入力してください。'
-  }
-}
+export const integer = (value) => (
+  (!isEmpty(value) && String(parseInt(value, 10)) !== String(value)) && (
+    '整数を入力してください。'
+  )
+)
 
-export function phone(value) {
-  if (!isEmpty(value) && !/^0\d{1,4}-\d{1,4}-\d{4}$/i.test(value)) {
-    return '電話番号のフォーマットが正しくありません。'
-  }
-}
+export const date = (value) => (
+  (!isEmpty(value) && !/^\d{4}-\d{1,2}-\d{1,2}$/.test(value)) && (
+    '日付の形式が正しくありません。(yyyy-mm-dd)'
+  )
+)
 
-export function email(value) {
-  if (!isEmpty(value) && !/^[A-Za-z0-9]+[\w-]+@[\w\.-]+\.\w{2,}$/.test(value)) {
-    return 'メールアドレスのフォーマットが正しくありません。'
-  }
-}
+export const time = (value) => (
+  (!isEmpty(value) && !/^\d{2}:\d{2}.*/.test(value)) && (
+    '時間のフォーマットが正しくありません。(00:00)'
+  )
+)
+
+export const phone = (value) => (
+  (!isEmpty(value) && !/^0\d{1,4}-\d{1,4}-\d{4}$/i.test(value)) && (
+    '電話番号のフォーマットが正しくありません。'
+  )
+)
+
+export const requiredObject = (value) => (
+  (!Object.keys(value).length || !Object.keys(value).filter((key) => value[key].length).length) && (
+    '必須項目です。'
+  )
+)
+
+export const email = (value) => (
+  (!isEmpty(value) && !/^[A-Za-z0-9]+[\w-]+@[\w\.-]+\.\w{2,}$/.test(value)) && (
+    'メールアドレスのフォーマットが正しくありません。'
+  )
+)
 
 const join = (rules) => (value, data) => rules.map(rule => rule(value, data)).filter(error => !!error)[0]
 
-export function createValidator(rules) {
-  return (data = {}) => {
+export const createValidator = (rules) => (
+  (data = {}) => {
     const errors = {}
     Object.keys(rules).forEach(key => {
       const rule = join([].concat(rules[key]))
@@ -60,4 +72,4 @@ export function createValidator(rules) {
     })
     return errors
   }
-}
+)

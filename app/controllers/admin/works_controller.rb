@@ -9,20 +9,19 @@ class Admin::WorksController < AdminController
     }
   end
 
-  # ajax 用に書き換え
   def create
-    @work = Work.new(work_params)
-    if @work.save
-      redirect_to admin_works_path, notice: "作品「#{@work.title}」を追加しました。"
+    work = Work.new(work_params)
+    if work.save
+      render json: { status: :ok }
     else
-      render action: :new
+      render json: work.errors, status: :unprocessable_entity
     end
   end
 
   def update
     work = Work.find(params[:id])
     if work.update(work_params)
-      render json: work.with_children
+      render json: { status: :ok }
     else
       render json: work.errors, status: :unprocessable_entity
     end

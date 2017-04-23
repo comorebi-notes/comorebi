@@ -9,17 +9,9 @@ import PublishStatusFields from '../../common/form/PublishStatusFields'
 import MultiselectField from '../../common/form/MultiselectField'
 import SelectWorkItemField from '../../common/form/SelectWorkItemField'
 import Button from '../../common/form/Button'
-import validate from '../../NewWork/NewWorkForm/validate'
-import * as utils from '../../../utils'
+import validate from './validate'
 
-class EditWorkForm extends Component {
-  constructor() {
-    super()
-    this.handleDelete = this.handleDelete.bind(this)
-  }
-  handleDelete() {
-    this.props.actions.destroyWork()
-  }
+class NewWorkForm extends Component {
   render() {
     const { actions, loading, handleSubmit, categories, tags, workItems } = this.props
     const names = {
@@ -54,59 +46,29 @@ class EditWorkForm extends Component {
         <Fields component={PublishStatusFields} names={names.status} label="状態" />
         <Fields component={PublishedDatetimeFields} names={names.published_at} label="公開日" />
 
-        <div className="field is-grouped with-button">
-          <div className="control">
-            <Button
-              type="submit"
-              label="更新"
-              loading={loading}
-              icon="upload"
-            />
-          </div>
-          <div className="control">
-            <Button
-              color="is-danger"
-              label="完全削除"
-              loading={loading}
-              icon="ban"
-              onClick={this.handleDestroy}
-            />
-          </div>
+        <div className="control with-button">
+          <Button type="submit" label="作成" loading={loading} />
         </div>
       </form>
     )
   }
 }
 
-const mapStateToProps = (state) => {
-  const currentPath = state.routing.locationBeforeTransitions.pathname
-  const works = state.main.works
-  const work = utils.setupWorkForEdit(works, currentPath)
-  const initialValues = work ? {
-    title:          work.title,
-    description:    work.description,
-    status:         work.status,
-    categories:     work.categories,
-    tags:           work.tags,
-    published_date: work.published_date,
-    published_time: work.published_time,
-    item_ids: {
-      musics: work.music_ids
-    }
-  } : {}
-  return {
-    initialValues,
-    categories: state.main.categories,
-    tags: state.main.tags,
-    workItems: [
-      { title: "musics", items: state.main.musics }
-    ]
-  }
-}
+const mapStateToProps = (state) => ({
+  initialValues: {
+    status: "drafted",
+    item_ids: {}
+  },
+  categories: state.main.categories,
+  tags: state.main.tags,
+  workItems: [
+    { title: "musics", items: state.main.musics }
+  ]
+})
 
-EditWorkForm = reduxForm({
+NewWorkForm = reduxForm({
   form: 'work',
   validate
-})(EditWorkForm)
+})(NewWorkForm)
 
-export default connect(mapStateToProps)(EditWorkForm)
+export default connect(mapStateToProps)(NewWorkForm)

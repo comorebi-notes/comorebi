@@ -4,8 +4,8 @@ describe Work, type: :model do
   let(:musics) { create_list(:music, 3) }
   let(:work) { create(:work, music_ids: musics.map { |music| music.id }) }
 
-  it "is valid with title" do
-    work = Work.new(title: "hoge")
+  it "is valid with title and description and published_at" do
+    work = Work.new(title: "hoge", description: "fuga", published_at: DateTime.now)
     expect(work).to be_valid
   end
 

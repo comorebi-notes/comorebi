@@ -60,7 +60,7 @@ class NewWorkForm extends Component {
             <Button
               color="default"
               label="キャンセル"
-              loading={loading}
+              disabled={loading}
               handleClick={() => browserHistory.push("/admin")}
             />
           </div>

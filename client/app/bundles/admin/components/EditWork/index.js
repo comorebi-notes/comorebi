@@ -26,7 +26,7 @@ class EditWork extends Component {
         ) : works && (
           <EditWorkForm
             actions={actions}
-            loading={loading.updateWork}
+            loading={loading}
             onSubmit={actions.updateWorkSubmit}
           />
         )}

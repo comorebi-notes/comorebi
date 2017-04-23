@@ -12,7 +12,7 @@ class SelectedItem extends PureComponent {
     this.props.handleDelete(event, item.id, type)
   }
   render () {
-    const { item } = this.props
+    const { item, handleDelete } = this.props
     return (
       <article className="card media">
         <div className="media-content">
@@ -33,9 +33,11 @@ class SelectedItem extends PureComponent {
             </div>
           </div>
         </div>
-        <div className="media-right">
-          <button type="button" className="delete" onClick={this.handleDelete} />
-        </div>
+        {handleDelete && (
+          <div className="media-right">
+            <button type="button" className="delete" onClick={this.handleDelete} />
+          </div>
+        )}
       </article>
     )
   }

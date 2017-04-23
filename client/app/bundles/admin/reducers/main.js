@@ -14,6 +14,7 @@ const initialFilters = {
 
 export const initialState = {
   loading: {},
+  modal: false,
   errors: '',
   works: '',
   filters: initialFilters,
@@ -29,6 +30,10 @@ export default handleActions({
   COMPLETE: (state, action) => ({
     ...state,
     loading: { [action.payload]: false }
+  }),
+  TOGGLE_MODAL: (state) => ({
+    ...state,
+    modal: !state.modal
   }),
   GET_ALL_WORKS: (state, action) => {
     const data = action.payload.data

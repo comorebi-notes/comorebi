@@ -42,7 +42,7 @@ export const humanDateTime = (dateString, full) => {
 const statuses = {
   published: { label: "公開",   icon: "check-circle" },
   drafted:   { label: "下書き", icon: "file-text-o" },
-  deleted:   { label: "削除",   icon: "trash" }
+  deleted:   { label: "削除",   icon: "ban" }
 }
 
 export const publishStatusLabel = (status) => statuses[status].label

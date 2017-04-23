@@ -15,7 +15,7 @@ const rootPath = "/admin"
 // ============================================= Simple Actions
 export const loading  = createAction('LOADING')
 export const complete = createAction('COMPLETE')
-export const toggleModal = createAction('TOGGLE_MODAL')
+export const changePage = createAction('CHANGE_PAGE')
 export const addTag = createAction('ADD_TAG')
 export const changeFilteringWords      = createAction('CHANGE_FILTERING_WORDS')
 export const changeFilteringStatus     = createAction('CHANGE_FILTERING_STATUS')

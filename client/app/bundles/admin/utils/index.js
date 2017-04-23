@@ -1,6 +1,8 @@
 import React from 'react'
 import classNames from 'classnames'
 
+import perPage from '../constants/perPage'
+
 export const zeroPadding = (num, length) => {
   const zeros = Array(length + 1).join('0')
   return (zeros + num).slice(-length);
@@ -83,6 +85,8 @@ export const filterWorks = (works, filters) => {
   }
   return filteredWorks
 }
+
+export const pagingWorks = (works, page) => works.slice((page - 1) * perPage, page * perPage)
 
 export const getId = (path) => parseInt(path.split('/')[3], 10)
 export const findWork = (works, id) => works.filter(work => work.id === id)[0]

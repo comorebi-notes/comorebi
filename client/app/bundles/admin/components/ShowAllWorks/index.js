@@ -6,6 +6,7 @@ import * as Actions from '../../actions'
 import WorksUtilBar from '../common/WorksUtilBar'
 import WorksTable from '../WorksTable'
 import Loading from '../common/Loading'
+import Pagination from '../common/Pagination'
 import * as utils from '../../utils'
 
 class ShowAllWorks extends Component {
@@ -17,6 +18,8 @@ class ShowAllWorks extends Component {
   render() {
     const { actions, loading, works, filters } = this.props
     const filteredWorks = utils.filterWorks(works, filters)
+    const pagedWorks = utils.pagingWorks(filteredWorks, filters.page)
+    const pagination = <Pagination count={filteredWorks.length} />
     return (
       <div>
         {loading ? <Loading /> : (
@@ -27,11 +30,13 @@ class ShowAllWorks extends Component {
               filters={filters}
               actions={actions}
             />
+            {pagination}
             <WorksTable
-              works={filteredWorks}
+              works={pagedWorks}
               filters={filters}
               actions={actions}
             />
+            {pagination}
           </div>
         )}
       </div>

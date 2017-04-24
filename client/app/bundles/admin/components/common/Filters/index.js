@@ -5,7 +5,7 @@ import FilteringWordsField from './FilteringWordsField'
 import FilteringStatusField from './FilteringStatusField'
 import Pagination from '../Pagination'
 
-class WorksUtilBar extends Component {
+class Filters extends Component {
   constructor() {
     super()
     this.changeWords    = this.changeWords.bind(this)
@@ -62,4 +62,4 @@ class WorksUtilBar extends Component {
   }
 }
 
-export default WorksUtilBar
+export default Filters

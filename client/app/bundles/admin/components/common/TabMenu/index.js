@@ -22,7 +22,7 @@ class TabMenu extends PureComponent {
               <li key={item.label} className={itemClassName(item.url)}>
                 <Link to={[rootPath, item.url].join('/')}>
                   <Icon icon={item.icon} size="small" />
-                  <span>{item.label}</span>
+                  <span className="is-hidden-mobile">{item.label}</span>
                 </Link>
               </li>
             ))}

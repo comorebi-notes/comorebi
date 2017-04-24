@@ -1,10 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { Link } from 'react-router'
-import classNames from 'classnames'
 
-import WorksUtilBar from '../common/WorksUtilBar'
+import Filters from '../common/Filters'
 import WorksTable from '../WorksTable'
 import Loading from '../common/Loading'
 import TabMenu from '../common/TabMenu'
@@ -23,6 +21,7 @@ class ShowAllWorks extends Component {
     const { actions, path, loading, works, filters } = this.props
     const filteredWorks = utils.filterWorks(works, filters)
     const pagedWorks = utils.pagingWorks(filteredWorks, filters.page)
+    const count = filteredWorks.length
     return (
       <div>
         {loading ? <Loading /> : (
@@ -30,11 +29,11 @@ class ShowAllWorks extends Component {
             <TabMenu
               path={path}
               menuItems={menuItems}
-              count={filteredWorks.length}
+              count={count}
               totalCount={works.length}
             />
-            <WorksUtilBar
-              count={filteredWorks.length}
+            <Filters
+              count={count}
               totalCount={works.length}
               filters={filters}
               actions={actions}
@@ -44,7 +43,7 @@ class ShowAllWorks extends Component {
               filters={filters}
               actions={actions}
             />
-            <Pagination count={filteredWorks.length} />
+            <Pagination count={count} />
           </div>
         )}
       </div>

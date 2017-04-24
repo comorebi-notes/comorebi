@@ -3,9 +3,9 @@ import classNames from 'classnames'
 
 class Icon extends PureComponent {
   render() {
-    const { icon, size } = this.props
+    const { icon, size, className } = this.props
     return (
-      <span className={classNames("icon", { [`is-${size}`]: size })}>
+      <span className={classNames("icon", className, { [`is-${size}`]: size })}>
         <i className={classNames("fa", `fa-${icon}`)} />
       </span>
     )

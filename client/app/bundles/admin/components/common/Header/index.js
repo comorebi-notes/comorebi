@@ -1,21 +1,10 @@
 import React, { PureComponent } from 'react'
 import { Link } from 'react-router'
-import classNames from 'classnames'
-
-import menuItems from '../../../constants/menuItems'
-import { isActivePath } from '../../../utils'
 
 class Header extends PureComponent {
   render() {
-    const { admin, path } = this.props
+    const { admin } = this.props
     const rootPath = "/admin"
-    const itemClassName = (url) => (
-      classNames(
-        "nav-item", "is-tab", "is-hidden-mobile",
-        { "is-active": isActivePath(path, url, rootPath) }
-      )
-    )
-
     return (
       <header className="hero is-primary is-medium">
         <div className="hero-head">
@@ -27,15 +16,6 @@ class Header extends PureComponent {
                     comorebi CMS
                   </h1>
                 </Link>
-                {menuItems.map((item) => (
-                  <Link
-                    to={[rootPath, item.url].join('/')}
-                    key={item.label}
-                    className={itemClassName(item.url)}
-                  >
-                    {item.label}
-                  </Link>
-                ))}
               </div>
               <div className="nav-right nav-menu" style={{ flex: 0 }}>
                 <a href="/rails_admin" className="nav-item" target="_blank" rel="noopener noreferrer">

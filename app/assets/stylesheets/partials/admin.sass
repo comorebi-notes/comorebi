@@ -39,6 +39,32 @@
   .pagination
     margin: 1em 0
 
+  .tab-menu
+    position: relative
+    .subtitle
+      position: absolute
+      right: 0
+      bottom: .5em
+      margin: 0
+    .tabs
+      li:not(.is-active)
+        a
+          color: lighten($text, 20%)
+      ul
+        border-bottom: 1px solid #dbdbdb
+  .works-util-bar
+    margin: 1em 0 2em 0
+    label
+      transition: all .2s ease-in-out
+      &.checked
+        font-weight: bold
+        cursor: default
+      &:not(.checked)
+        color: $primary
+        &:hover
+          color: $text
+      input[type=radio]
+        display: none
   table.with-thumbnail
     th:first-child
       width: 60px
@@ -138,18 +164,6 @@
       .card
         opacity: 0
         animation: fadein .5s ease 0s 1 forwards
-  .works-util-bar
-    label
-      transition: all .2s ease-in-out
-      &.checked
-        font-weight: bold
-        cursor: default
-      &:not(.checked)
-        color: $primary
-        &:hover
-          color: $text
-      input[type=radio]
-        display: none
 
   @media screen and (max-width: $tablet)
     .section

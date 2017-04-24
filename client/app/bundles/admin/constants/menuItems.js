@@ -1,4 +1,5 @@
 const menuItems = [
+  { label: "All",      url: "" },
   { label: "Musics",   url: "musics" },
   { label: "Images",   url: "images" },
   { label: "Movies",   url: "movies" },

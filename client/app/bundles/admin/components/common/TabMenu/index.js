@@ -3,6 +3,7 @@ import { Link } from 'react-router'
 import classNames from 'classnames'
 
 import WorksCount from '../WorksCount'
+import Icon from '../Icon'
 import * as utils from '../../../utils'
 
 class TabMenu extends PureComponent {
@@ -20,9 +21,7 @@ class TabMenu extends PureComponent {
             {menuItems.map((item) => (
               <li key={item.label} className={itemClassName(item.url)}>
                 <Link to={[rootPath, item.url].join('/')}>
-                  <span className="icon is-small">
-                    <i className="fa fa-star" />
-                  </span>
+                  <Icon icon={item.icon} size="small" />
                   <span>{item.label}</span>
                 </Link>
               </li>

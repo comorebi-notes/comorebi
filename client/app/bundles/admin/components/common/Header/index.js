@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react'
 import { Link } from 'react-router'
 
+import Icon from '../Icon'
+
 class Header extends PureComponent {
   render() {
     const { admin } = this.props
@@ -27,9 +29,7 @@ class Header extends PureComponent {
                 <div className="nav-item">
                   <a href="/admin/logout" data-method="delete" className="button is-primary is-inverted" rel="nofollow">
                     <span>Logout</span>
-                    <span className="icon">
-                      <i className="fa fa-sign-out" />
-                    </span>
+                    <Icon icon="sign-out" />
                   </a>
                 </div>
               </div>

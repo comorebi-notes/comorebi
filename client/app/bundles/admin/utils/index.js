@@ -16,7 +16,7 @@ export const flatten = (array) => (
 
 export const isActivePath = (path, target, prefix) => {
   const url = prefix ? [prefix, target].join('/') : target
-  return path === url ? 'is-active' : ''
+  return path.replace(/\/$/, '') === url.replace(/\/$/, '')
 }
 
 export const parseDate = (dateString) => (

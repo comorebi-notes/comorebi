@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react'
 import classNames from 'classnames'
 
+import Icon from '../../../common/Icon'
+
 class Button extends PureComponent {
   render() {
     const { loading, label, type, color, size, icon, disabled, handleClick } = this.props
@@ -19,11 +21,7 @@ class Button extends PureComponent {
         onClick={handleClick}
         disabled={disabled}
       >
-        {icon && !loading && (
-          <span className="icon">
-            <i className={classNames("fa", `fa-${icon}`)} />
-          </span>
-        )}
+        {icon && !loading && <Icon icon={icon} />}
         {icon && ' '}
         {label}
       </button>

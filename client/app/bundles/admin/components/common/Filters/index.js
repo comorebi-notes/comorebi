@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router'
 
-import WorksCount from './WorksCount'
 import FilteringWordsField from './FilteringWordsField'
 import FilteringStatusField from './FilteringStatusField'
+import Pagination from '../Pagination'
 
-class WorksUtilBar extends Component {
+class Filters extends Component {
   constructor() {
     super()
     this.changeWords    = this.changeWords.bind(this)
@@ -22,7 +22,7 @@ class WorksUtilBar extends Component {
     this.props.actions.deleteFilteringCategories(category)
   }
   render() {
-    const { count, totalCount, filters } = this.props
+    const { count, filters } = this.props
     const newWorkPath = "/admin/works/new"
     return (
       <nav className="level works-util-bar">
@@ -54,7 +54,7 @@ class WorksUtilBar extends Component {
 
         <div className="level-right">
           <div className="level-item">
-            <WorksCount count={count} totalCount={totalCount} />
+            <Pagination count={count} />
           </div>
         </div>
       </nav>
@@ -62,4 +62,4 @@ class WorksUtilBar extends Component {
   }
 }
 
-export default WorksUtilBar
+export default Filters

@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import * as Actions from '../../actions'
 
-import WorksUtilBar from '../common/WorksUtilBar'
+import Filters from '../common/Filters'
 import WorksTable from '../WorksTable'
 import Loading from '../common/Loading'
+import TabMenu from '../common/TabMenu'
 import Pagination from '../common/Pagination'
+import menuItems from '../../constants/menuItems'
 import * as utils from '../../utils'
+import * as Actions from '../../actions'
 
 class ShowAllWorks extends Component {
   componentDidMount() {
@@ -16,27 +18,32 @@ class ShowAllWorks extends Component {
     actions.getAllWorksAsync("showAllWorks")
   }
   render() {
-    const { actions, loading, works, filters } = this.props
+    const { actions, path, loading, works, filters } = this.props
     const filteredWorks = utils.filterWorks(works, filters)
     const pagedWorks = utils.pagingWorks(filteredWorks, filters.page)
-    const pagination = <Pagination count={filteredWorks.length} />
+    const count = filteredWorks.length
     return (
       <div>
         {loading ? <Loading /> : (
           <div>
-            <WorksUtilBar
-              count={filteredWorks.length}
+            <TabMenu
+              path={path}
+              menuItems={menuItems}
+              count={count}
+              totalCount={works.length}
+            />
+            <Filters
+              count={count}
               totalCount={works.length}
               filters={filters}
               actions={actions}
             />
-            {pagination}
             <WorksTable
               works={pagedWorks}
               filters={filters}
               actions={actions}
             />
-            {pagination}
+            <Pagination count={count} />
           </div>
         )}
       </div>
@@ -45,6 +52,7 @@ class ShowAllWorks extends Component {
 }
 
 const mapStateToProps = (state) => ({
+  path: state.routing.locationBeforeTransitions.pathname,
   loading: state.main.loading.showAllWorks,
   works: state.main.works,
   filters: state.filters

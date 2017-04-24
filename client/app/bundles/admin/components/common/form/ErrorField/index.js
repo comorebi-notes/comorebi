@@ -1,10 +1,10 @@
 import React from 'react'
 
+import Icon from '../../Icon'
+
 const ErrorField = ({ error }) => (
   <div>
-    <span className="icon is-small">
-      <i className="fa fa-warning" />
-    </span>
+    <Icon icon="warning" size="small" />
     <p className="help is-danger">
       {error}
     </p>

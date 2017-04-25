@@ -3,7 +3,6 @@ import { Link } from 'react-router'
 
 import FilteringWordsField from './FilteringWordsField'
 import FilteringStatusField from './FilteringStatusField'
-import Pagination from '../Pagination'
 
 class Filters extends Component {
   constructor() {
@@ -22,7 +21,7 @@ class Filters extends Component {
     this.props.actions.deleteFilteringCategories(category)
   }
   render() {
-    const { count, filters } = this.props
+    const { filters, children } = this.props
     const newWorkPath = "/admin/works/new"
     return (
       <nav className="level works-util-bar">
@@ -54,7 +53,7 @@ class Filters extends Component {
 
         <div className="level-right">
           <div className="level-item">
-            <Pagination count={count} />
+            {children}
           </div>
         </div>
       </nav>

@@ -22,6 +22,7 @@ class ShowAllWorks extends Component {
     const filteredWorks = utils.filterWorks(works, filters)
     const pagedWorks = utils.pagingWorks(filteredWorks, filters.page)
     const count = filteredWorks.length
+    const pagination = <Pagination count={count} />
     return (
       <div>
         {loading ? <Loading /> : (
@@ -32,18 +33,15 @@ class ShowAllWorks extends Component {
               count={count}
               totalCount={works.length}
             />
-            <Filters
-              count={count}
-              totalCount={works.length}
-              filters={filters}
-              actions={actions}
-            />
+            <Filters filters={filters} actions={actions}>
+              {pagination}
+            </Filters>
             <WorksTable
               works={pagedWorks}
               filters={filters}
               actions={actions}
             />
-            <Pagination count={count} />
+            {pagination}
           </div>
         )}
       </div>

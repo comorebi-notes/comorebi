@@ -3,9 +3,8 @@ import 'babel-polyfill'
 import { createAction } from 'redux-actions'
 import { SubmissionError, getFormValues } from 'redux-form'
 import { push } from 'react-router-redux'
-import Notifications from 'react-notification-system-redux'
 
-import notificationOptions from './notificationOptions'
+import setNotifications from './setNotifications'
 import messages from '../constants/messages'
 import * as api from '../api'
 import * as utils from '../utils'
@@ -15,26 +14,16 @@ const rootPath = "/admin"
 // ============================================= Simple Actions
 export const loading  = createAction('LOADING')
 export const complete = createAction('COMPLETE')
-export const changePage = createAction('CHANGE_PAGE')
-export const addTag = createAction('ADD_TAG')
+export const addTag   = createAction('ADD_TAG')
+export const clearInitialNotification = createAction('CLEAR_INITIAL_NOTIFICATION')
+
+// ============================================= Filters
 export const changeFilteringWords      = createAction('CHANGE_FILTERING_WORDS')
 export const changeFilteringStatus     = createAction('CHANGE_FILTERING_STATUS')
 export const addFilteringCategories    = createAction('ADD_FILTERING_CATEGORIES')
 export const deleteFilteringCategories = createAction('DELETE_FILTERING_CATEGORIES')
+export const changePage                = createAction('CHANGE_PAGE')
 export const clearFilters              = createAction('CLEAR_FILTERS')
-
-// ============================================= Notifications
-export const clearInitialNotification = createAction('CLEAR_INITIAL_NOTIFICATION')
-export const setNotifications = (customOptions) => (dispatch) => {
-  const options = notificationOptions(customOptions)
-  const notificationsByLevel = {
-    success: Notifications.success(options),
-    info: Notifications.info(options),
-    warning: Notifications.warning(options),
-    error: Notifications.error(options)
-  }
-  dispatch(notificationsByLevel[options.level])
-}
 
 // ============================================= GET
 export const getAllWorks = createAction('GET_ALL_WORKS', api.getAllWorks)

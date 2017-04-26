@@ -4,11 +4,12 @@ import Helmet from 'react-helmet'
 import Notifications from 'react-notification-system-redux'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import { bindActionCreators } from 'redux'
-import * as Actions from '../../actions'
 
 import Header from '../../components/common/Header'
 import Footer from '../../components/common/Footer'
 import pageTitle from '../../constants/pageTitle'
+import * as Actions from '../../actions'
+import setNotifications from '../../actions/setNotifications'
 
 class Admin extends Component {
   componentDidMount() {
@@ -53,7 +54,10 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  actions: bindActionCreators(Actions, dispatch)
+  actions: {
+    ...bindActionCreators(Actions, dispatch),
+    setNotifications: bindActionCreators(setNotifications, dispatch)
+  }
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Admin)

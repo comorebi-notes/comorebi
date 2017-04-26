@@ -32,11 +32,12 @@ ActiveRecord::Schema.define(version: 20170122051657) do
   end
 
   create_table "musics", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "title",                    null: false
-    t.text     "lyrics",     limit: 65535
-    t.text     "sound_file", limit: 65535
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.string   "title",                        null: false
+    t.text     "lyrics",         limit: 65535
+    t.string   "sound_file",                   null: false
+    t.string   "off_vocal_file"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
   end
 
   create_table "taggings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

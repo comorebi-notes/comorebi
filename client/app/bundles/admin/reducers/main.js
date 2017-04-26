@@ -11,7 +11,8 @@ export const initialState = {
   loading: {},
   errors: '',
   modal: false,
-  works: '',
+  works: [],
+  musics: [],
   currentAdmin,
   initialNotification
 }
@@ -33,6 +34,14 @@ export default handleActions({
       musics:     data.musics,
       categories: data.categories,
       tags:       data.tags
+    }
+  },
+  GET_ALL_MUSICS: (state, action) => {
+    const data = action.payload.data
+    return {
+      ...state,
+      works:  data.works,
+      musics: data.musics
     }
   },
   ADD_TAG: (state, action) => {

@@ -32,6 +32,14 @@ export const getAllWorksAsync = (target) => async (dispatch) => {
   await dispatch(getAllWorks())
   dispatch(complete(target))
 }
+export const getAllMusics = createAction('GET_ALL_MUSICS', api.getAllMusics)
+export const getAllMusicsAsync = () => async (dispatch) => {
+  const loadingTarget = 'getAllMusics'
+
+  dispatch(loading(loadingTarget))
+  await dispatch(getAllMusics())
+  dispatch(complete(loadingTarget))
+}
 
 // ============================================= UPDATE
 export const updateAdminRequest = createAction('UPDATE_ADMIN_REQUEST', api.updateAdminRequest)

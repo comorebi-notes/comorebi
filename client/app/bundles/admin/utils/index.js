@@ -1,8 +1,6 @@
 import React from 'react'
 import classNames from 'classnames'
 
-import perPage from '../constants/perPage'
-
 export const zeroPadding = (num, length) => {
   const zeros = Array(length + 1).join('0')
   return (zeros + num).slice(-length);
@@ -53,40 +51,6 @@ export const publishStatusIcon  = (status) => (
     <i className={classNames("fa", `fa-${statuses[status].icon}`)} />
   </span>
 )
-
-export const splitFilteringWords = (words) => words.trim().split(/\s+/)
-
-const filterWorksByWord = (works, word) => (
-  works.filter((work) => (
-    work.title.includes(word) || work.description.includes(word)
-  ))
-)
-const filterWorksByStatus = (works, status) => (
-  works.filter((work) => work.status === status)
-)
-const filterWorksByCategory = (works, category) => (
-  works.filter((work) => work.categories.includes(category))
-)
-
-export const filterWorks = (works, filters) => {
-  if (Object.keys(filters).length === 0) return works
-  const { words, status, categories } = filters
-  if (!words.length && !status.length && !categories.length) return works
-
-  let filteredWorks = works
-  if (words.length) {
-    splitFilteringWords(words).map((word) => (filteredWorks = filterWorksByWord(filteredWorks, word)))
-  }
-  if (status.length) {
-    filteredWorks = filterWorksByStatus(filteredWorks, status)
-  }
-  if (categories.length) {
-    categories.map((category) => (filteredWorks = filterWorksByCategory(filteredWorks, category)))
-  }
-  return filteredWorks
-}
-
-export const pagingWorks = (works, page) => works.slice((page - 1) * perPage, page * perPage)
 
 export const getId = (path) => parseInt(path.split('/')[3], 10)
 export const findWork = (works, id) => works.filter(work => work.id === id)[0]

@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react'
 import { browserHistory } from 'react-router'
 import Highlighter from 'react-highlight-words'
 
+import * as filter from '../../../utils/filter'
 import * as utils from '../../../utils'
 
 class WorksTableRow extends PureComponent {
@@ -36,13 +37,13 @@ class WorksTableRow extends PureComponent {
         <td className="works-title">
           {filters && filters.words ? (
             <Highlighter
-              searchWords={utils.splitFilteringWords(filters.words)}
+              searchWords={filter.splitFilteringWords(filters.words)}
               textToHighlight={title}
             />
           ) : title}
         </td>
         <td className="category is-hidden-mobile">
-          {categories.map((category) => (
+          {categories && categories.map((category) => (
             <span
               className="tag can-click is-info"
               onClick={this.changeCategories}

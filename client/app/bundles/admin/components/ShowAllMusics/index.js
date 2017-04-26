@@ -11,18 +11,17 @@ import menuItems from '../../constants/menuItems'
 import * as filter from '../../utils/filter'
 import * as Actions from '../../actions'
 
-class ShowAllWorks extends Component {
+class ShowAllMusics extends Component {
   componentDidMount() {
     const { actions } = this.props
     actions.clearFilters()
-    actions.getAllWorksAsync("showAllWorks")
+    actions.getAllMusicsAsync()
   }
   render() {
-    const { actions, path, loading, works, filters } = this.props
-    const filteredWorks = filter.filteredItems(works, filters, "works")
-    const pagedWorks = filter.pagedItems(filteredWorks, filters.page)
-    const count = filteredWorks.length
-    const pagination = <Pagination count={count} />
+    const { actions, path, loading, musics, filters } = this.props
+    const filteredMusics = filter.filteredItems(musics, filters, "musics")
+    const pagedMusics = filter.pagedItems(filteredMusics, filters.page)
+    const count = filteredMusics.length
     return (
       <div>
         {loading ? <Loading /> : (
@@ -31,22 +30,19 @@ class ShowAllWorks extends Component {
               path={path}
               menuItems={menuItems}
               count={count}
-              totalCount={works.length}
+              totalCount={musics.length}
             />
             <Filters
               count={count}
-              totalCount={works.length}
+              totalCount={musics.length}
               filters={filters}
               actions={actions}
-              selectableStatus
             />
-            {count > 0 && (
-              <WorksTable
-                works={pagedWorks}
-                filters={filters}
-                actions={actions}
-              />
-            )}
+            {false && <WorksTable
+              works={pagedMusics}
+              filters={filters}
+              actions={actions}
+            />}
             <Pagination count={count} />
           </div>
         )}
@@ -57,8 +53,8 @@ class ShowAllWorks extends Component {
 
 const mapStateToProps = (state) => ({
   path: state.routing.locationBeforeTransitions.pathname,
-  loading: state.main.loading.showAllWorks,
-  works: state.main.works,
+  loading: state.main.loading.showAllMusics,
+  musics: state.main.musics,
   filters: state.filters
 })
 
@@ -66,4 +62,4 @@ const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators(Actions, dispatch)
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(ShowAllWorks)
+export default connect(mapStateToProps, mapDispatchToProps)(ShowAllMusics)

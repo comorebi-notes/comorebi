@@ -21,7 +21,7 @@ class Filters extends Component {
     this.props.actions.deleteFilteringCategories(category)
   }
   render() {
-    const { filters, children } = this.props
+    const { count, filters, selectableStatus } = this.props
     const newWorkPath = "/admin/works/new"
     return (
       <nav className="level works-util-bar">
@@ -34,9 +34,11 @@ class Filters extends Component {
           <div className="level-item">
             <FilteringWordsField words={filters.words} handleChange={this.changeWords} />
           </div>
-          <div className="level-item select is-hidden-mobile">
-            <FilteringStatusField handleChange={this.changeStatus} />
-          </div>
+          {selectableStatus && (
+            <div className="level-item select is-hidden-mobile">
+              <FilteringStatusField handleChange={this.changeStatus} />
+            </div>
+          )}
           <div className="level-item is-hidden-mobile">
             {filters.categories.map((category) => (
               <span

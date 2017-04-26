@@ -17,4 +17,9 @@ class Music < ApplicationRecord
 
   validates :title, presence: true
   validates :sound_file, presence: true
+
+  def with_children
+    self.attributes.merge(work_ids: work_ids)
+  end
+
 end

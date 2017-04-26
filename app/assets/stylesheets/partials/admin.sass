@@ -66,8 +66,6 @@
       input[type=radio]
         display: none
   table.with-thumbnail
-    th:first-child
-      width: 60px
     th, td
       vertical-align: middle
     figure
@@ -77,14 +75,18 @@
         padding: 0
   table.works
     td, th
-      // &.thumbnail
+      &.thumbnail
+        width: 4.5em
       &.id
+        width: 3.5em
         text-align: center
       // &.works-title
       // &.category
       &.status
+        width: 4em
         text-align: center
-      // &.published_at
+      &.published_at
+        width: 7em
     .tag
       font-size: 12px
       margin: .2em

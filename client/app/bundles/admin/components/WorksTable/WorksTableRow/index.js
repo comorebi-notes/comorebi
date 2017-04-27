@@ -25,8 +25,9 @@ class WorksTableRow extends PureComponent {
     e.stopPropagation()
   }
   render () {
-    const { work, filters, columns } = this.props
-    const { id, title, categories, status, images, published_at, lyrics, credit } = work
+    const { filters, columns,
+      work: { id, title, categories, status, images, published_at, lyrics, credit }
+    } = this.props
     const columnItems = {
       thumbnail:    <Thumbnail image={images} />,
       id:           <Id id={id} />,

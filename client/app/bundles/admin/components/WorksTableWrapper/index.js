@@ -34,7 +34,7 @@ class WorksTableWrapper extends Component {
               totalCount={works.length}
               filters={filters}
               actions={actions}
-              selectableStatus
+              selectableStatus={type === "works"}
             />
             {count > 0 && (
               <WorksTable

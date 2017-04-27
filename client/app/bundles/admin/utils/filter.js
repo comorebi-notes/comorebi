@@ -3,7 +3,11 @@ import perPage from '../constants/perPage'
 export const splitFilteringWords = (words) => words.trim().split(/\s+/)
 
 const filterItemsByWord = (items, word, attributes) => (
-  items.filter((item) => attributes.some((attr) => item[attr].includes(word)))
+  items.filter((item) => (
+    attributes.some((attr) => (
+      item[attr] && item[attr].includes(word)
+    ))
+  ))
 )
 const filterItemsByStatus = (items, status) => (
   items.filter((item) => item.status === status)

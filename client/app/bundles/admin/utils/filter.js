@@ -17,8 +17,8 @@ const filterItemsByCategory = (items, category) => (
 )
 
 const targetAttributes = {
-  works:  ["title", "description"],
-  musics: ["title", "lyrics"]
+  articles: ["title", "description"],
+  musics:   ["title", "lyrics"]
 }
 
 export const filteredItems = (originalItems, filters, type) => {
@@ -32,7 +32,7 @@ export const filteredItems = (originalItems, filters, type) => {
     splitFilteringWords(words).map((word) => (items = filterItemsByWord(items, word, targetAttributes[type])))
   }
 
-  if (type === "works") {
+  if (type === "articles") {
     if (status.length) {
       items = filterItemsByStatus(items, status)
     }

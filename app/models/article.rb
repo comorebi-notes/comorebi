@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: works
+# Table name: articles
 #
 #  id           :integer          not null, primary key
 #  title        :string(255)      not null
@@ -11,9 +11,9 @@
 #  updated_at   :datetime         not null
 #
 
-class Work < ApplicationRecord
-  has_many :work_musics, dependent: :destroy
-  has_many :musics, through: :work_musics
+class Article < ApplicationRecord
+  has_many :article_musics, dependent: :destroy
+  has_many :musics, through: :article_musics
 
   acts_as_taggable_on :categories, :tags
   enum status: { drafted: 0, published: 1, deleted: 2 }

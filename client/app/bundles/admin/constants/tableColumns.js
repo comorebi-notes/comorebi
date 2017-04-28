@@ -1,5 +1,5 @@
 const tableColumns = {
-  works: [
+  articles: [
     { name: "thumbnail",    label: "",         className: "thumbnail" },
     { name: "id",           label: "ID",       className: "id" },
     { name: "title",        label: "タイトル", className: "works-title" },

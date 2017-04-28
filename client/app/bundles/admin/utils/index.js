@@ -55,24 +55,24 @@ export const publishStatusIcon  = (status) => (
 export const getId = (path) => parseInt(path.split('/')[3], 10)
 export const findWork = (works, id) => works.filter(work => work.id === id)[0]
 
-export const setupWorkForEdit = (works, currentPath) => {
+export const setupArticleForEdit = (articles, currentPath) => {
   const id = getId(currentPath)
-  const work = works ? findWork(works, id) : {}
-  if (work && Object.keys(work).length) {
-    const date = parseDate(work.published_at)
+  const article = articles ? findWork(articles, id) : {}
+  if (article && Object.keys(article).length) {
+    const date = parseDate(article.published_at)
     const yyyy = zeroPadding(date.getFullYear(),  4)
     const MM   = zeroPadding(date.getMonth() + 1, 2)
     const dd   = zeroPadding(date.getDate(),      2)
     const hh   = zeroPadding(date.getHours(),     2)
     const mm   = zeroPadding(date.getMinutes(),   2)
     // const ss   = zeroPadding(date.getSeconds(),   2)
-    work.published_date = `${yyyy}-${MM}-${dd}`
-    work.published_time = `${hh}:${mm}`
+    article.published_date = `${yyyy}-${MM}-${dd}`
+    article.published_time = `${hh}:${mm}`
   }
-  return work
+  return article
 }
 
-export const workItemIcon = (type) => {
+export const workIcon = (type) => {
   const icons = {
     musics: "music"
   }
@@ -83,18 +83,18 @@ export const workItemIcon = (type) => {
   )
 }
 
-export const unselectedWorkItems = (workItems, ids) => (
-  workItems.map((workItem) => {
-    const targetItemIds = ids[workItem.title] || []
+export const unselectedWorks = (works, ids) => (
+  works.map((work) => {
+    const targetWorkIds = ids[work.title] || []
     return {
-      title: workItem.title,
-      items: workItem.items.filter((item) => (!targetItemIds.includes(item.id)))
+      title: work.title,
+      items: work.items.filter((item) => (!targetWorkIds.includes(item.id)))
     }
   })
 )
-export const targetSection = (workItems, type) => (
-  workItems.filter((items) => items.title === type)[0]
+export const targetSection = (works, type) => (
+  works.filter((items) => items.title === type)[0]
 )
-export const selectedItem = (workItems, type, id) => (
-  targetSection(workItems, type).items.filter((item) => item.id === id)[0]
+export const selectedWork = (works, type, id) => (
+  targetSection(works, type).items.filter((item) => item.id === id)[0]
 )

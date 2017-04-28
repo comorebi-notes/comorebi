@@ -8,13 +8,13 @@ import TextareaField from '../../common/form/TextareaField'
 import PublishedDatetimeFields from '../../common/form/PublishedDatetimeFields'
 import PublishStatusFields from '../../common/form/PublishStatusFields'
 import MultiselectField from '../../common/form/MultiselectField'
-import SelectWorkItemField from '../../common/form/SelectWorkItemField'
+import SelectWorkField from '../../common/form/SelectWorkField'
 import ModalCard from '../../common/ModalCard'
 import Button from '../../common/form/Button'
-import validate from '../../NewWork/NewWorkForm/validate'
+import validate from '../../NewArticle/NewArticleForm/validate'
 import * as utils from '../../../utils'
 
-class EditWorkForm extends Component {
+class EditArticleForm extends Component {
   constructor() {
     super()
     this.state = { showModal: false }
@@ -22,13 +22,13 @@ class EditWorkForm extends Component {
     this.toggleModal = this.toggleModal.bind(this)
   }
   handleDestroy() {
-    this.props.actions.destroyWorkSubmit()
+    this.props.actions.destroyArticleSubmit()
   }
   toggleModal() {
     this.setState({ showModal: !this.state.showModal })
   }
   render() {
-    const { actions, loading, handleSubmit, categories, tags, workItems } = this.props
+    const { actions, loading, handleSubmit, categories, tags, works } = this.props
     const { showModal } = this.state
     const names = {
       status:       ['status'],
@@ -39,10 +39,10 @@ class EditWorkForm extends Component {
         <Field component={InputField} name="title" label="作品名" />
         <Field component={TextareaField} name="description" label="説明文" />
         <Field
-          component={SelectWorkItemField}
-          name="item_ids"
+          component={SelectWorkField}
+          name="work_ids"
           label="登録作品"
-          workItems={workItems}
+          works={works}
           actions={actions}
         />
         <Field
@@ -67,7 +67,7 @@ class EditWorkForm extends Component {
             <Button
               type="submit"
               label="更新"
-              loading={loading.updateWork}
+              loading={loading.updateArticle}
               icon="upload"
             />
           </div>
@@ -75,7 +75,7 @@ class EditWorkForm extends Component {
             <Button
               color="is-danger"
               label="消去"
-              disabled={loading.updateWork}
+              disabled={loading.updateArticle}
               icon="trash"
               handleClick={this.toggleModal}
             />
@@ -84,7 +84,7 @@ class EditWorkForm extends Component {
             <Button
               color="default"
               label="キャンセル"
-              disabled={loading.updateWork}
+              disabled={loading.updateArticle}
               handleClick={() => browserHistory.push("/admin")}
             />
           </div>
@@ -101,13 +101,13 @@ class EditWorkForm extends Component {
             <Button
               color="default"
               label="キャンセル"
-              disabled={loading.destroyWork}
+              disabled={loading.destroyArticle}
               handleClick={this.toggleModal}
             />
             <Button
               color="is-danger"
               label="消去"
-              loading={loading.destroyWork}
+              loading={loading.destroyArticle}
               icon="trash"
               handleClick={this.handleDestroy}
             />
@@ -120,33 +120,33 @@ class EditWorkForm extends Component {
 
 const mapStateToProps = (state) => {
   const currentPath = state.routing.locationBeforeTransitions.pathname
-  const works = state.main.works
-  const work = utils.setupWorkForEdit(works, currentPath)
-  const initialValues = work ? {
-    title:          work.title,
-    description:    work.description,
-    status:         work.status,
-    categories:     work.categories,
-    tags:           work.tags,
-    published_date: work.published_date,
-    published_time: work.published_time,
-    item_ids: {
-      musics: work.music_ids
+  const articles = state.main.articles
+  const article = utils.setupArticleForEdit(articles, currentPath)
+  const initialValues = article ? {
+    title:          article.title,
+    description:    article.description,
+    status:         article.status,
+    categories:     article.categories,
+    tags:           article.tags,
+    published_date: article.published_date,
+    published_time: article.published_time,
+    work_ids: {
+      musics: article.music_ids
     }
   } : {}
   return {
     initialValues,
     categories: state.main.categories,
     tags: state.main.tags,
-    workItems: [
+    works: [
       { title: "musics", items: state.main.musics }
     ]
   }
 }
 
-EditWorkForm = reduxForm({
-  form: 'work',
+EditArticleForm = reduxForm({
+  form: 'article',
   validate
-})(EditWorkForm)
+})(EditArticleForm)
 
-export default connect(mapStateToProps)(EditWorkForm)
+export default connect(mapStateToProps)(EditArticleForm)

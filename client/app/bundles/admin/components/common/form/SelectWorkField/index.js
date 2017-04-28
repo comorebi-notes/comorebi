@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import Autosuggest from 'react-autosuggest'
 
-import SuggestionItem from './SuggestionItem'
-import SelectedItems from './SelectedItems'
+import SuggestionWork from './SuggestionWork'
+import SelectedWorks from './SelectedWorks'
 import * as utils from '../../../../utils'
 
-class SelectWorkItemField extends Component {
+class SelectWorkField extends Component {
   constructor() {
     super()
     this.state = {
@@ -36,29 +36,29 @@ class SelectWorkItemField extends Component {
     this.setState({ suggestions: [] })
   )
   onSuggestionSelected = (event, { suggestion, sectionIndex, method }) => {
-    const { workItems, input } = this.props
-    const item_ids = input.value
-    const target = workItems[sectionIndex].title
-    const targetItemIds = item_ids[target] || []
-    if (!targetItemIds.includes(suggestion.id)) {
-      if (item_ids[target]) {
-        item_ids[target].push(suggestion.id)
+    const { works, input } = this.props
+    const work_ids = input.value
+    const target = works[sectionIndex].title
+    const targetWorkIds = work_ids[target] || []
+    if (!targetWorkIds.includes(suggestion.id)) {
+      if (work_ids[target]) {
+        work_ids[target].push(suggestion.id)
       } else {
-        item_ids[target] = [suggestion.id]
+        work_ids[target] = [suggestion.id]
       }
-      input.onChange(item_ids)
+      input.onChange(work_ids)
     }
     this.setState({ value: '' })
     if (method === 'enter') event.preventDefault()
   }
   getSuggestions = (value) => {
-    const { workItems, input } = this.props
-    const unselectedWorkItems = utils.unselectedWorkItems(workItems, input.value)
+    const { works, input } = this.props
+    const unselectedWorks = utils.unselectedWorks(works, input.value)
     const inputValue = value.trim().toLowerCase()
-    return inputValue === '*' ? unselectedWorkItems : (
-      unselectedWorkItems.map((workItem) => ({
-        title: workItem.title,
-        items: workItem.items.filter((item) => (
+    return inputValue === '*' ? unselectedWorks : (
+      unselectedWorks.map((work) => ({
+        title: work.title,
+        items: work.items.filter((item) => (
           item.title.toLowerCase().indexOf(inputValue) !== -1
         ))
       }))
@@ -67,24 +67,24 @@ class SelectWorkItemField extends Component {
   getSuggestionValue = (suggestion) => suggestion.title
   getSectionSuggestions = (section) => section.items
   handleDelete = (event, id, target) => {
-    const item_ids = this.props.input.value
-    const index = item_ids[target].indexOf(id)
-    if (index >= 0) item_ids[target].splice(index, 1)
-    this.props.input.onChange(item_ids)
+    const work_ids = this.props.input.value
+    const index = work_ids[target].indexOf(id)
+    if (index >= 0) work_ids[target].splice(index, 1)
+    this.props.input.onChange(work_ids)
     this.onSuggestionsClearRequested()
   }
   handleAllDelete = () => this.props.input.onChange({})
-  renderSuggestion = (suggestion) => (<SuggestionItem item={suggestion} />)
+  renderSuggestion = (suggestion) => (<SuggestionWork item={suggestion} />)
   renderSectionTitle = (section) => (
     <h4 className="title is-4">
-      {utils.workItemIcon(section.title)}
+      {utils.workIcon(section.title)}
       {section.title}
     </h4>
   )
 
   render () {
-    const { input, label, placeholder, workItems } = this.props
-    const item_ids = input.value
+    const { input, label, placeholder, works } = this.props
+    const work_ids = input.value
     const inputProps = {
       placeholder,
       value: this.state.value,
@@ -98,8 +98,8 @@ class SelectWorkItemField extends Component {
     }
     return (
       <div>
-        <label htmlFor="work_item" className="label">{label}</label>
-        <div className="select-work-item">
+        <label htmlFor="work" className="label">{label}</label>
+        <div className="select-work">
           <div className="control">
             <Autosuggest
               suggestions={this.state.suggestions}
@@ -127,9 +127,9 @@ class SelectWorkItemField extends Component {
               </button>
             </p>
           </div>
-          <SelectedItems
-            items={workItems}
-            ids={item_ids}
+          <SelectedWorks
+            items={works}
+            ids={work_ids}
             renderSectionTitle={this.renderSectionTitle}
             handleDelete={this.handleDelete}
           />
@@ -139,4 +139,4 @@ class SelectWorkItemField extends Component {
   }
 }
 
-export default SelectWorkItemField
+export default SelectWorkField

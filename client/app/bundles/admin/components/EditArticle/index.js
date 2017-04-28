@@ -3,31 +3,31 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as Actions from '../../actions'
 
-import EditWorkForm from './EditWorkForm'
+import EditArticleForm from './EditArticleForm'
 import Loading from '../common/Loading'
 
-class EditWork extends Component {
+class EditArticle extends Component {
   componentDidMount() {
     const { actions } = this.props
-    actions.getAllWorksAsync("editWork")
+    actions.getAllArticlesAsync("editArticle")
   }
   render() {
-    const { actions, loading, works } = this.props
+    const { actions, loading, articles } = this.props
     return (
       <div>
         <h1 className="title">
-          edit work
+          Edit Article
         </h1>
         <h2 className="subtitle is-6">
-          作品情報の編集を行います。
+          作品記事の編集を行います。
         </h2>
-        {loading.editWork ? (
+        {loading.editArticle ? (
           <Loading />
-        ) : works && (
-          <EditWorkForm
+        ) : articles && (
+          <EditArticleForm
             actions={actions}
             loading={loading}
-            onSubmit={actions.updateWorkSubmit}
+            onSubmit={actions.updateArticleSubmit}
           />
         )}
       </div>
@@ -37,11 +37,11 @@ class EditWork extends Component {
 
 const mapStateToProps = state => ({
   loading: state.main.loading,
-  works: state.main.works
+  articles: state.main.articles
 })
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(Actions, dispatch)
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(EditWork)
+export default connect(mapStateToProps, mapDispatchToProps)(EditArticle)

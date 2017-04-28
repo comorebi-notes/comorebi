@@ -2,19 +2,11 @@ import React, { PureComponent } from 'react'
 
 import * as utils from '../../../../../utils'
 
-class SelectedItem extends PureComponent {
-  constructor() {
-    super()
-    this.handleDelete = this.handleDelete.bind(this)
-  }
-  handleDelete = (event) => {
-    const { item, type } = this.props
-    this.props.handleDelete(event, item.id, type)
-  }
+class SuggestionWork extends PureComponent {
   render () {
-    const { item, handleDelete } = this.props
+    const { item } = this.props
     return (
-      <article className="card media">
+      <div>
         <div className="media-content">
           <div className="content">
             <div>
@@ -33,14 +25,9 @@ class SelectedItem extends PureComponent {
             </div>
           </div>
         </div>
-        {handleDelete && (
-          <div className="media-right">
-            <button type="button" className="delete" onClick={this.handleDelete} />
-          </div>
-        )}
-      </article>
+      </div>
     )
   }
 }
 
-export default SelectedItem
+export default SuggestionWork

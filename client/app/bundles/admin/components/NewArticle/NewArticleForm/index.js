@@ -8,13 +8,13 @@ import TextareaField from '../../common/form/TextareaField'
 import PublishedDatetimeFields from '../../common/form/PublishedDatetimeFields'
 import PublishStatusFields from '../../common/form/PublishStatusFields'
 import MultiselectField from '../../common/form/MultiselectField'
-import SelectWorkItemField from '../../common/form/SelectWorkItemField'
+import SelectWorkField from '../../common/form/SelectWorkField'
 import Button from '../../common/form/Button'
 import validate from './validate'
 
-class NewWorkForm extends Component {
+class NewArticleForm extends Component {
   render() {
-    const { actions, loading, handleSubmit, categories, tags, workItems } = this.props
+    const { actions, loading, handleSubmit, categories, tags, works } = this.props
     const names = {
       status:       ['status'],
       published_at: ['published_date', 'published_time']
@@ -24,10 +24,10 @@ class NewWorkForm extends Component {
         <Field component={InputField} name="title" label="作品名" />
         <Field component={TextareaField} name="description" label="説明文" />
         <Field
-          component={SelectWorkItemField}
-          name="item_ids"
+          component={SelectWorkField}
+          name="work_ids"
           label="登録作品"
-          workItems={workItems}
+          works={works}
           actions={actions}
         />
         <Field
@@ -73,18 +73,18 @@ class NewWorkForm extends Component {
 const mapStateToProps = (state) => ({
   initialValues: {
     status: "drafted",
-    item_ids: {}
+    work_ids: {}
   },
   categories: state.main.categories,
   tags: state.main.tags,
-  workItems: [
+  works: [
     { title: "musics", items: state.main.musics }
   ]
 })
 
-NewWorkForm = reduxForm({
-  form: 'work',
+NewArticleForm = reduxForm({
+  form: 'article',
   validate
-})(NewWorkForm)
+})(NewArticleForm)
 
-export default connect(mapStateToProps)(NewWorkForm)
+export default connect(mapStateToProps)(NewArticleForm)

@@ -22,12 +22,12 @@ class Filters extends Component {
   }
   render() {
     const { count, filters, selectableStatus } = this.props
-    const newWorkPath = "/admin/works/new"
+    const newArticlePath = "/admin/articles/new"
     return (
       <nav className="level works-util-bar">
         <div className="level-left">
           <p className="level-item">
-            <Link to={newWorkPath} className="button is-primary">
+            <Link to={newArticlePath} className="button is-primary">
               新規作成
             </Link>
           </p>

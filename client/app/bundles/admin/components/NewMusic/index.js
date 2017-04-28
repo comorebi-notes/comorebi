@@ -8,14 +8,14 @@ import NewMusicForm from './NewMusicForm'
 class NewMusic extends Component {
   componentDidMount() {
     const { actions } = this.props
-    actions.getAllWorksAsync("newWork")
+    actions.getAllMusicsAsync()
   }
   render() {
     const { actions, loading } = this.props
     return (
       <div>
         <h1 className="title">
-          new music
+          New Music
         </h1>
         <h2 className="subtitle is-6">
           音楽作品を新規に登録します。

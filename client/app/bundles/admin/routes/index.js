@@ -4,21 +4,21 @@ import { Route, IndexRoute } from 'react-router'
 import AdminContainer from '../containers/Admin'
 import EditAdmin from '../components/EditAdmin'
 
-import ShowAllWorks from '../components/ShowAllWorks'
+import ShowAllArticles from '../components/ShowAllArticles'
 import ShowAllMusics from '../components/ShowAllMusics'
-import EditWork from '../components/EditWork'
-import NewWork from '../components/NewWork'
+import EditArticle from '../components/EditArticle'
+import NewArticle from '../components/NewArticle'
 
 export default function adminRoutes() {
   return (
     <Route path='/admin' component={AdminContainer}>
-      <IndexRoute component={ShowAllWorks} />
+      <IndexRoute component={ShowAllArticles} />
       <Route path='edit' component={EditAdmin} />
 
-      <Route path='works'>
-        <IndexRoute component={ShowAllWorks} />
-        <Route path='new' component={NewWork} />
-        <Route path=':id' component={EditWork} />
+      <Route path='articles'>
+        <IndexRoute component={ShowAllArticles} />
+        <Route path='new' component={NewArticle} />
+        <Route path=':id' component={EditArticle} />
       </Route>
 
       <Route path='musics'>

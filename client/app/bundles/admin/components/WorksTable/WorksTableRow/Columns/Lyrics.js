@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import Highlighter from 'react-highlight-words'
 
-import * as filter from '../../../utils/filter'
+import * as filter from '../../../../utils/filter'
 
 class Lyrics extends PureComponent {
   render () {

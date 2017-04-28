@@ -5,17 +5,17 @@ import { bindActionCreators } from 'redux'
 import WorksTableWrapper from '../WorksTableWrapper'
 import * as Actions from '../../actions'
 
-class ShowAllWorks extends Component {
+class ShowAllArticles extends Component {
   render() {
-    const { actions, path, loading, works, filters } = this.props
-    const handleLoad = () => actions.getAllWorksAsync("showAllWorks")
+    const { actions, path, loading, articles, filters } = this.props
+    const handleLoad = () => actions.getAllArticlesAsync("showAllArticles")
     return (
       <WorksTableWrapper
-        type="works"
+        type="articles"
         actions={actions}
         path={path}
         loading={loading}
-        works={works}
+        works={articles}
         filters={filters}
         handleLoad={handleLoad}
       />
@@ -25,8 +25,8 @@ class ShowAllWorks extends Component {
 
 const mapStateToProps = (state) => ({
   path: state.routing.locationBeforeTransitions.pathname,
-  loading: state.main.loading.showAllWorks,
-  works: state.main.works,
+  loading: state.main.loading.showAllArticles,
+  articles: state.main.articles,
   filters: state.filters
 })
 
@@ -34,4 +34,4 @@ const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators(Actions, dispatch)
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(ShowAllWorks)
+export default connect(mapStateToProps, mapDispatchToProps)(ShowAllArticles)

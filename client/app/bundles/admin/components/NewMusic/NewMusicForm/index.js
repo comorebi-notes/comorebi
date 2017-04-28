@@ -42,11 +42,11 @@ class NewMusicForm extends Component {
 const mapStateToProps = (state) => ({
   initialValues: {
     status: "drafted",
-    item_ids: {}
+    work_ids: {}
   },
   categories: state.main.categories,
   tags: state.main.tags,
-  workItems: [
+  works: [
     { title: "musics", items: state.main.musics }
   ]
 })

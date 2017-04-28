@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   root to: "top#index"
 
   namespace :admin, constraints: OnlyAjaxRequest.new do
-    resources :works, except: [:new, :edit]
+    resources :articles, except: [:new, :edit]
     resources :musics
   end
 

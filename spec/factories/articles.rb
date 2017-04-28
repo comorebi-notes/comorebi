@@ -1,7 +1,7 @@
 require 'faker'
 
 FactoryGirl.define do
-  factory :work do
+  factory :article do
     title        { generate :title }
     description  { generate :description }
     status       :published

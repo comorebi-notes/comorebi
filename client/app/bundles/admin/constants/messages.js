@@ -9,33 +9,33 @@ const messages = {
       level: "error"
     })
   },
-  updateWork: {
+  updateArticle: {
     success: (title) => ({
-      message: `作品<strong>「${title}」</strong>が更新されました。`,
+      message: `作品記事<strong>「${title}」</strong>が更新されました。`,
       level: "success"
     }),
     error: (title) => ({
-      message: `作品<strong>「${title}」</strong>の更新に失敗しました。`,
+      message: `作品記事<strong>「${title}」</strong>の更新に失敗しました。`,
       level: "error"
     })
   },
-  createWork: {
+  createArticle: {
     success: (title) => ({
-      message: `作品<strong>「${title}」</strong>を作成しました。`,
+      message: `作品記事<strong>「${title}」</strong>を作成しました。`,
       level: "success"
     }),
     error: (title) => ({
-      message: `作品<strong>「${title}」</strong>の作成に失敗しました。`,
+      message: `作品記事<strong>「${title}」</strong>の作成に失敗しました。`,
       level: "error"
     })
   },
-  destroyWork: {
+  destroyArticle: {
     success: (title) => ({
-      message: `作品<strong>「${title}」</strong>を消去しました。`,
+      message: `作品記事<strong>「${title}」</strong>を消去しました。`,
       level: "success"
     }),
     error: (title) => ({
-      message: `作品<strong>「${title}」</strong>の消去に失敗しました。`,
+      message: `作品記事<strong>「${title}」</strong>の消去に失敗しました。`,
       level: "error"
     })
   }

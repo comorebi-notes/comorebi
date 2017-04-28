@@ -11,7 +11,7 @@ export const initialState = {
   loading: {},
   errors: '',
   modal: false,
-  works: [],
+  articles: [],
   musics: [],
   currentAdmin,
   initialNotification
@@ -26,11 +26,11 @@ export default handleActions({
     ...state,
     loading: { [action.payload]: false }
   }),
-  GET_ALL_WORKS: (state, action) => {
+  GET_ALL_ARTICLES: (state, action) => {
     const data = action.payload.data
     return {
       ...state,
-      works:      data.works,
+      articles:   data.articles,
       musics:     data.musics,
       categories: data.categories,
       tags:       data.tags
@@ -40,8 +40,8 @@ export default handleActions({
     const data = action.payload.data
     return {
       ...state,
-      works:  data.works,
-      musics: data.musics
+      articles: data.articles,
+      musics:   data.musics
     }
   },
   ADD_TAG: (state, action) => {
@@ -59,7 +59,7 @@ export default handleActions({
       errors: action.payload.response.data.errors
     })
   },
-  UPDATE_WORK_REQUEST: {
+  UPDATE_ARTICLE_REQUEST: {
     next: (state) => ({
       ...state,
       errors: ''
@@ -69,7 +69,7 @@ export default handleActions({
       errors: action.payload.response.data.errors
     })
   },
-  CREATE_WORK_REQUEST: {
+  CREATE_ARTICLE_REQUEST: {
     next: (state) => ({
       ...state,
       errors: ''
@@ -79,7 +79,7 @@ export default handleActions({
       errors: action.payload.response.data.errors
     })
   },
-  DESTROY_WORK_REQUEST: {
+  DESTROY_ARTICLE_REQUEST: {
     next: (state) => ({
       ...state,
       errors: ''

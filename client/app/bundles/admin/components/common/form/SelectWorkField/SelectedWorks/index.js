@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 
-import SelectedItem from '../SelectedItem'
+import SelectedWork from '../SelectedWork'
 import * as utils from '../../../../../utils'
 
-class SelectedItems extends Component {
+class SelectedWorks extends Component {
   render () {
     const { items, ids, renderSectionTitle, handleDelete } = this.props
     return (
@@ -14,8 +14,8 @@ class SelectedItems extends Component {
               <div key={type}>
                 {renderSectionTitle(utils.targetSection(items, type))}
                 {ids[type].map((id) =>
-                  <SelectedItem
-                    item={utils.selectedItem(items, type, id)}
+                  <SelectedWork
+                    item={utils.selectedWork(items, type, id)}
                     type={type}
                     key={id}
                     handleDelete={handleDelete}
@@ -31,4 +31,4 @@ class SelectedItems extends Component {
   }
 }
 
-export default SelectedItems
+export default SelectedWorks

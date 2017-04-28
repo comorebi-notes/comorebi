@@ -3,27 +3,27 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as Actions from '../../actions'
 
-import NewWorkForm from './NewWorkForm'
+import NewArticleForm from './NewArticleForm'
 
-class NewWork extends Component {
+class NewArticle extends Component {
   componentDidMount() {
     const { actions } = this.props
-    actions.getAllWorksAsync("newWork")
+    actions.getAllArticlesAsync("newArticle")
   }
   render() {
     const { actions, loading } = this.props
     return (
       <div>
         <h1 className="title">
-          new work
+          New Article
         </h1>
         <h2 className="subtitle is-6">
-          作品を新規に登録します。
+          作品記事を新規に登録します。
         </h2>
-        <NewWorkForm
+        <NewArticleForm
           actions={actions}
-          loading={loading.createWork}
-          onSubmit={actions.createWorkSubmit}
+          loading={loading.createArticle}
+          onSubmit={actions.createArticleSubmit}
         />
       </div>
     )
@@ -38,4 +38,4 @@ const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(Actions, dispatch)
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(NewWork)
+export default connect(mapStateToProps, mapDispatchToProps)(NewArticle)

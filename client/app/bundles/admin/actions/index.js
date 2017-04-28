@@ -26,10 +26,10 @@ export const changePage                = createAction('CHANGE_PAGE')
 export const clearFilters              = createAction('CLEAR_FILTERS')
 
 // ============================================= GET
-export const getAllWorks = createAction('GET_ALL_WORKS', api.getAllWorks)
-export const getAllWorksAsync = (target) => async (dispatch) => {
+export const getAllArticles = createAction('GET_ALL_ARTICLES', api.getAllArticles)
+export const getAllArticlesAsync = (target) => async (dispatch) => {
   dispatch(loading(target))
-  await dispatch(getAllWorks())
+  await dispatch(getAllArticles())
   dispatch(complete(target))
 }
 export const getAllMusics = createAction('GET_ALL_MUSICS', api.getAllMusics)
@@ -60,66 +60,66 @@ export const updateAdminSubmit = () => async (dispatch, getState) => {
   }
 }
 
-export const updateWorkRequest = createAction('UPDATE_WORK_REQUEST', api.updateWorkRequest)
-export const updateWorkSubmit = () => async (dispatch, getState) => {
+export const updateArticleRequest = createAction('UPDATE_ARTICLE_REQUEST', api.updateArticleRequest)
+export const updateArticleSubmit = () => async (dispatch, getState) => {
   const state = getState()
-  const formData = getFormValues('work')(state) || {}
+  const formData = getFormValues('article')(state) || {}
   const id = utils.getId(state.routing.locationBeforeTransitions.pathname)
-  const loadingTarget = 'updateWork'
+  const loadingTarget = 'updateArticle'
 
   dispatch(loading(loadingTarget))
-  await dispatch(updateWorkRequest(formData, id))
+  await dispatch(updateArticleRequest(formData, id))
   dispatch(complete(loadingTarget))
 
   const errors = getState().main.errors
   if (errors === '') {
-    dispatch(setNotifications(messages.updateWork.success(formData.title)))
+    dispatch(setNotifications(messages.updateArticle.success(formData.title)))
     dispatch(push(rootPath))
   } else {
-    dispatch(setNotifications(messages.updateWork.error(formData.title)))
+    dispatch(setNotifications(messages.updateArticle.error(formData.title)))
     throw new SubmissionError(errors)
   }
 }
 
 // ============================================= CREATE
-export const createWorkRequest = createAction('CREATE_WORK_REQUEST', api.createWorkRequest)
-export const createWorkSubmit = () => async (dispatch, getState) => {
+export const createArticleRequest = createAction('CREATE_ARTICLE_REQUEST', api.createArticleRequest)
+export const createArticleSubmit = () => async (dispatch, getState) => {
   const state = getState()
-  const formData = getFormValues('work')(state) || {}
-  const loadingTarget = 'createWork'
+  const formData = getFormValues('article')(state) || {}
+  const loadingTarget = 'createArticle'
 
   dispatch(loading(loadingTarget))
-  await dispatch(createWorkRequest(formData))
+  await dispatch(createArticleRequest(formData))
   dispatch(complete(loadingTarget))
 
   const errors = getState().main.errors
   if (errors === '') {
-    dispatch(setNotifications(messages.createWork.success(formData.title)))
+    dispatch(setNotifications(messages.createArticle.success(formData.title)))
     dispatch(push(rootPath))
   } else {
-    dispatch(setNotifications(messages.createWork.error(formData.title)))
+    dispatch(setNotifications(messages.createArticle.error(formData.title)))
     throw new SubmissionError(errors)
   }
 }
 
 // ============================================= DESTROY
-export const destroyWorkRequest = createAction('DESTROY_WORK_REQUEST', api.destroyWorkRequest)
-export const destroyWorkSubmit = () => async (dispatch, getState) => {
+export const destroyArticleRequest = createAction('DESTROY_ARTICLE_REQUEST', api.destroyArticleRequest)
+export const destroyArticleSubmit = () => async (dispatch, getState) => {
   const state = getState()
-  const formData = getFormValues('work')(state) || {}
+  const formData = getFormValues('article')(state) || {}
   const id = utils.getId(state.routing.locationBeforeTransitions.pathname)
-  const loadingTarget = 'destroyWork'
+  const loadingTarget = 'destroyArticle'
 
   dispatch(loading(loadingTarget))
-  await dispatch(destroyWorkRequest(id))
+  await dispatch(destroyArticleRequest(id))
   dispatch(complete(loadingTarget))
 
   const errors = getState().main.errors
   if (errors === '') {
-    dispatch(setNotifications(messages.destroyWork.success(formData.title)))
+    dispatch(setNotifications(messages.destroyArticle.success(formData.title)))
     dispatch(push(rootPath))
   } else {
-    dispatch(setNotifications(messages.destroyWork.error(formData.title)))
+    dispatch(setNotifications(messages.destroyArticle.error(formData.title)))
     throw new SubmissionError(errors)
   }
 }

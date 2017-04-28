@@ -1,14 +1,14 @@
 import React, { PureComponent } from 'react'
 import { browserHistory } from 'react-router'
 
-import Thumbnail from './Thumbnail'
-import Id from './Id'
-import Title from './Title'
-import Categories from './Categories'
-import Status from './Status'
-import PublishedAt from './PublishedAt'
-import Lyrics from './Lyrics'
-import Credit from './Credit'
+import Thumbnail from './Columns/Thumbnail'
+import Id from './Columns/Id'
+import Title from './Columns/Title'
+import Categories from './Columns/Categories'
+import Status from './Columns/Status'
+import PublishedAt from './Columns/PublishedAt'
+import Lyrics from './Columns/Lyrics'
+import Credit from './Columns/Credit'
 
 class WorksTableRow extends PureComponent {
   constructor() {

@@ -105,6 +105,19 @@ export const createArticleSubmit = () => async (dispatch, getState) => {
   afterRequest(dispatch, 'create', 'articles', state.main.errors, formData.title)
 }
 
+export const createMusicRequest = createAction('CREATE_MUSIC_REQUEST', api.createArticleRequest)
+export const createMusicSubmit = () => async (dispatch, getState) => {
+  const state = getState()
+  const formData = getFormValues('music')(state) || {}
+  const loadingTarget = 'createMusic'
+
+  dispatch(loading(loadingTarget))
+  await dispatch(createMusicRequest(formData))
+  dispatch(complete(loadingTarget))
+
+  afterRequest(dispatch, 'create', 'musics', state.main.errors, formData.title)
+}
+
 // ============================================= DESTROY
 export const destroyArticleRequest = createAction('DESTROY_ARTICLE_REQUEST', api.destroyArticleRequest)
 export const destroyArticleSubmit = () => async (dispatch, getState) => {

@@ -7,12 +7,11 @@ import * as Actions from '../../actions'
 
 class ShowAllMusics extends Component {
   render() {
-    const { actions, path, loading, musics, filters } = this.props
+    const { actions, loading, musics, filters } = this.props
     return (
       <WorksTableWrapper
         type="musics"
         actions={actions}
-        path={path}
         loading={loading}
         works={musics}
         filters={filters}
@@ -23,7 +22,6 @@ class ShowAllMusics extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  path: state.routing.locationBeforeTransitions.pathname,
   loading: state.main.loading.showAllMusics,
   musics: state.main.musics,
   filters: state.filters

@@ -3,9 +3,7 @@ import React, { Component } from 'react'
 import Filters from '../common/Filters'
 import WorksTable from '../WorksTable'
 import Loading from '../common/Loading'
-import TabMenu from '../common/TabMenu'
 import Pagination from '../common/Pagination'
-import menuItems from '../../constants/menuItems'
 import * as filter from '../../utils/filter'
 
 class WorksTableWrapper extends Component {
@@ -15,7 +13,7 @@ class WorksTableWrapper extends Component {
     handleLoad()
   }
   render() {
-    const { actions, type, path, loading, works, filters } = this.props
+    const { actions, type, loading, works, filters } = this.props
     const filteredWorks = filter.filteredItems(works, filters, type)
     const pagedWorks = filter.pagedItems(filteredWorks, filters.page)
     const count = filteredWorks.length
@@ -23,12 +21,6 @@ class WorksTableWrapper extends Component {
       <div>
         {loading ? <Loading /> : (
           <div>
-            <TabMenu
-              path={path}
-              menuItems={menuItems}
-              count={count}
-              totalCount={works.length}
-            />
             <Filters
               count={count}
               totalCount={works.length}

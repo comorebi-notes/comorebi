@@ -1,16 +1,12 @@
 import {
   createValidator,
   required,
-  maxLength,
-  date,
-  time
+  maxLength
 } from '../../../utils/validation'
 
 const validate = createValidator({
-  title:          [required, maxLength(255)],
-  description:    [required],
-  published_date: [required, date],
-  published_time: [required, time]
+  title:      [required, maxLength(255)],
+  sound_file: [required]
 })
 
 export default validate

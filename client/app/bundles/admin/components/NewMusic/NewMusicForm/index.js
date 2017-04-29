@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
 import { browserHistory } from 'react-router'
 
@@ -10,11 +9,13 @@ import validate from './validate'
 
 class NewMusicForm extends Component {
   render() {
-    const { actions, loading, handleSubmit } = this.props
+    const { loading, handleSubmit } = this.props
     return (
       <form onSubmit={handleSubmit}>
         <Field component={InputField} name="title" label="作品名" />
-        <Field component={TextareaField} name="lyrics" label="lyrics" />
+        <Field component={TextareaField} name="lyrics" label="歌詞" />
+        <Field component={InputField} name="sound_file" label="ファイル" />
+        <Field component={InputField} name="off_vocal_file" label="オフボーカル" />
 
         <div className="field is-grouped with-button">
           <div className="control">
@@ -30,7 +31,7 @@ class NewMusicForm extends Component {
               color="default"
               label="キャンセル"
               disabled={loading}
-              handleClick={() => browserHistory.push("/admin")}
+              handleClick={() => browserHistory.push("/admin/musics")}
             />
           </div>
         </div>
@@ -39,21 +40,9 @@ class NewMusicForm extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  initialValues: {
-    status: "drafted",
-    work_ids: {}
-  },
-  categories: state.main.categories,
-  tags: state.main.tags,
-  works: [
-    { title: "musics", items: state.main.musics }
-  ]
-})
-
 NewMusicForm = reduxForm({
   form: 'music',
   validate
 })(NewMusicForm)
 
-export default connect(mapStateToProps)(NewMusicForm)
+export default NewMusicForm

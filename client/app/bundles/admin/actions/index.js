@@ -24,7 +24,8 @@ const afterRequest = (dispatch, actionType, target, errors, messageData) => {
 // ============================================= Simple Actions
 export const loading  = createAction('LOADING')
 export const complete = createAction('COMPLETE')
-export const addTag   = createAction('ADD_TAG')
+export const toggleModal = createAction('TOGGLE_MODAL')
+export const addTag = createAction('ADD_TAG')
 export const clearInitialNotification = createAction('CLEAR_INITIAL_NOTIFICATION')
 
 // ============================================= Filters

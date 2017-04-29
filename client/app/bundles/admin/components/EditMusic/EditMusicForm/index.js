@@ -5,65 +5,26 @@ import { browserHistory } from 'react-router'
 
 import InputField from '../../common/form/InputField'
 import TextareaField from '../../common/form/TextareaField'
-import ModalCard from '../../common/ModalCard'
 import Button from '../../common/form/Button'
+import DestroyModal from './DestroyModal'
 import validate from '../../NewMusic/NewMusicForm/validate'
 import * as utils from '../../../utils'
 
 class EditMusicForm extends Component {
-  constructor() {
-    super()
-    this.state = {
-      showModal: false,
-      isTouchedModal: false
-    }
-    this.handleDestroy = this.handleDestroy.bind(this)
-    this.toggleModal = this.toggleModal.bind(this)
-  }
-  handleDestroy() {
-    this.props.actions.destroyMusicSubmit()
-  }
-  toggleModal() {
-    this.setState({
-      showModal: !this.state.showModal,
-      isTouchedModal: true
-    })
-  }
   render() {
-    const { loading, handleSubmit } = this.props
-    const { showModal, isTouchedModal } = this.state
+    const { actions, loading, handleSubmit } = this.props
     return (
       <form onSubmit={handleSubmit}>
+        <DestroyModal
+          loading={loading.destroyMusic}
+          handleCancel={actions.toggleModal}
+          handleDestroy={actions.destroyMusicSubmit}
+        />
+
         <Field component={InputField} name="title" label="作品名" />
         <Field component={TextareaField} name="lyrics" label="歌詞" />
         <Field component={InputField} name="sound_file" label="ファイル" />
         <Field component={InputField} name="off_vocal_file" label="オフボーカル" />
-
-        {isTouchedModal && (
-          <ModalCard active={showModal} handleClick={this.toggleModal}>
-            <ModalCard.Header handleClick={this.toggleModal}>
-              作品の消去
-            </ModalCard.Header>
-            <ModalCard.Body>
-              一度消去すると復元できませんが本当によろしいですか？
-            </ModalCard.Body>
-            <ModalCard.Footer>
-              <Button
-                color="default"
-                label="キャンセル"
-                disabled={loading.destroyMusic}
-                handleClick={this.toggleModal}
-              />
-              <Button
-                color="is-danger"
-                label="消去"
-                loading={loading.destroyMusic}
-                icon="trash"
-                handleClick={this.handleDestroy}
-              />
-            </ModalCard.Footer>
-          </ModalCard>
-        )}
 
         <div className="field is-grouped with-button">
           <div className="control">
@@ -80,7 +41,7 @@ class EditMusicForm extends Component {
               label="消去"
               disabled={loading.updateMusic}
               icon="trash"
-              handleClick={this.toggleModal}
+              handleClick={actions.toggleModal}
             />
           </div>
           <div className="control">

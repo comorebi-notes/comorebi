@@ -3,9 +3,6 @@
   header
     .button
       height: 2.285em
-    .nav-item.is-active
-      font-weight: bold
-      border-bottom-color: $info
   footer.footer.is-admin
     background-color: #52402a
     z-index: 1
@@ -33,6 +30,8 @@
     // transition: opacity .2s ease-in-out
     &:hover
       opacity: .7
+  .modal-wrapper
+    animation: modal-wrapper 0s ease 0.5s 1 forwards
   .modal
     display: flex
     &:not(.is-active)
@@ -188,6 +187,14 @@
 @keyframes fadein
   100%
     opacity: 1
+
+@keyframes modal-wrapper
+  0%
+    transform: scale(0, 0)
+  99%
+    transform: scale(0, 0)
+  100%
+    transform: none
 
 @keyframes modal-in
   0%

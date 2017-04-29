@@ -26,6 +26,13 @@ export default handleActions({
     ...state,
     loading: { [action.payload]: false }
   }),
+  TOGGLE_MODAL: (state, action) => {
+    const result = action.payload
+    return {
+      ...state,
+      modal: typeof result === 'boolean' ? result : !state.modal
+    }
+  },
   GET_ALL_ARTICLES: (state, action) => {
     const data = action.payload.data
     return {

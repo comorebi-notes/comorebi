@@ -9,39 +9,26 @@ import PublishedDatetimeFields from '../../common/form/PublishedDatetimeFields'
 import PublishStatusFields from '../../common/form/PublishStatusFields'
 import MultiselectField from '../../common/form/MultiselectField'
 import SelectWorkField from '../../common/form/SelectWorkField'
-import ModalCard from '../../common/ModalCard'
 import Button from '../../common/form/Button'
+import DestroyModal from './DestroyModal'
 import validate from '../../NewArticle/NewArticleForm/validate'
 import * as utils from '../../../utils'
 
 class EditArticleForm extends Component {
-  constructor() {
-    super()
-    this.state = {
-      showModal: false,
-      isTouchedModal: false
-    }
-    this.handleDestroy = this.handleDestroy.bind(this)
-    this.toggleModal = this.toggleModal.bind(this)
-  }
-  handleDestroy() {
-    this.props.actions.destroyArticleSubmit()
-  }
-  toggleModal() {
-    this.setState({
-      showModal: !this.state.showModal,
-      isTouchedModal: true
-    })
-  }
   render() {
     const { actions, loading, handleSubmit, categories, tags, works } = this.props
-    const { showModal, isTouchedModal } = this.state
     const names = {
       status:       ['status'],
       published_at: ['published_date', 'published_time']
     }
     return (
       <form onSubmit={handleSubmit}>
+        <DestroyModal
+          loading={loading.destroyArticle}
+          handleCancel={actions.toggleModal}
+          handleDestroy={actions.destroyArticleSubmit}
+        />
+
         <Field component={InputField} name="title" label="作品名" />
         <Field component={TextareaField} name="description" label="説明文" />
         <Field
@@ -68,32 +55,6 @@ class EditArticleForm extends Component {
         <Fields component={PublishStatusFields} names={names.status} label="状態" />
         <Fields component={PublishedDatetimeFields} names={names.published_at} label="公開日" />
 
-        {isTouchedModal && (
-          <ModalCard active={showModal} handleClick={this.toggleModal}>
-            <ModalCard.Header handleClick={this.toggleModal}>
-              作品の消去
-            </ModalCard.Header>
-            <ModalCard.Body>
-              一度消去すると復元できませんが本当によろしいですか？
-            </ModalCard.Body>
-            <ModalCard.Footer>
-              <Button
-                color="default"
-                label="キャンセル"
-                disabled={loading.destroyArticle}
-                handleClick={this.toggleModal}
-              />
-              <Button
-                color="is-danger"
-                label="消去"
-                loading={loading.destroyArticle}
-                icon="trash"
-                handleClick={this.handleDestroy}
-              />
-            </ModalCard.Footer>
-          </ModalCard>
-        )}
-
         <div className="field is-grouped with-button">
           <div className="control">
             <Button
@@ -109,7 +70,7 @@ class EditArticleForm extends Component {
               label="消去"
               disabled={loading.updateArticle}
               icon="trash"
-              handleClick={this.toggleModal}
+              handleClick={actions.toggleModal}
             />
           </div>
           <div className="control">

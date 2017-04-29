@@ -34,6 +34,11 @@
     &:hover
       opacity: .7
   .modal
+    display: flex
+    &:not(.is-active)
+      animation: modal-out .3s ease 0s 1 forwards
+    &.is-active
+      animation: modal-in .3s ease 0s 1 forwards
     .modal-card-foot
       justify-content: flex-end
   .pagination
@@ -183,3 +188,21 @@
 @keyframes fadein
   100%
     opacity: 1
+
+@keyframes modal-in
+  0%
+    opacity: 0
+    z-index: -1
+  100%
+    opacity: 1
+    z-index: 1986
+
+@keyframes modal-out
+  0%
+    opacity: 1
+  99%
+    opacity: 0
+    z-index: 1
+  100%
+    opacity: 0
+    z-index: -1

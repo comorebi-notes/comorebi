@@ -17,7 +17,10 @@ import * as utils from '../../../utils'
 class EditArticleForm extends Component {
   constructor() {
     super()
-    this.state = { showModal: false }
+    this.state = {
+      showModal: false,
+      isTouchedModal: false
+    }
     this.handleDestroy = this.handleDestroy.bind(this)
     this.toggleModal = this.toggleModal.bind(this)
   }
@@ -25,11 +28,14 @@ class EditArticleForm extends Component {
     this.props.actions.destroyArticleSubmit()
   }
   toggleModal() {
-    this.setState({ showModal: !this.state.showModal })
+    this.setState({
+      showModal: !this.state.showModal,
+      isTouchedModal: true
+    })
   }
   render() {
     const { actions, loading, handleSubmit, categories, tags, works } = this.props
-    const { showModal } = this.state
+    const { showModal, isTouchedModal } = this.state
     const names = {
       status:       ['status'],
       published_at: ['published_date', 'published_time']
@@ -62,6 +68,32 @@ class EditArticleForm extends Component {
         <Fields component={PublishStatusFields} names={names.status} label="状態" />
         <Fields component={PublishedDatetimeFields} names={names.published_at} label="公開日" />
 
+        {isTouchedModal && (
+          <ModalCard active={showModal} handleClick={this.toggleModal}>
+            <ModalCard.Header handleClick={this.toggleModal}>
+              作品の消去
+            </ModalCard.Header>
+            <ModalCard.Body>
+              一度消去すると復元できませんが本当によろしいですか？
+            </ModalCard.Body>
+            <ModalCard.Footer>
+              <Button
+                color="default"
+                label="キャンセル"
+                disabled={loading.destroyArticle}
+                handleClick={this.toggleModal}
+              />
+              <Button
+                color="is-danger"
+                label="消去"
+                loading={loading.destroyArticle}
+                icon="trash"
+                handleClick={this.handleDestroy}
+              />
+            </ModalCard.Footer>
+          </ModalCard>
+        )}
+
         <div className="field is-grouped with-button">
           <div className="control">
             <Button
@@ -89,30 +121,6 @@ class EditArticleForm extends Component {
             />
           </div>
         </div>
-
-        <ModalCard active={showModal} handleClick={this.toggleModal}>
-          <ModalCard.Header handleClick={this.toggleModal}>
-            作品の消去
-          </ModalCard.Header>
-          <ModalCard.Body>
-            一度消去すると復元できませんが本当によろしいですか？
-          </ModalCard.Body>
-          <ModalCard.Footer>
-            <Button
-              color="default"
-              label="キャンセル"
-              disabled={loading.destroyArticle}
-              handleClick={this.toggleModal}
-            />
-            <Button
-              color="is-danger"
-              label="消去"
-              loading={loading.destroyArticle}
-              icon="trash"
-              handleClick={this.handleDestroy}
-            />
-          </ModalCard.Footer>
-        </ModalCard>
       </form>
     )
   }

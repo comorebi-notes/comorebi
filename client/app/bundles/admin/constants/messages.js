@@ -1,7 +1,7 @@
 const targets = {
   admin: () => "管理者アカウント",
-  article: (title) => `作品記事<strong>「${title}」</strong>`,
-  music: (title) => `音楽作品<strong>「${title}」</strong>`,
+  articles: (title) => `作品記事<strong>「${title}」</strong>`,
+  musics: (title) => `音楽作品<strong>「${title}」</strong>`,
 }
 
 const actions = {

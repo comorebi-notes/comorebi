@@ -32,4 +32,7 @@ export const updateArticle = (data) => {
   return params
 }
 
+export const updateMusic = (data) => ({ music: { ...data } })
+
 export const createArticle = (data) => updateArticle(data)
+export const createMusic   = (data) => updateMusic(data)

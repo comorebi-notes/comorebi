@@ -27,13 +27,12 @@ class Admin::ArticlesController < AdminController
     end
   end
 
-  # ajax 用に書き換え
   def destroy
-    @article = Article.find(params[:id])
-    if @article.destroy
-      redirect_to admin_articles_path, notice: "作品「#{@article.title}」を削除しました。"
+    article = Article.find(params[:id])
+    if article.destroy
+      render json: { status: :ok }
     else
-      render action: :new
+      render json: article.errors, status: :unprocessable_entity
     end
   end
 

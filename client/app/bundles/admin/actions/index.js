@@ -12,10 +12,10 @@ import * as utils from '../utils'
 const rootPath = '/admin'
 const status = (errors) => (errors ? 'error' : 'success')
 const afterRequest = (dispatch, actionType, target, errors, messageData) => {
+  const nextPath = target === 'admin' ? rootPath : `${rootPath}/${target}`
   dispatch(setNotifications(messages(actionType, target, status(errors), messageData)))
-
   if (status(errors) === 'success') {
-    dispatch(push(rootPath))
+    dispatch(push(nextPath))
   } else {
     throw new SubmissionError(errors)
   }
@@ -37,15 +37,13 @@ export const clearFilters              = createAction('CLEAR_FILTERS')
 
 // ============================================= GET
 export const getAllArticles = createAction('GET_ALL_ARTICLES', api.getAllArticles)
-export const getAllArticlesAsync = (target) => async (dispatch) => {
-  dispatch(loading(target))
+export const getAllArticlesAsync = (loadingTarget) => async (dispatch) => {
+  dispatch(loading(loadingTarget))
   await dispatch(getAllArticles())
-  dispatch(complete(target))
+  dispatch(complete(loadingTarget))
 }
 export const getAllMusics = createAction('GET_ALL_MUSICS', api.getAllMusics)
-export const getAllMusicsAsync = () => async (dispatch) => {
-  const loadingTarget = 'getAllMusics'
-
+export const getAllMusicsAsync = (loadingTarget) => async (dispatch) => {
   dispatch(loading(loadingTarget))
   await dispatch(getAllMusics())
   dispatch(complete(loadingTarget))
@@ -75,7 +73,7 @@ export const updateArticleSubmit = () => async (dispatch, getState) => {
   await dispatch(updateArticleRequest(formData, id))
   dispatch(complete(loadingTarget))
 
-  afterRequest(dispatch, 'update', 'article', state.main.errors, formData.title)
+  afterRequest(dispatch, 'update', 'articles', state.main.errors, formData.title)
 }
 
 export const updateMusicRequest = createAction('UPDATE_MUSIC_REQUEST', api.updateMusicRequest)
@@ -89,7 +87,7 @@ export const updateMusicSubmit = () => async (dispatch, getState) => {
   await dispatch(updateMusicRequest(formData, id))
   dispatch(complete(loadingTarget))
 
-  afterRequest(dispatch, 'update', 'music', state.main.errors, formData.title)
+  afterRequest(dispatch, 'update', 'musics', state.main.errors, formData.title)
 }
 
 // ============================================= CREATE
@@ -103,7 +101,7 @@ export const createArticleSubmit = () => async (dispatch, getState) => {
   await dispatch(createArticleRequest(formData))
   dispatch(complete(loadingTarget))
 
-  afterRequest(dispatch, 'create', 'article', state.main.errors, formData.title)
+  afterRequest(dispatch, 'create', 'articles', state.main.errors, formData.title)
 }
 
 // ============================================= DESTROY
@@ -118,5 +116,5 @@ export const destroyArticleSubmit = () => async (dispatch, getState) => {
   await dispatch(destroyArticleRequest(id))
   dispatch(complete(loadingTarget))
 
-  afterRequest(dispatch, 'destroy', 'article', state.main.errors, formData.title)
+  afterRequest(dispatch, 'destroy', 'articles', state.main.errors, formData.title)
 }

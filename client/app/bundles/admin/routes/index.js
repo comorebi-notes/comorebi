@@ -1,18 +1,20 @@
 import React from 'react'
-import { Route, IndexRoute } from 'react-router'
+import { Route, IndexRoute, Redirect } from 'react-router'
 
 import AdminContainer from '../containers/Admin'
 import EditAdmin from '../components/EditAdmin'
 
 import ShowAllArticles from '../components/ShowAllArticles'
-import ShowAllMusics from '../components/ShowAllMusics'
-import EditArticle from '../components/EditArticle'
 import NewArticle from '../components/NewArticle'
+import EditArticle from '../components/EditArticle'
+import ShowAllMusics from '../components/ShowAllMusics'
+import NewMusic from '../components/NewMusic'
+import EditMusic from '../components/EditMusic'
 
-export default function adminRoutes() {
-  return (
-    <Route path='/admin' component={AdminContainer}>
-      <IndexRoute component={ShowAllArticles} />
+const adminRoutes = () => (
+  <Route component={AdminContainer}>
+    <Redirect from='admin' to='admin/articles' />
+    <Route path='admin'>
       <Route path='edit' component={EditAdmin} />
 
       <Route path='articles'>
@@ -23,7 +25,11 @@ export default function adminRoutes() {
 
       <Route path='musics'>
         <IndexRoute component={ShowAllMusics} />
+        <Route path='new' component={NewMusic} />
+        <Route path=':id' component={EditMusic} />
       </Route>
     </Route>
-  )
-}
+  </Route>
+)
+
+export default adminRoutes

@@ -9,7 +9,17 @@ import messages from '../constants/messages'
 import * as api from '../api'
 import * as utils from '../utils'
 
-const rootPath = "/admin"
+const rootPath = '/admin'
+const status = (errors) => (errors ? 'error' : 'success')
+const afterRequest = (dispatch, actionType, target, errors, messageData) => {
+  dispatch(setNotifications(messages(actionType, target, status(errors), messageData)))
+
+  if (status(errors) === 'success') {
+    dispatch(push(rootPath))
+  } else {
+    throw new SubmissionError(errors)
+  }
+}
 
 // ============================================= Simple Actions
 export const loading  = createAction('LOADING')
@@ -51,13 +61,7 @@ export const updateAdminSubmit = () => async (dispatch, getState) => {
   await dispatch(updateAdminRequest(formData))
   dispatch(complete(loadingTarget))
 
-  const errors = getState().main.errors
-  if (errors === '') {
-    dispatch(setNotifications(messages.updateAdmin.success()))
-  } else {
-    dispatch(setNotifications(messages.updateAdmin.error()))
-    throw new SubmissionError(errors)
-  }
+  afterRequest(dispatch, 'update', 'admin', getState().main.errors, formData.title)
 }
 
 export const updateArticleRequest = createAction('UPDATE_ARTICLE_REQUEST', api.updateArticleRequest)
@@ -71,14 +75,21 @@ export const updateArticleSubmit = () => async (dispatch, getState) => {
   await dispatch(updateArticleRequest(formData, id))
   dispatch(complete(loadingTarget))
 
-  const errors = getState().main.errors
-  if (errors === '') {
-    dispatch(setNotifications(messages.updateArticle.success(formData.title)))
-    dispatch(push(rootPath))
-  } else {
-    dispatch(setNotifications(messages.updateArticle.error(formData.title)))
-    throw new SubmissionError(errors)
-  }
+  afterRequest(dispatch, 'update', 'article', state.main.errors, formData.title)
+}
+
+export const updateMusicRequest = createAction('UPDATE_MUSIC_REQUEST', api.updateMusicRequest)
+export const updateMusicSubmit = () => async (dispatch, getState) => {
+  const state = getState()
+  const formData = getFormValues('music')(state) || {}
+  const id = utils.getId(state.routing.locationBeforeTransitions.pathname)
+  const loadingTarget = 'updateMusic'
+
+  dispatch(loading(loadingTarget))
+  await dispatch(updateMusicRequest(formData, id))
+  dispatch(complete(loadingTarget))
+
+  afterRequest(dispatch, 'update', 'music', state.main.errors, formData.title)
 }
 
 // ============================================= CREATE
@@ -92,14 +103,7 @@ export const createArticleSubmit = () => async (dispatch, getState) => {
   await dispatch(createArticleRequest(formData))
   dispatch(complete(loadingTarget))
 
-  const errors = getState().main.errors
-  if (errors === '') {
-    dispatch(setNotifications(messages.createArticle.success(formData.title)))
-    dispatch(push(rootPath))
-  } else {
-    dispatch(setNotifications(messages.createArticle.error(formData.title)))
-    throw new SubmissionError(errors)
-  }
+  afterRequest(dispatch, 'create', 'article', state.main.errors, formData.title)
 }
 
 // ============================================= DESTROY
@@ -114,12 +118,5 @@ export const destroyArticleSubmit = () => async (dispatch, getState) => {
   await dispatch(destroyArticleRequest(id))
   dispatch(complete(loadingTarget))
 
-  const errors = getState().main.errors
-  if (errors === '') {
-    dispatch(setNotifications(messages.destroyArticle.success(formData.title)))
-    dispatch(push(rootPath))
-  } else {
-    dispatch(setNotifications(messages.destroyArticle.error(formData.title)))
-    throw new SubmissionError(errors)
-  }
+  afterRequest(dispatch, 'destroy', 'article', state.main.errors, formData.title)
 }

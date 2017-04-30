@@ -105,7 +105,7 @@ export const createArticleSubmit = () => async (dispatch, getState) => {
   afterRequest(dispatch, 'create', 'articles', state.main.errors, formData.title)
 }
 
-export const createMusicRequest = createAction('CREATE_MUSIC_REQUEST', api.createArticleRequest)
+export const createMusicRequest = createAction('CREATE_MUSIC_REQUEST', api.createMusicRequest)
 export const createMusicSubmit = () => async (dispatch, getState) => {
   const state = getState()
   const formData = getFormValues('music')(state) || {}
@@ -131,4 +131,18 @@ export const destroyArticleSubmit = () => async (dispatch, getState) => {
   dispatch(complete(loadingTarget))
 
   afterRequest(dispatch, 'destroy', 'articles', state.main.errors, formData.title)
+}
+
+export const destroyMusicRequest = createAction('DESTROY_MUSIC_REQUEST', api.destroyMusicRequest)
+export const destroyMusicSubmit = () => async (dispatch, getState) => {
+  const state = getState()
+  const formData = getFormValues('music')(state) || {}
+  const id = utils.getId(state.routing.locationBeforeTransitions.pathname)
+  const loadingTarget = 'destroyMusic'
+
+  dispatch(loading(loadingTarget))
+  await dispatch(destroyMusicRequest(id))
+  dispatch(complete(loadingTarget))
+
+  afterRequest(dispatch, 'destroy', 'musics', state.main.errors, formData.title)
 }

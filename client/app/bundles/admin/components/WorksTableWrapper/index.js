@@ -22,6 +22,7 @@ class WorksTableWrapper extends Component {
         {loading ? <Loading /> : (
           <div>
             <Filters
+              type={type}
               count={count}
               totalCount={works.length}
               filters={filters}

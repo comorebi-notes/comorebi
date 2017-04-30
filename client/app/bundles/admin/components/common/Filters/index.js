@@ -23,8 +23,8 @@ class Filters extends Component {
     this.props.actions.deleteFilteringCategories(category)
   }
   render() {
-    const { count, totalCount, filters, selectableStatus } = this.props
-    const newArticlePath = "/admin/articles/new"
+    const { type, count, totalCount, filters, selectableStatus } = this.props
+    const newArticlePath = `/admin/${type}/new`
     return (
       <div className="works-util-bar">
         <nav className="level">
@@ -55,12 +55,12 @@ class Filters extends Component {
         <div className="tags is-hidden-mobile">
           {filters.categories.map((category) => (
             <span
-              className="tag can-click is-info is-medium"
+              className="tag can-click is-info"
               onClick={() => this.deleteCategory(category)}
               key={category}
             >
               {category}
-              <span className="delete" />
+              <span className="delete is-small" />
             </span>
           ))}
         </div>

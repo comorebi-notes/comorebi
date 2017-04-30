@@ -2,8 +2,9 @@ import React from 'react'
 import { Route, IndexRoute, Redirect } from 'react-router'
 
 import AdminContainer from '../containers/Admin'
-import EditAdmin from '../components/EditAdmin'
+import WorksContainer from '../containers/Works'
 
+import EditAdmin from '../components/EditAdmin'
 import ShowAllArticles from '../components/ShowAllArticles'
 import NewArticle from '../components/NewArticle'
 import EditArticle from '../components/EditArticle'
@@ -14,7 +15,9 @@ import EditMusic from '../components/EditMusic'
 const adminRoutes = () => (
   <Route component={AdminContainer}>
     <Redirect from='admin' to='admin/articles' />
-    <Route path='admin'>
+    <Route path='admin/edit' component={EditAdmin} />
+
+    <Route path='admin' component={WorksContainer}>
       <Route path='edit' component={EditAdmin} />
 
       <Route path='articles'>

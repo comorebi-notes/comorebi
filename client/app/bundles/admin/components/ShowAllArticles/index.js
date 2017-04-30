@@ -1,19 +1,17 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
 
 import WorksTableWrapper from '../WorksTableWrapper'
-import * as Actions from '../../actions'
 
 class ShowAllArticles extends Component {
   render() {
     const { actions, loading, articles, filters } = this.props
-    const handleLoad = () => actions.getAllArticlesAsync("showAllArticles")
+    const loadingTarget = "showAllArticles"
+    const handleLoad = () => actions.getAllArticlesAsync(loadingTarget)
     return (
       <WorksTableWrapper
         type="articles"
         actions={actions}
-        loading={loading}
+        loading={loading[loadingTarget]}
         works={articles}
         filters={filters}
         handleLoad={handleLoad}
@@ -22,14 +20,4 @@ class ShowAllArticles extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  loading: state.main.loading.showAllArticles,
-  articles: state.main.articles,
-  filters: state.filters
-})
-
-const mapDispatchToProps = (dispatch) => ({
-  actions: bindActionCreators(Actions, dispatch)
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(ShowAllArticles)
+export default ShowAllArticles

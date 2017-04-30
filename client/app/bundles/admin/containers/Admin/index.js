@@ -7,9 +7,7 @@ import { bindActionCreators } from 'redux'
 
 import Header from '../../components/common/Header'
 import Footer from '../../components/common/Footer'
-import TabMenu from '../../components/common/TabMenu'
 import pageTitle from '../../constants/pageTitle'
-import menuItems from '../../constants/menuItems'
 import * as Actions from '../../actions'
 import setNotifications from '../../actions/setNotifications'
 
@@ -22,7 +20,7 @@ class Admin extends Component {
     }
   }
   render() {
-    const { children, path, currentAdmin, notifications } = this.props
+    const { children, actions, path, works, currentAdmin, notifications } = this.props
     return (
       <div className="hero is-fullheight">
         <Helmet title={pageTitle(path)} />
@@ -31,10 +29,6 @@ class Admin extends Component {
         <Header admin={currentAdmin} />
         <section className="section" style={{ flexGrow: 1 }}>
           <div className="container">
-            <TabMenu
-              path={path}
-              menuItems={menuItems}
-            />
             <ReactCSSTransitionGroup
               component="div"
               className="transition-container"
@@ -42,7 +36,12 @@ class Admin extends Component {
               transitionEnterTimeout={300}
               transitionLeaveTimeout={300}
             >
-              {children && React.cloneElement(children, { key: path })}
+              {children && React.cloneElement(children, {
+                key: path,
+                actions,
+                path,
+                works
+              })}
             </ReactCSSTransitionGroup>
           </div>
         </section>
@@ -56,7 +55,13 @@ const mapStateToProps = (state) => ({
   path: state.routing.locationBeforeTransitions.pathname,
   currentAdmin: state.main.currentAdmin,
   initialNotification: state.main.initialNotification,
-  notifications: state.notifications
+  notifications: state.notifications,
+  works: {
+    articles: state.main.articles,
+    musics: state.main.musics,
+    loading: state.loading,
+    filters: state.filters
+  }
 })
 
 const mapDispatchToProps = (dispatch) => ({

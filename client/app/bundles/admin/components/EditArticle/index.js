@@ -1,7 +1,4 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import * as Actions from '../../actions'
 
 import EditArticleForm from './EditArticleForm'
 import Loading from '../common/Loading'
@@ -35,13 +32,4 @@ class EditArticle extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  loading: state.main.loading,
-  articles: state.main.articles
-})
-
-const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators(Actions, dispatch)
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(EditArticle)
+export default EditArticle

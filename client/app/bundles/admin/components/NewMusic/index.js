@@ -1,7 +1,4 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import * as Actions from '../../actions'
 
 import NewMusicForm from './NewMusicForm'
 
@@ -30,12 +27,4 @@ class NewMusic extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  loading: state.main.loading
-})
-
-const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators(Actions, dispatch)
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(NewMusic)
+export default NewMusic

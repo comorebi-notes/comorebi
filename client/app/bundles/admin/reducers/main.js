@@ -47,8 +47,7 @@ export default handleActions({
     const data = action.payload.data
     return {
       ...state,
-      articles: data.articles,
-      musics:   data.musics
+      musics: data.musics
     }
   },
   ADD_TAG: (state, action) => {

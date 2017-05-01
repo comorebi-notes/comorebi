@@ -10,8 +10,7 @@ const tableColumns = {
   musics: [
     { name: "id",     label: "ID",         className: "id" },
     { name: "title",  label: "タイトル",   className: "works-title" },
-    { name: "lyrics", label: "歌詞",       className: "lyrics" },
-    { name: "credit", label: "クレジット", className: "credit" }
+    { name: "lyrics", label: "歌詞",       className: "lyrics" }
   ]
 }
 

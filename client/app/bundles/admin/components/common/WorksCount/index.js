@@ -4,7 +4,7 @@ class WorksCount extends Component {
   render() {
     const { count, totalCount } = this.props
     return (
-      <p className="subtitle is-5">
+      <p className="subtitle is-5 is-hidden-mobile">
         <strong>{count}</strong>
         {count !== totalCount && (
           <span> / {totalCount}</span>

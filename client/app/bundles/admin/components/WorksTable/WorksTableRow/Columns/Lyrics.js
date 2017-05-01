@@ -8,12 +8,14 @@ class Lyrics extends PureComponent {
     const { lyrics, filters } = this.props
     return (
       <td className="lyrics">
-        {lyrics && filters && filters.words ? (
-          <Highlighter
-            searchWords={filter.splitFilteringWords(filters.words)}
-            textToHighlight={lyrics}
-          />
-        ) : lyrics}
+        <p>
+          {lyrics && filters && filters.words ? (
+            <Highlighter
+              searchWords={filter.splitFilteringWords(filters.words)}
+              textToHighlight={lyrics}
+            />
+          ) : lyrics}
+        </p>
       </td>
     )
   }

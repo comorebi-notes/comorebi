@@ -8,7 +8,6 @@ import Categories from './Columns/Categories'
 import Status from './Columns/Status'
 import PublishedAt from './Columns/PublishedAt'
 import Lyrics from './Columns/Lyrics'
-import Credit from './Columns/Credit'
 
 class WorksTableRow extends PureComponent {
   constructor() {
@@ -36,7 +35,6 @@ class WorksTableRow extends PureComponent {
       status:       <Status status={status} />,
       published_at: <PublishedAt published_at={published_at} />,
       lyrics:       <Lyrics lyrics={lyrics} filters={filters} />,
-      credit:       <Credit credit={credit} />
     }
     return (
       <tr className={status} onClick={this.handleClickRow}>

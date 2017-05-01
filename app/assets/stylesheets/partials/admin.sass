@@ -1,4 +1,5 @@
 #admin-container
+  font-family: 'Roboto', 'Noto Sans Japanese', serif
   overflow: hidden
   header
     .button
@@ -50,11 +51,14 @@
       ul
         border-bottom: 1px solid #dbdbdb
   .works-util-bar
+    .level-left
+      display: flex
     margin-bottom: 2em
     .level
       margin-bottom: 0
     .tags
       margin-top: .8em
+      margin-bottom: .2em
     .subtitle
       margin: 0
     label
@@ -83,13 +87,36 @@
       &.id
         width: 3.5em
         text-align: center
-      // &.works-title
-      // &.category
+      &.works-title
+        min-width: 220px
       &.status
         width: 4em
         text-align: center
       &.published_at
         width: 7em
+      &.lyrics
+        font-size: .9em
+        p
+          line-height: 1.4em
+          max-height: 2.8em
+          position: relative
+          // padding-right: 1em
+          overflow: hidden
+          // &:before
+          //   content: "…"
+          //   position: absolute
+          //   right: 0
+          //   bottom: 0
+          //   display: inline-block
+          //   width: 1em
+          // &:after
+          //   content: ""
+          //   position: relative
+          //   right: -1em
+          //   float: right
+          //   width: 1em
+          //   height: 100%
+          //   background-color: white
     .tag
       font-size: 12px
       margin: .2em
@@ -175,6 +202,16 @@
       padding: 1.5rem
     table.works
       font-size: .9rem
+      td, th
+        &.id
+          width: 2.5em
+        &.works-title
+          min-width: 108px
+    .tab-menu
+      ul
+        justify-content: space-between
+      .icon
+        margin-right: 0
     .select-status
       .field > *
         flex-grow: 1

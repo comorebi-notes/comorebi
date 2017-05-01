@@ -7,7 +7,7 @@ class Title extends PureComponent {
   render () {
     const { title, filters } = this.props
     return (
-      <td className="articles-title">
+      <td className="works-title">
         {filters && filters.words ? (
           <Highlighter
             searchWords={filter.splitFilteringWords(filters.words)}

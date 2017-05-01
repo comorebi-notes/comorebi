@@ -43,13 +43,10 @@ export default handleActions({
       tags:       data.tags
     }
   },
-  GET_ALL_MUSICS: (state, action) => {
-    const data = action.payload.data
-    return {
-      ...state,
-      musics: data.musics
-    }
-  },
+  GET_ALL_MUSICS: (state, action) => ({
+    ...state,
+    ...action.payload.data
+  }),
   ADD_TAG: (state, action) => {
     state[action.payload.target].push(action.payload.name)
     return { ...state }

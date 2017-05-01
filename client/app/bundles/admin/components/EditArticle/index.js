@@ -24,7 +24,7 @@ class EditArticle extends Component {
           <EditArticleForm
             actions={actions}
             loading={loading}
-            onSubmit={actions.updateArticleSubmit}
+            onSubmit={actions.updateWorkSubmit}
           />
         )}
       </div>

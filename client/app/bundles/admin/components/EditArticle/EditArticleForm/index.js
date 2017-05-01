@@ -26,7 +26,7 @@ class EditArticleForm extends Component {
         <DestroyModal
           loading={loading.destroyArticle}
           handleCancel={actions.toggleModal}
-          handleDestroy={actions.destroyArticleSubmit}
+          handleDestroy={actions.destroyWorkSubmit}
         />
 
         <Field component={InputField} name="title" label="作品名" />

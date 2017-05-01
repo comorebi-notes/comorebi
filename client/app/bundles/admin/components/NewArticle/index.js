@@ -20,7 +20,7 @@ class NewArticle extends Component {
         <NewArticleForm
           actions={actions}
           loading={loading.createArticle}
-          onSubmit={actions.createArticleSubmit}
+          onSubmit={actions.createWorkSubmit}
         />
       </div>
     )

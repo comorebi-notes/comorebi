@@ -20,7 +20,7 @@ class NewMusic extends Component {
         <NewMusicForm
           actions={actions}
           loading={loading.createMusic}
-          onSubmit={actions.createMusicSubmit}
+          onSubmit={actions.createWorkSubmit}
         />
       </div>
     )

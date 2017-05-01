@@ -18,7 +18,7 @@ class EditMusicForm extends Component {
         <DestroyModal
           loading={loading.destroyMusic}
           handleCancel={actions.toggleModal}
-          handleDestroy={actions.destroyMusicSubmit}
+          handleDestroy={actions.destroyWorkSubmit}
         />
 
         <Field component={InputField} name="title" label="作品名" />

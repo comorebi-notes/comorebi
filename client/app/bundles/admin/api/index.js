@@ -10,8 +10,7 @@ const config = {
 }
 
 // ============================================= GET
-export const getAllArticles  = () => axios.get("/admin/articles",  {}, config)
-export const getAllMusics = () => axios.get("/admin/musics", {}, config)
+export const getAllWorks = (target) => axios.get(`/admin/${target}s`,  {}, config)
 
 // ============================================= UPDATE
 export const updateAdminRequest = (data) => {
@@ -19,33 +18,18 @@ export const updateAdminRequest = (data) => {
   return axios.put("/admin", params, config)
 }
 
-export const updateArticleRequest = (data, id) => {
-  const params = getParams.updateArticle(data)
-  return axios.put(`/admin/articles/${id}`, params, config)
-}
-
-export const updateMusicRequest = (data, id) => {
-  const params = getParams.updateMusic(data)
-  return axios.put(`/admin/musics/${id}`, params, config)
+export const updateWorkRequest = (target, data, id) => {
+  const params = getParams.updateWork[target](data)
+  return axios.put(`/admin/${target}s/${id}`, params, config)
 }
 
 // ============================================= CREATE
-export const createArticleRequest = (data) => {
-  const params = getParams.createArticle(data)
-  return axios.post("/admin/articles", params, config)
-}
-
-export const createMusicRequest = (data) => {
-  const params = getParams.createMusic(data)
-  return axios.post("/admin/musics", params, config)
+export const createWorkRequest = (target, data) => {
+  const params = getParams.createWork[target](data)
+  return axios.post(`/admin/${target}s`, params, config)
 }
 
 // ============================================= DESTROY
-
-export const destroyArticleRequest = (id) => (
-  axios.delete(`/admin/articles/${id}`, config)
-)
-
-export const destroyMusicRequest = (id) => (
-  axios.delete(`/admin/musics/${id}`, config)
+export const destroyWorkRequest = (target, id) => (
+  axios.delete(`/admin/${target}s/${id}`, config)
 )

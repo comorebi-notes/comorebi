@@ -5,13 +5,12 @@ import WorksTableWrapper from '../WorksTableWrapper'
 class ShowAllArticles extends Component {
   render() {
     const { actions, loading, articles, filters } = this.props
-    const loadingTarget = "showAllArticles"
-    const handleLoad = () => actions.getAllArticlesAsync(loadingTarget)
+    const handleLoad = () => actions.getAllWorksAsync("article")
     return (
       <WorksTableWrapper
         type="articles"
         actions={actions}
-        loading={loading[loadingTarget]}
+        loading={loading.showAllArticles}
         works={articles}
         filters={filters}
         handleLoad={handleLoad}

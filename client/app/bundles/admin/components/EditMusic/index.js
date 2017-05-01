@@ -24,7 +24,7 @@ class EditMusic extends Component {
           <EditMusicForm
             actions={actions}
             loading={loading}
-            onSubmit={actions.updateMusicSubmit}
+            onSubmit={actions.updateWorkSubmit}
           />
         )}
       </div>

@@ -33,17 +33,7 @@ export default handleActions({
       modal: typeof result === 'boolean' ? result : !state.modal
     }
   },
-  GET_ALL_ARTICLES: (state, action) => {
-    const data = action.payload.data
-    return {
-      ...state,
-      articles:   data.articles,
-      musics:     data.musics,
-      categories: data.categories,
-      tags:       data.tags
-    }
-  },
-  GET_ALL_MUSICS: (state, action) => ({
+  GET_ALL_WORKS: (state, action) => ({
     ...state,
     ...action.payload.data
   }),
@@ -62,7 +52,7 @@ export default handleActions({
       errors: action.payload.response.data.errors
     })
   },
-  UPDATE_ARTICLE_REQUEST: {
+  UPDATE_WORK_REQUEST: {
     next: (state) => ({
       ...state,
       errors: ''
@@ -72,7 +62,7 @@ export default handleActions({
       errors: action.payload.response.data.errors
     })
   },
-  CREATE_ARTICLE_REQUEST: {
+  CREATE_WORK_REQUEST: {
     next: (state) => ({
       ...state,
       errors: ''
@@ -82,7 +72,7 @@ export default handleActions({
       errors: action.payload.response.data.errors
     })
   },
-  DESTROY_ARTICLE_REQUEST: {
+  DESTROY_WORK_REQUEST: {
     next: (state) => ({
       ...state,
       errors: ''

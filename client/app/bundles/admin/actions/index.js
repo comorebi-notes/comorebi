@@ -11,6 +11,9 @@ import * as utils from '../utils'
 
 const rootPath = '/admin'
 const status = (errors) => (errors ? 'error' : 'success')
+const loadingTargetName = (actionType, target) => (
+  `${actionType}${target.charAt(0).toUpperCase() + target.slice(1)}`
+)
 const afterRequest = (dispatch, actionType, target, errors, messageData) => {
   const nextPath = target === 'admin' ? rootPath : `${rootPath}/${target}`
   dispatch(setNotifications(messages(actionType, target, status(errors), messageData)))
@@ -37,16 +40,11 @@ export const changePage                = createAction('CHANGE_PAGE')
 export const clearFilters              = createAction('CLEAR_FILTERS')
 
 // ============================================= GET
-export const getAllArticles = createAction('GET_ALL_ARTICLES', api.getAllArticles)
-export const getAllArticlesAsync = (loadingTarget) => async (dispatch) => {
+export const getAllWorks = createAction('GET_ALL_WORKS', api.getAllWorks)
+export const getAllWorksAsync = (target) => async (dispatch) => {
+  const loadingTarget = loadingTargetName('get', target)
   dispatch(loading(loadingTarget))
-  await dispatch(getAllArticles())
-  dispatch(complete(loadingTarget))
-}
-export const getAllMusics = createAction('GET_ALL_MUSICS', api.getAllMusics)
-export const getAllMusicsAsync = (loadingTarget) => async (dispatch) => {
-  dispatch(loading(loadingTarget))
-  await dispatch(getAllMusics())
+  await dispatch(getAllWorks(target))
   dispatch(complete(loadingTarget))
 }
 
@@ -63,86 +61,48 @@ export const updateAdminSubmit = () => async (dispatch, getState) => {
   afterRequest(dispatch, 'update', 'admin', getState().main.errors, formData.title)
 }
 
-export const updateArticleRequest = createAction('UPDATE_ARTICLE_REQUEST', api.updateArticleRequest)
-export const updateArticleSubmit = () => async (dispatch, getState) => {
+export const updateWorkRequest = createAction('UPDATE_WORK_REQUEST', api.updateWorkRequest)
+export const updateWorkSubmit = () => async (dispatch, getState) => {
   const state = getState()
-  const formData = getFormValues('article')(state) || {}
+  const target = Object.keys(state.form)[0]
+  const formData = getFormValues(target)(state) || {}
   const id = utils.getId(state.routing.locationBeforeTransitions.pathname)
-  const loadingTarget = 'updateArticle'
+  const loadingTarget = loadingTargetName('update', target)
 
   dispatch(loading(loadingTarget))
-  await dispatch(updateArticleRequest(formData, id))
+  await dispatch(updateWorkRequest(target, formData, id))
   dispatch(complete(loadingTarget))
 
-  afterRequest(dispatch, 'update', 'articles', state.main.errors, formData.title)
-}
-
-export const updateMusicRequest = createAction('UPDATE_MUSIC_REQUEST', api.updateMusicRequest)
-export const updateMusicSubmit = () => async (dispatch, getState) => {
-  const state = getState()
-  const formData = getFormValues('music')(state) || {}
-  const id = utils.getId(state.routing.locationBeforeTransitions.pathname)
-  const loadingTarget = 'updateMusic'
-
-  dispatch(loading(loadingTarget))
-  await dispatch(updateMusicRequest(formData, id))
-  dispatch(complete(loadingTarget))
-
-  afterRequest(dispatch, 'update', 'musics', state.main.errors, formData.title)
+  afterRequest(dispatch, 'update', `${target}s`, state.main.errors, formData.title)
 }
 
 // ============================================= CREATE
-export const createArticleRequest = createAction('CREATE_ARTICLE_REQUEST', api.createArticleRequest)
-export const createArticleSubmit = () => async (dispatch, getState) => {
+export const createWorkRequest = createAction('CREATE_WORK_REQUEST', api.createWorkRequest)
+export const createWorkSubmit = () => async (dispatch, getState) => {
   const state = getState()
-  const formData = getFormValues('article')(state) || {}
-  const loadingTarget = 'createArticle'
+  const target = Object.keys(state.form)[0]
+  const formData = getFormValues(target)(state) || {}
+  const loadingTarget = loadingTargetName('create', target)
 
   dispatch(loading(loadingTarget))
-  await dispatch(createArticleRequest(formData))
+  await dispatch(createWorkRequest(target, formData))
   dispatch(complete(loadingTarget))
 
-  afterRequest(dispatch, 'create', 'articles', state.main.errors, formData.title)
-}
-
-export const createMusicRequest = createAction('CREATE_MUSIC_REQUEST', api.createMusicRequest)
-export const createMusicSubmit = () => async (dispatch, getState) => {
-  const state = getState()
-  const formData = getFormValues('music')(state) || {}
-  const loadingTarget = 'createMusic'
-
-  dispatch(loading(loadingTarget))
-  await dispatch(createMusicRequest(formData))
-  dispatch(complete(loadingTarget))
-
-  afterRequest(dispatch, 'create', 'musics', state.main.errors, formData.title)
+  afterRequest(dispatch, 'create', `${target}s`, state.main.errors, formData.title)
 }
 
 // ============================================= DESTROY
-export const destroyArticleRequest = createAction('DESTROY_ARTICLE_REQUEST', api.destroyArticleRequest)
-export const destroyArticleSubmit = () => async (dispatch, getState) => {
+export const destroyWorkRequest = createAction('DESTROY_WORK_REQUEST', api.destroyWorkRequest)
+export const destroyWorkSubmit = () => async (dispatch, getState) => {
   const state = getState()
-  const formData = getFormValues('article')(state) || {}
+  const target = Object.keys(state.form)[0]
+  const formData = getFormValues(target)(state) || {}
   const id = utils.getId(state.routing.locationBeforeTransitions.pathname)
-  const loadingTarget = 'destroyArticle'
+  const loadingTarget = loadingTargetName('destroy', target)
 
   dispatch(loading(loadingTarget))
-  await dispatch(destroyArticleRequest(id))
+  await dispatch(destroyWorkRequest(target, id))
   dispatch(complete(loadingTarget))
 
-  afterRequest(dispatch, 'destroy', 'articles', state.main.errors, formData.title)
-}
-
-export const destroyMusicRequest = createAction('DESTROY_MUSIC_REQUEST', api.destroyMusicRequest)
-export const destroyMusicSubmit = () => async (dispatch, getState) => {
-  const state = getState()
-  const formData = getFormValues('music')(state) || {}
-  const id = utils.getId(state.routing.locationBeforeTransitions.pathname)
-  const loadingTarget = 'destroyMusic'
-
-  dispatch(loading(loadingTarget))
-  await dispatch(destroyMusicRequest(id))
-  dispatch(complete(loadingTarget))
-
-  afterRequest(dispatch, 'destroy', 'musics', state.main.errors, formData.title)
+  afterRequest(dispatch, 'destroy', `${target}s`, state.main.errors, formData.title)
 }

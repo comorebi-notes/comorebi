@@ -6,7 +6,7 @@ import Loading from '../common/Loading'
 class EditArticle extends Component {
   componentDidMount() {
     const { actions } = this.props
-    actions.getAllArticlesAsync("editArticle")
+    actions.getWorksAsync("article", "editArticle")
   }
   render() {
     const { actions, loading, articles } = this.props

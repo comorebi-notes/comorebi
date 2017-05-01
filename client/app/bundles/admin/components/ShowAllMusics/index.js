@@ -5,12 +5,12 @@ import WorksTableWrapper from '../WorksTableWrapper'
 class ShowAllMusics extends Component {
   render() {
     const { actions, loading, musics, filters } = this.props
-    const handleLoad = () => actions.getAllWorksAsync("music")
+    const handleLoad = () => actions.getWorksAsync("music")
     return (
       <WorksTableWrapper
         type="musics"
         actions={actions}
-        loading={loading.showAllMusics}
+        loading={loading.getMusics}
         works={musics}
         filters={filters}
         handleLoad={handleLoad}

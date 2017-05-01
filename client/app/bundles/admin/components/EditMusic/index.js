@@ -6,7 +6,7 @@ import Loading from '../common/Loading'
 class EditMusic extends Component {
   componentDidMount() {
     const { actions } = this.props
-    actions.getAllMusicsAsync("editMusic")
+    actions.getWorksAsync("music", "editMusic")
   }
   render() {
     const { actions, loading, musics } = this.props

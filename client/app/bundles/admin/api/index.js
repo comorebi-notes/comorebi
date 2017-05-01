@@ -10,7 +10,7 @@ const config = {
 }
 
 // ============================================= GET
-export const getAllWorks = (target) => axios.get(`/admin/${target}s`,  {}, config)
+export const getWorks = (target) => axios.get(`/admin/${target}s`,  {}, config)
 
 // ============================================= UPDATE
 export const updateAdminRequest = (data) => {

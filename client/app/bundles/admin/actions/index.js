@@ -40,11 +40,11 @@ export const changePage                = createAction('CHANGE_PAGE')
 export const clearFilters              = createAction('CLEAR_FILTERS')
 
 // ============================================= GET
-export const getAllWorks = createAction('GET_ALL_WORKS', api.getAllWorks)
-export const getAllWorksAsync = (target) => async (dispatch) => {
-  const loadingTarget = loadingTargetName('get', target)
+export const getWorks = createAction('GET_WORKS', api.getWorks)
+export const getWorksAsync = (target, action) => async (dispatch) => {
+  const loadingTarget = action || `${loadingTargetName('get', target)}s`
   dispatch(loading(loadingTarget))
-  await dispatch(getAllWorks(target))
+  await dispatch(getWorks(target))
   dispatch(complete(loadingTarget))
 }
 

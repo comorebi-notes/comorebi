@@ -33,14 +33,14 @@ export default handleActions({
       modal: typeof result === 'boolean' ? result : !state.modal
     }
   },
-  GET_ALL_WORKS: (state, action) => ({
-    ...state,
-    ...action.payload.data
-  }),
   ADD_TAG: (state, action) => {
     state[action.payload.target].push(action.payload.name)
     return { ...state }
   },
+  GET_WORKS: (state, action) => ({
+    ...state,
+    ...action.payload.data
+  }),
   UPDATE_ADMIN_REQUEST: {
     next: (state, action) => ({
       ...state,

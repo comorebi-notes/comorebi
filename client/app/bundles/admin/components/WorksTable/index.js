@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 import WorksTableRow from './WorksTableRow'
-import TableCaptions from '../common/TableCaptions'
+import TableCaptions from './TableCaptions'
 import tableColumns from '../../constants/tableColumns'
 
 class WorksTable extends Component {

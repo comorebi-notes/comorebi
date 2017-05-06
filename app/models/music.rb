@@ -15,8 +15,11 @@ class Music < ApplicationRecord
   has_many :article_musics, dependent: :destroy
   has_many :articles, through: :article_musics
 
-  validates :title, presence: true
+  validates :title,      presence: true
   validates :sound_file, presence: true
+
+  mount_uploader :sound_file,     SoundUploader
+  mount_uploader :off_vocal_file, SoundUploader
 
   def with_children
     self.attributes.merge(article_ids: article_ids)

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170122051657) do
+ActiveRecord::Schema.define(version: 20170506050405) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name",                   default: "", null: false
@@ -82,6 +82,18 @@ ActiveRecord::Schema.define(version: 20170122051657) do
     t.string  "name",                       collation: "utf8_bin"
     t.integer "taggings_count", default: 0
     t.index ["name"], name: "index_tags_on_name", unique: true, using: :btree
+  end
+
+  create_table "temp_images", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "file",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "temp_sounds", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "file",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "article_musics", "articles"

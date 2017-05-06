@@ -5,6 +5,7 @@ import { browserHistory } from 'react-router'
 
 import InputField from '../../common/form/InputField'
 import TextareaField from '../../common/form/TextareaField'
+import FileUploadField from '../../common/form/FileUploadField'
 import Button from '../../common/form/Button'
 import DestroyModal from './DestroyModal'
 import validate from '../../NewMusic/NewMusicForm/validate'
@@ -23,7 +24,13 @@ class EditMusicForm extends Component {
 
         <Field component={InputField} name="title" label="作品名" />
         <Field component={TextareaField} name="lyrics" label="歌詞" />
-        <Field component={InputField} name="sound_file" label="ファイル" />
+        <Field
+          component={FileUploadField}
+          name="sound_file"
+          label="ファイル"
+          handleOnDrop={actions.uploadFile}
+          fileType="sound"
+        />
         <Field component={InputField} name="off_vocal_file" label="オフボーカル" />
 
         <div className="field is-grouped with-button">

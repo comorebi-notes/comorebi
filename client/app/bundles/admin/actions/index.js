@@ -106,3 +106,12 @@ export const destroyWorkSubmit = () => async (dispatch, getState) => {
 
   afterRequest(dispatch, 'destroy', `${target}s`, state.main.errors, formData.title)
 }
+
+// ============================================= UPLOAD
+export const uploadFileRequest = createAction('UPLOAD_FILE_REQUEST', api.uploadFileRequest)
+export const uploadFile = (file, fileType) => async (dispatch) => {
+  const loadingTarget = loadingTargetName('upload', fileType)
+  dispatch(loading(loadingTarget))
+  await dispatch(uploadFileRequest(file, fileType))
+  dispatch(complete(loadingTarget))
+}

@@ -11,9 +11,7 @@ import * as utils from '../utils'
 
 const rootPath = '/admin'
 const status = (errors) => (errors ? 'error' : 'success')
-const loadingTargetName = (actionType, target) => (
-  `${actionType}${target.charAt(0).toUpperCase() + target.slice(1)}`
-)
+const loadingTargetName = (actionType, target) => utils.snakeToCamel(`${actionType}_${target}`)
 const afterRequest = (dispatch, actionType, target, errors, messageData) => {
   const nextPath = target === 'admin' ? rootPath : `${rootPath}/${target}`
   dispatch(setNotifications(messages(actionType, target, status(errors), messageData)))
@@ -109,9 +107,9 @@ export const destroyWorkSubmit = () => async (dispatch, getState) => {
 
 // ============================================= UPLOAD
 export const uploadFileRequest = createAction('UPLOAD_FILE_REQUEST', api.uploadFileRequest)
-export const uploadFile = (file, fileType) => async (dispatch) => {
-  const loadingTarget = loadingTargetName('upload', fileType)
+export const uploadFile = (file, fileType, target) => async (dispatch) => {
+  const loadingTarget = loadingTargetName('upload', target)
   dispatch(loading(loadingTarget))
-  await dispatch(uploadFileRequest(file, fileType))
+  await dispatch(uploadFileRequest(file, fileType, target))
   dispatch(complete(loadingTarget))
 }

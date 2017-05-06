@@ -6,10 +6,12 @@ export const zeroPadding = (num, length) => {
   return (zeros + num).slice(-length);
 }
 
-export const flatten = (array) => (
-  array.reduce((p, c) => (
-    Array.isArray(c) ? p.concat(flatten(c)) : p.concat(c)
-  ), [])
+export const snakeToCamel = (string) => (
+  string.replace(/_./g, (char) => char.charAt(1).toUpperCase())
+)
+
+export const camelToSnake = (string) => (
+  string.replace(/([A-Z])/g, (char) => `_${char.charAt(0).toLowerCase()}`)
 )
 
 export const isActivePath = (path, target, prefix) => {

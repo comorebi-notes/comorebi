@@ -6,12 +6,6 @@ axios.defaults.headers['X-Requested-With'] = 'XMLHttpRequest'
 const config = {
   headers: {
     'X-CSRF-Token': document.querySelector('head [name=csrf-token]').content
-  },
-  onUploadProgress: (progressEvent) => {
-    const output = document.getElementById('progress')
-    const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total)
-    output.value = percentCompleted
-    output.innerHTML = percentCompleted
   }
 }
 
@@ -40,7 +34,20 @@ export const destroyWorkRequest = (target, id) => (
   axios.delete(`/admin/${target}s/${id}`, config)
 )
 
-// ============================================= DESTROY
-export const uploadFileRequest = (file, fileType) => (
-  axios.post(`/admin/uploads/${fileType}`, file, config)
+// ============================================= UPLOAD
+const configWithUploadProgress = (target) => ({
+  ...config,
+  targetField: target,
+  onUploadProgress: (progressEvent) => {
+    const output = document.getElementById(`progress-${target}`)
+    if (output) {
+      const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total)
+      output.value = percentCompleted
+      output.innerHTML = percentCompleted
+    }
+  }
+})
+
+export const uploadFileRequest = (file, fileType, target) => (
+  axios.post(`/admin/uploads/${fileType}`, file, configWithUploadProgress(target))
 )

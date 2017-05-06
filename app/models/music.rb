@@ -21,8 +21,19 @@ class Music < ApplicationRecord
   mount_uploader :sound_file,     SoundUploader
   mount_uploader :off_vocal_file, SoundUploader
 
-  def with_children
-    self.attributes.merge(article_ids: article_ids)
+  def as_json(option = {})
+    super(
+      except: [:sound_file, :off_vocal_file],
+      methods: [:article_ids, :sound_file_url, :off_vocal_file_url]
+    )
+  end
+
+  def sound_file_url
+    sound_file.url
+  end
+
+  def off_vocal_file_url
+    off_vocal_file.url
   end
 
 end

@@ -28,10 +28,18 @@ class EditMusicForm extends Component {
           component={FileUploadField}
           name="sound_file"
           label="ファイル"
-          handleOnDrop={actions.uploadFile}
           fileType="sound"
+          loading={loading.uploadSoundFile}
+          handleOnDrop={actions.uploadFile}
         />
-        <Field component={InputField} name="off_vocal_file" label="オフボーカル" />
+        <Field
+          component={FileUploadField}
+          name="off_vocal_file"
+          label="オフボーカル"
+          fileType="sound"
+          loading={loading.uploadOffVocalFile}
+          handleOnDrop={actions.uploadFile}
+        />
 
         <div className="field is-grouped with-button">
           <div className="control">
@@ -73,8 +81,14 @@ const mapStateToProps = (state) => {
     initialValues: music ? {
       title:          music.title,
       lyrics:         music.lyrics,
-      sound_file:     music.sound_file,
-      off_vocal_file: music.off_vocal_file
+      sound_file: {
+        id: "",
+        url: music.sound_file_url
+      },
+      off_vocal_file: {
+        id: "",
+        url: music.off_vocal_file_url
+      }
     } : {}
   }
 }

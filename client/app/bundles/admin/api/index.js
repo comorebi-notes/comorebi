@@ -39,11 +39,13 @@ const configWithUploadProgress = (target) => ({
   ...config,
   targetField: target,
   onUploadProgress: (progressEvent) => {
-    const output = document.getElementById(`progress-${target}`)
-    if (output) {
+    const progressBar  = document.getElementById(`progress-bar-${target}`)
+    const progressText = document.getElementById(`progress-text-${target}`)
+    if (progressBar) {
       const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total)
-      output.value = percentCompleted
-      output.innerHTML = percentCompleted
+      progressBar.value      = percentCompleted
+      progressBar.innerHTML  = `${percentCompleted} %`
+      progressText.innerHTML = `${percentCompleted} %`
     }
   }
 })

@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import Dropzone from 'react-dropzone'
 import FormData from 'form-data'
 
+import Button from '../Button'
+
 class FileUploadField extends Component {
   constructor() {
     super()
@@ -33,7 +35,7 @@ class FileUploadField extends Component {
                 <div className="media">
                   <div className="media-content">
                     <div className="content">
-                      <strong>{input.value.url.split("/").pop()}</strong>
+                      <strong>{decodeURI(input.value.url.split("/").pop())}</strong>
                     </div>
                   </div>
                   <div className="media-right">
@@ -47,18 +49,26 @@ class FileUploadField extends Component {
               </div>
             </article>
           ) : (
-            <Dropzone onDrop={this.handleOnDrop}>
-              <p>upload</p>
+            <Dropzone onDrop={this.handleOnDrop} className="dropzone">
+              <Button
+                color="default"
+                icon="cloud-upload"
+                label="ファイルをアップロード"
+                disabled={loading}
+              />
             </Dropzone>
           )}
           {loading && (
-            <progress
-              className="progress is-info"
-              id={`progress-${input.name}`}
-              accept={false && mimeTypes[fileType]}
-              value="0"
-              max="100"
-            />
+            <div className="dropzone-progress">
+              <progress
+                className="progress is-info"
+                id={`progress-bar-${input.name}`}
+                accept={false && mimeTypes[fileType]}
+                value="0"
+                max="100"
+              />
+              <span id={`progress-text-${input.name}`} />
+            </div>
           )}
         </div>
       </div>

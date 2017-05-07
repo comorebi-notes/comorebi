@@ -47,6 +47,7 @@ class EditMusicForm extends Component {
               type="submit"
               label="更新"
               loading={loading.updateMusic}
+              disabled={loading.uploadSoundFile || loading.uploadOffVocalFile}
               icon="upload"
             />
           </div>

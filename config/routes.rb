@@ -20,6 +20,9 @@ Rails.application.routes.draw do
   namespace :admin, constraints: OnlyAjaxRequest.new do
     resources :articles, except: [:new, :edit]
     resources :musics
+    namespace :uploads do
+      resource :sound, only: [:create]
+    end
   end
 
   get "/admin",       to: "admin#show"

@@ -5,6 +5,7 @@ import { browserHistory } from 'react-router'
 
 import InputField from '../../common/form/InputField'
 import TextareaField from '../../common/form/TextareaField'
+import FileUploadField from '../../common/form/FileUploadField'
 import Button from '../../common/form/Button'
 import DestroyModal from './DestroyModal'
 import validate from '../../NewMusic/NewMusicForm/validate'
@@ -23,8 +24,22 @@ class EditMusicForm extends Component {
 
         <Field component={InputField} name="title" label="作品名" />
         <Field component={TextareaField} name="lyrics" label="歌詞" />
-        <Field component={InputField} name="sound_file" label="ファイル" />
-        <Field component={InputField} name="off_vocal_file" label="オフボーカル" />
+        <Field
+          component={FileUploadField}
+          name="sound_file"
+          label="ファイル"
+          fileType="sound"
+          loading={loading.uploadSoundFile}
+          handleOnDrop={actions.uploadFile}
+        />
+        <Field
+          component={FileUploadField}
+          name="off_vocal_file"
+          label="オフボーカル"
+          fileType="sound"
+          loading={loading.uploadOffVocalFile}
+          handleOnDrop={actions.uploadFile}
+        />
 
         <div className="field is-grouped with-button">
           <div className="control">
@@ -32,6 +47,7 @@ class EditMusicForm extends Component {
               type="submit"
               label="更新"
               loading={loading.updateMusic}
+              disabled={loading.uploadSoundFile || loading.uploadOffVocalFile}
               icon="upload"
             />
           </div>
@@ -66,8 +82,14 @@ const mapStateToProps = (state) => {
     initialValues: music ? {
       title:          music.title,
       lyrics:         music.lyrics,
-      sound_file:     music.sound_file,
-      off_vocal_file: music.off_vocal_file
+      sound_file: {
+        id: "",
+        url: music.sound_file_url
+      },
+      off_vocal_file: {
+        id: "",
+        url: music.off_vocal_file_url
+      }
     } : {}
   }
 }

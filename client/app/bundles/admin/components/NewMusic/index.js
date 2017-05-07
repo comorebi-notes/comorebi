@@ -5,7 +5,7 @@ import NewMusicForm from './NewMusicForm'
 class NewMusic extends Component {
   componentDidMount() {
     const { actions } = this.props
-    actions.getAllMusicsAsync()
+    actions.getWorksAsync("music", "createMusic")
   }
   render() {
     const { actions, loading } = this.props

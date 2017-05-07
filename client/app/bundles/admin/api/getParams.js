@@ -11,6 +11,12 @@ export const updateAdmin = (data) => {
   }
 }
 
+const getFileId = (file) => {
+  if (file.url && file.id === "") return false // 変更なし
+  if (!file.url) return 0 // ファイル削除
+  return file.id
+}
+
 export const updateWork = {
   article: (data) => {
     const { title, description, status, categories, tags, published_date, published_time, work_ids } = data
@@ -32,7 +38,13 @@ export const updateWork = {
     })
     return params
   },
-  music: (data) => ({ music: { ...data } })
+  music: (data) => {
+    const { title, lyrics, sound_file, off_vocal_file } = data
+    const params = { music: { title, lyrics } }
+    if (getFileId(sound_file) !== false)     params.music.sound_file_id     = getFileId(sound_file)
+    if (getFileId(off_vocal_file) !== false) params.music.off_vocal_file_id = getFileId(off_vocal_file)
+    return params
+  }
 }
 
 export const createWork = updateWork

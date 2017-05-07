@@ -59,7 +59,7 @@ export default handleActions({
     }),
     throw: (state, action) => ({
       ...state,
-      errors: action.payload.response.data.errors
+      errors: action.payload.response.data
     })
   },
   CREATE_WORK_REQUEST: {
@@ -69,7 +69,7 @@ export default handleActions({
     }),
     throw: (state, action) => ({
       ...state,
-      errors: action.payload.response.data.errors
+      errors: action.payload.response.data
     })
   },
   DESTROY_WORK_REQUEST: {
@@ -79,7 +79,7 @@ export default handleActions({
     }),
     throw: (state, action) => ({
       ...state,
-      errors: action.payload.response.data.errors
+      errors: action.payload.response.data
     })
   },
   CLEAR_INITIAL_NOTIFICATION: (state) => ({

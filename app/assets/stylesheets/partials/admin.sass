@@ -18,11 +18,15 @@
     .is-danger
       label, .icon i
         color: $danger
-      input, select, textarea
+      input, select, textarea, button
         color: $danger
         border-color: $danger
   mark
     background-color: #fe6
+  audio
+    display: block
+    margin-top: 3em
+    width: 100%
   .notifications-wrapper
     strong
       color: white
@@ -41,6 +45,12 @@
       animation: modal-in .3s ease 0s 1 forwards
     .modal-card-foot
       justify-content: flex-end
+  .flat-error-field
+    margin-top: .5em
+    display: flex
+    align-items: center
+    .help
+      margin-top: 0
 
   .tab-menu
     padding-bottom: 2em
@@ -196,6 +206,18 @@
       .card
         opacity: 0
         animation: fadein .5s ease 0s 1 forwards
+  .dropzone
+    display: inline-block
+  .dropzone-progress
+    margin-top: .5em
+    display: flex
+    align-items: center
+    .progress
+      width: initial
+      flex-grow: 1
+      margin: 0
+    span
+      margin-left: .5em
 
   @media screen and (max-width: $tablet)
     .section

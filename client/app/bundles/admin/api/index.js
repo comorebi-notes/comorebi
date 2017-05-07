@@ -33,3 +33,23 @@ export const createWorkRequest = (target, data) => {
 export const destroyWorkRequest = (target, id) => (
   axios.delete(`/admin/${target}s/${id}`, config)
 )
+
+// ============================================= UPLOAD
+const configWithUploadProgress = (target) => ({
+  ...config,
+  targetField: target,
+  onUploadProgress: (progressEvent) => {
+    const progressBar  = document.getElementById(`progress-bar-${target}`)
+    const progressText = document.getElementById(`progress-text-${target}`)
+    if (progressBar) {
+      const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total)
+      progressBar.value      = percentCompleted
+      progressBar.innerHTML  = `${percentCompleted} %`
+      progressText.innerHTML = `${percentCompleted} %`
+    }
+  }
+})
+
+export const uploadFileRequest = (file, fileType, target) => (
+  axios.post(`/admin/uploads/${fileType}`, file, configWithUploadProgress(target))
+)

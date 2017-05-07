@@ -71,7 +71,7 @@ export const updateWorkSubmit = () => async (dispatch, getState) => {
   await dispatch(updateWorkRequest(target, formData, id))
   dispatch(complete(loadingTarget))
 
-  afterRequest(dispatch, 'update', `${target}s`, state.main.errors, formData.title)
+  afterRequest(dispatch, 'update', `${target}s`, getState().main.errors, formData.title)
 }
 
 // ============================================= CREATE
@@ -86,7 +86,7 @@ export const createWorkSubmit = () => async (dispatch, getState) => {
   await dispatch(createWorkRequest(target, formData))
   dispatch(complete(loadingTarget))
 
-  afterRequest(dispatch, 'create', `${target}s`, state.main.errors, formData.title)
+  afterRequest(dispatch, 'create', `${target}s`, getState().main.errors, formData.title)
 }
 
 // ============================================= DESTROY
@@ -102,7 +102,7 @@ export const destroyWorkSubmit = () => async (dispatch, getState) => {
   await dispatch(destroyWorkRequest(target, id))
   dispatch(complete(loadingTarget))
 
-  afterRequest(dispatch, 'destroy', `${target}s`, state.main.errors, formData.title)
+  afterRequest(dispatch, 'destroy', `${target}s`, getState().main.errors, formData.title)
 }
 
 // ============================================= UPLOAD

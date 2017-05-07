@@ -12,7 +12,7 @@ const InputField = ({ input, type, label, placeholder, children, meta: { touched
       <div className="control has-icon has-icon-right">
         <input {...input} type={inputType} className="input" placeholder={placeholder} />
         {children}
-        {isError && <ErrorField error={error} /> }
+        {isError && <ErrorField error={error} />}
       </div>
     </div>
   )

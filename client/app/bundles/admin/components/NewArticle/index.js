@@ -3,6 +3,10 @@ import React, { Component } from 'react'
 import NewArticleForm from './NewArticleForm'
 
 class NewArticle extends Component {
+  componentDidMount() {
+    const { actions } = this.props
+    actions.getWorksAsync("article", "createArticle")
+  }
   render() {
     const { actions, loading } = this.props
     return (

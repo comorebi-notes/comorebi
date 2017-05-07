@@ -3,6 +3,10 @@ import React, { Component } from 'react'
 import NewMusicForm from './NewMusicForm'
 
 class NewMusic extends Component {
+  componentDidMount() {
+    const { actions } = this.props
+    actions.getWorksAsync("music", "createMusic")
+  }
   render() {
     const { actions, loading } = this.props
     return (

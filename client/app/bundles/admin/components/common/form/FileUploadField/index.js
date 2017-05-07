@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import Dropzone from 'react-dropzone'
 import FormData from 'form-data'
+import classNames from 'classnames'
 
 import Button from '../Button'
+import ErrorField from '../ErrorField'
 
 class FileUploadField extends Component {
   constructor() {
@@ -14,19 +16,21 @@ class FileUploadField extends Component {
     const { fileType, input: { name } } = this.props
     const data = new FormData()
     data.append("file", files[0])
+    this.props.input.onChange({})
     this.props.handleOnDrop(data, fileType, name)
   }
   handleDelete() {
     this.props.input.onChange({})
   }
   render() {
-    const { input, label, loading, fileType } = this.props
+    const { input, label, loading, fileType, meta: { touched, error } } = this.props
+    const isError = touched && error
     const mimeTypes = {
       image: "image/jpeg, image/png, image/gif",
       sound: "audio/mp3"
     }
     return (
-      <div>
+      <div className={classNames({ 'is-danger': isError })}>
         <label htmlFor={input.name} className="label">{label}</label>
         <div className="control">
           {input.value.url ? (
@@ -58,6 +62,7 @@ class FileUploadField extends Component {
               />
             </Dropzone>
           )}
+          {isError && <ErrorField error={error} className="flat-error-field" />}
           {loading && (
             <div className="dropzone-progress">
               <progress

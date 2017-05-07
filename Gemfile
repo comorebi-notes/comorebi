@@ -43,6 +43,9 @@ gem 'acts-as-taggable-on'
 gem 'carrierwave'
 gem 'fog-aws'
 
+# for environment variables
+gem 'dotenv-rails'
+
 group :development, :test do
   gem 'awesome_print'
   gem 'bullet'

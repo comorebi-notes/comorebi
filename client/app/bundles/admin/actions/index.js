@@ -9,12 +9,26 @@ import messages from '../constants/messages'
 import * as api from '../api'
 import * as utils from '../utils'
 
-const rootPath = "/admin"
+const rootPath = '/admin'
+const status = (errors) => (errors ? 'error' : 'success')
+const loadingTargetName = (actionType, target) => (
+  `${actionType}${target.charAt(0).toUpperCase() + target.slice(1)}`
+)
+const afterRequest = (dispatch, actionType, target, errors, messageData) => {
+  const nextPath = target === 'admin' ? rootPath : `${rootPath}/${target}`
+  dispatch(setNotifications(messages(actionType, target, status(errors), messageData)))
+  if (status(errors) === 'success') {
+    dispatch(push(nextPath))
+  } else {
+    throw new SubmissionError(errors)
+  }
+}
 
 // ============================================= Simple Actions
 export const loading  = createAction('LOADING')
 export const complete = createAction('COMPLETE')
-export const addTag   = createAction('ADD_TAG')
+export const toggleModal = createAction('TOGGLE_MODAL')
+export const addTag = createAction('ADD_TAG')
 export const clearInitialNotification = createAction('CLEAR_INITIAL_NOTIFICATION')
 
 // ============================================= Filters
@@ -26,11 +40,12 @@ export const changePage                = createAction('CHANGE_PAGE')
 export const clearFilters              = createAction('CLEAR_FILTERS')
 
 // ============================================= GET
-export const getAllWorks = createAction('GET_ALL_WORKS', api.getAllWorks)
-export const getAllWorksAsync = (target) => async (dispatch) => {
-  dispatch(loading(target))
-  await dispatch(getAllWorks())
-  dispatch(complete(target))
+export const getWorks = createAction('GET_WORKS', api.getWorks)
+export const getWorksAsync = (target, action) => async (dispatch) => {
+  const loadingTarget = action || `${loadingTargetName('get', target)}s`
+  dispatch(loading(loadingTarget))
+  await dispatch(getWorks(target))
+  dispatch(complete(loadingTarget))
 }
 
 // ============================================= UPDATE
@@ -43,75 +58,51 @@ export const updateAdminSubmit = () => async (dispatch, getState) => {
   await dispatch(updateAdminRequest(formData))
   dispatch(complete(loadingTarget))
 
-  const errors = getState().main.errors
-  if (errors === '') {
-    dispatch(setNotifications(messages.updateAdmin.success()))
-  } else {
-    dispatch(setNotifications(messages.updateAdmin.error()))
-    throw new SubmissionError(errors)
-  }
+  afterRequest(dispatch, 'update', 'admin', getState().main.errors, formData.title)
 }
 
 export const updateWorkRequest = createAction('UPDATE_WORK_REQUEST', api.updateWorkRequest)
 export const updateWorkSubmit = () => async (dispatch, getState) => {
   const state = getState()
-  const formData = getFormValues('work')(state) || {}
+  const target = Object.keys(state.form)[0]
+  const formData = getFormValues(target)(state) || {}
   const id = utils.getId(state.routing.locationBeforeTransitions.pathname)
-  const loadingTarget = 'updateWork'
+  const loadingTarget = loadingTargetName('update', target)
 
   dispatch(loading(loadingTarget))
-  await dispatch(updateWorkRequest(formData, id))
+  await dispatch(updateWorkRequest(target, formData, id))
   dispatch(complete(loadingTarget))
 
-  const errors = getState().main.errors
-  if (errors === '') {
-    dispatch(setNotifications(messages.updateWork.success(formData.title)))
-    dispatch(push(rootPath))
-  } else {
-    dispatch(setNotifications(messages.updateWork.error(formData.title)))
-    throw new SubmissionError(errors)
-  }
+  afterRequest(dispatch, 'update', `${target}s`, state.main.errors, formData.title)
 }
 
 // ============================================= CREATE
 export const createWorkRequest = createAction('CREATE_WORK_REQUEST', api.createWorkRequest)
 export const createWorkSubmit = () => async (dispatch, getState) => {
   const state = getState()
-  const formData = getFormValues('work')(state) || {}
-  const loadingTarget = 'createWork'
+  const target = Object.keys(state.form)[0]
+  const formData = getFormValues(target)(state) || {}
+  const loadingTarget = loadingTargetName('create', target)
 
   dispatch(loading(loadingTarget))
-  await dispatch(createWorkRequest(formData))
+  await dispatch(createWorkRequest(target, formData))
   dispatch(complete(loadingTarget))
 
-  const errors = getState().main.errors
-  if (errors === '') {
-    dispatch(setNotifications(messages.createWork.success(formData.title)))
-    dispatch(push(rootPath))
-  } else {
-    dispatch(setNotifications(messages.createWork.error(formData.title)))
-    throw new SubmissionError(errors)
-  }
+  afterRequest(dispatch, 'create', `${target}s`, state.main.errors, formData.title)
 }
 
 // ============================================= DESTROY
 export const destroyWorkRequest = createAction('DESTROY_WORK_REQUEST', api.destroyWorkRequest)
 export const destroyWorkSubmit = () => async (dispatch, getState) => {
   const state = getState()
-  const formData = getFormValues('work')(state) || {}
+  const target = Object.keys(state.form)[0]
+  const formData = getFormValues(target)(state) || {}
   const id = utils.getId(state.routing.locationBeforeTransitions.pathname)
-  const loadingTarget = 'destroyWork'
+  const loadingTarget = loadingTargetName('destroy', target)
 
   dispatch(loading(loadingTarget))
-  await dispatch(destroyWorkRequest(id))
+  await dispatch(destroyWorkRequest(target, id))
   dispatch(complete(loadingTarget))
 
-  const errors = getState().main.errors
-  if (errors === '') {
-    dispatch(setNotifications(messages.destroyWork.success(formData.title)))
-    dispatch(push(rootPath))
-  } else {
-    dispatch(setNotifications(messages.destroyWork.error(formData.title)))
-    throw new SubmissionError(errors)
-  }
+  afterRequest(dispatch, 'destroy', `${target}s`, state.main.errors, formData.title)
 }

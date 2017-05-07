@@ -29,7 +29,7 @@ class EditAdmin extends Component {
 }
 
 const mapStateToProps = state => ({
-  loading: state.main.loading.updateAdmin
+  loading: state.loading.updateAdmin
 })
 
 const mapDispatchToProps = dispatch => ({

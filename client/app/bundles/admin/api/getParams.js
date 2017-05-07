@@ -11,25 +11,28 @@ export const updateAdmin = (data) => {
   }
 }
 
-export const updateWork = (data) => {
-  const { title, description, status, categories, tags, published_date, published_time, item_ids } = data
-  const params = {
-    work: {
-      title,
-      description,
-      status,
-      category_list: categories,
-      tag_list: tags
+export const updateWork = {
+  article: (data) => {
+    const { title, description, status, categories, tags, published_date, published_time, work_ids } = data
+    const params = {
+      article: {
+        title,
+        description,
+        status,
+        category_list: categories,
+        tag_list: tags
+      }
     }
-  }
-  const itemIds = item_ids || {}
-  if (published_date && published_time) {
-    params.work.published_at = `${published_date}T${published_time}`
-  }
-  Object.assign(params.work, {
-    music_ids: itemIds.musics
-  })
-  return params
+    const workIds = work_ids || {}
+    if (published_date && published_time) {
+      params.article.published_at = `${published_date}T${published_time}`
+    }
+    Object.assign(params.article, {
+      music_ids: workIds.musics
+    })
+    return params
+  },
+  music: (data) => ({ music: { ...data } })
 }
 
-export const createWork = (data) => updateWork(data)
+export const createWork = updateWork

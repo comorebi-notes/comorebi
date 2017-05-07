@@ -1,8 +1,13 @@
 import React, { PureComponent } from 'react'
 import { browserHistory } from 'react-router'
-import Highlighter from 'react-highlight-words'
 
-import * as utils from '../../../utils'
+import Thumbnail from './Columns/Thumbnail'
+import Id from './Columns/Id'
+import Title from './Columns/Title'
+import Categories from './Columns/Categories'
+import Status from './Columns/Status'
+import PublishedAt from './Columns/PublishedAt'
+import Lyrics from './Columns/Lyrics'
 
 class WorksTableRow extends PureComponent {
   constructor() {
@@ -11,49 +16,31 @@ class WorksTableRow extends PureComponent {
     this.changeCategories = this.changeCategories.bind(this)
   }
   handleClickRow() {
-    browserHistory.push(`/admin/works/${this.props.work.id}`)
+    const { type, work } = this.props
+    browserHistory.push(`/admin/${type}/${work.id}`)
   }
   changeCategories(e) {
     this.props.actions.addFilteringCategories(e.target.firstChild.data)
     e.stopPropagation()
   }
   render () {
-    const { work, filters } = this.props
-    const { id, title, categories, status, images, published_at } = work
-    const image = images ? images[0] : null
+    const { filters, columns,
+      work: { id, title, categories, status, images, published_at, lyrics, credit }
+    } = this.props
+    const columnItems = {
+      thumbnail:    <Thumbnail image={images} />,
+      id:           <Id id={id} />,
+      title:        <Title title={title} filters={filters} />,
+      categories:   <Categories categories={categories} handleClick={this.changeCategories} />,
+      status:       <Status status={status} />,
+      published_at: <PublishedAt published_at={published_at} />,
+      lyrics:       <Lyrics lyrics={lyrics} filters={filters} />,
+    }
     return (
       <tr className={status} onClick={this.handleClickRow}>
-        <td className="thumbnail">
-          <figure className="image thumbnail is-1by1">
-            {image ? (
-              <img src={image.url} alt={image.title} />
-            ) : (
-              <img src="http://bulma.io/images/placeholders/1280x960.png" alt="dummy" />
-            )}
-          </figure>
-        </td>
-        <th className="id">{id}</th>
-        <td className="works-title">
-          {filters && filters.words ? (
-            <Highlighter
-              searchWords={utils.splitFilteringWords(filters.words)}
-              textToHighlight={title}
-            />
-          ) : title}
-        </td>
-        <td className="category is-hidden-mobile">
-          {categories.map((category) => (
-            <span
-              className="tag can-click is-info"
-              onClick={this.changeCategories}
-              key={category}
-            >
-              {category}
-            </span>
-          ))}
-        </td>
-        <td className="status is-hidden-mobile">{utils.publishStatusIcon(status)}</td>
-        <td className="published_at">{utils.humanDateTime(published_at)}</td>
+        {columns.map((column) => (
+          React.cloneElement(columnItems[column.name], { key: column.name }))
+        )}
       </tr>
     )
   }

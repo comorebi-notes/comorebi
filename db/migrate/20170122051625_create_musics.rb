@@ -3,7 +3,8 @@ class CreateMusics < ActiveRecord::Migration[5.0]
     create_table :musics do |t|
       t.string :title, null: false
       t.text :lyrics
-      t.text :sound_file
+      t.string :sound_file, null: false
+      t.string :off_vocal_file
 
       t.timestamps
     end

@@ -5,11 +5,13 @@ import { reducer as notifications } from 'react-notification-system-redux'
 
 import main from './main'
 import filters from './filters'
+import loading from './loading'
 
 export default combineReducers({
   routing,
   form: formReducer,
   main,
   filters,
+  loading,
   notifications
 })

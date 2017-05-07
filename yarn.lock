@@ -237,6 +237,10 @@ autoprefixer@^6.3.1:
     postcss "^5.2.16"
     postcss-value-parser "^3.2.3"
 
+autosize@^3.0.15:
+  version "3.0.20"
+  resolved "https://registry.yarnpkg.com/autosize/-/autosize-3.0.20.tgz#e343ea7c5603834738169420f0349dc953e62a9e"
+
 aws-sign2@~0.6.0:
   version "0.6.0"
   resolved "https://registry.yarnpkg.com/aws-sign2/-/aws-sign2-0.6.0.tgz#14342dd38dbcc94d0e5b87d763cd63612c0e794f"
@@ -4215,6 +4219,13 @@ react-addons-css-transition-group@~15.4:
   dependencies:
     fbjs "^0.8.4"
     object-assign "^4.1.0"
+
+react-autosize-textarea@^0.4.3:
+  version "0.4.3"
+  resolved "https://registry.yarnpkg.com/react-autosize-textarea/-/react-autosize-textarea-0.4.3.tgz#71aa029a1278352dc805841fea880223cb99737a"
+  dependencies:
+    autosize "^3.0.15"
+    prop-types "^15.5.6"
 
 react-autosuggest@^9.0.0:
   version "9.0.1"

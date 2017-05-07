@@ -9,23 +9,27 @@ const config = {
   }
 }
 
-export const getAllWorks = () => axios.get("/admin/works", {}, config)
+// ============================================= GET
+export const getWorks = (target) => axios.get(`/admin/${target}s`,  {}, config)
 
+// ============================================= UPDATE
 export const updateAdminRequest = (data) => {
   const params = getParams.updateAdmin(data)
   return axios.put("/admin", params, config)
 }
 
-export const updateWorkRequest = (data, id) => {
-  const params = getParams.updateWork(data)
-  return axios.put(`/admin/works/${id}`, params, config)
+export const updateWorkRequest = (target, data, id) => {
+  const params = getParams.updateWork[target](data)
+  return axios.put(`/admin/${target}s/${id}`, params, config)
 }
 
-export const createWorkRequest = (data) => {
-  const params = getParams.createWork(data)
-  return axios.post("/admin/works", params, config)
+// ============================================= CREATE
+export const createWorkRequest = (target, data) => {
+  const params = getParams.createWork[target](data)
+  return axios.post(`/admin/${target}s`, params, config)
 }
 
-export const destroyWorkRequest = (id) => (
-  axios.delete(`/admin/works/${id}`, config)
+// ============================================= DESTROY
+export const destroyWorkRequest = (target, id) => (
+  axios.delete(`/admin/${target}s/${id}`, config)
 )

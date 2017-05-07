@@ -20,10 +20,10 @@ class Admin extends Component {
     }
   }
   render() {
-    const { children, currentPath, currentAdmin, notifications } = this.props
+    const { children, actions, path, works, currentAdmin, notifications } = this.props
     return (
       <div className="hero is-fullheight">
-        <Helmet title={pageTitle(currentPath)} />
+        <Helmet title={pageTitle(path)} />
         <Notifications notifications={notifications} />
 
         <Header admin={currentAdmin} />
@@ -36,7 +36,12 @@ class Admin extends Component {
               transitionEnterTimeout={300}
               transitionLeaveTimeout={300}
             >
-              {children && React.cloneElement(children, { key: currentPath })}
+              {children && React.cloneElement(children, {
+                key: path,
+                actions,
+                path,
+                works
+              })}
             </ReactCSSTransitionGroup>
           </div>
         </section>
@@ -47,10 +52,16 @@ class Admin extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  currentPath: state.routing.locationBeforeTransitions.pathname,
+  path: state.routing.locationBeforeTransitions.pathname,
   currentAdmin: state.main.currentAdmin,
   initialNotification: state.main.initialNotification,
-  notifications: state.notifications
+  notifications: state.notifications,
+  works: {
+    articles: state.main.articles,
+    musics: state.main.musics,
+    loading: state.loading,
+    filters: state.filters
+  }
 })
 
 const mapDispatchToProps = (dispatch) => ({

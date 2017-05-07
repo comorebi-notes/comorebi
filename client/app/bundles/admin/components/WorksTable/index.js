@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 
-import WorksTableCaptions from './WorksTableCaptions'
 import WorksTableRow from './WorksTableRow'
-import tableLabel from '../../constants/tableLabel'
+import TableCaptions from './TableCaptions'
+import tableColumns from '../../constants/tableColumns'
 
 class WorksTable extends Component {
   render () {
-    const { works, filters, actions } = this.props
-    const captions = <WorksTableCaptions columns={tableLabel} />
+    const { type, works, filters, actions } = this.props
+    const captions = <TableCaptions columns={tableColumns[type]} />
     return (
       <table className="table works with-thumbnail">
         <thead>{captions}</thead>
@@ -15,6 +15,8 @@ class WorksTable extends Component {
           {works && works.map((work) => (
             <WorksTableRow
               work={work}
+              type={type}
+              columns={tableColumns[type]}
               filters={filters}
               actions={actions}
               key={work.id}

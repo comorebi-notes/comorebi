@@ -30,7 +30,7 @@ class MultiselectField extends Component {
         <div className={classNames("control", input.name)}>
           <Multiselect
             {...input}
-            onBlur={() => input.onBlur()}
+            onBlur={() => input.onBlur(input.value)}
             onCreate={this.handleCreate}
             value={input.value || []}
             data={data}

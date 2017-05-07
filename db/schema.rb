@@ -31,12 +31,32 @@ ActiveRecord::Schema.define(version: 20170122051657) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true, using: :btree
   end
 
+  create_table "article_musics", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "article_id"
+    t.integer  "music_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["article_id", "music_id"], name: "index_article_musics_on_article_id_and_music_id", using: :btree
+    t.index ["article_id"], name: "index_article_musics_on_article_id", using: :btree
+    t.index ["music_id"], name: "index_article_musics_on_music_id", using: :btree
+  end
+
+  create_table "articles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "title",                                  null: false
+    t.text     "description",  limit: 65535
+    t.integer  "status",                     default: 0, null: false
+    t.datetime "published_at",                           null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+  end
+
   create_table "musics", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "title",                    null: false
-    t.text     "lyrics",     limit: 65535
-    t.text     "sound_file", limit: 65535
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.string   "title",                        null: false
+    t.text     "lyrics",         limit: 65535
+    t.string   "sound_file",                   null: false
+    t.string   "off_vocal_file"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
   end
 
   create_table "taggings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -64,25 +84,6 @@ ActiveRecord::Schema.define(version: 20170122051657) do
     t.index ["name"], name: "index_tags_on_name", unique: true, using: :btree
   end
 
-  create_table "work_musics", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "work_id"
-    t.integer  "music_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["music_id"], name: "index_work_musics_on_music_id", using: :btree
-    t.index ["work_id", "music_id"], name: "index_work_musics_on_work_id_and_music_id", using: :btree
-    t.index ["work_id"], name: "index_work_musics_on_work_id", using: :btree
-  end
-
-  create_table "works", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "title",                                  null: false
-    t.text     "description",  limit: 65535
-    t.integer  "status",                     default: 0, null: false
-    t.datetime "published_at",                           null: false
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
-  end
-
-  add_foreign_key "work_musics", "musics"
-  add_foreign_key "work_musics", "works"
+  add_foreign_key "article_musics", "articles"
+  add_foreign_key "article_musics", "musics"
 end

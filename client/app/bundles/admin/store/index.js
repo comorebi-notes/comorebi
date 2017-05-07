@@ -24,7 +24,7 @@ if (isDev) {
 const composeEnhancers = (isDev && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose
 const createStoreWithMiddleware = composeEnhancers(applyMiddleware(...middlewares))(createStore)
 
-export default function configure(initialState) {
+const configure = (initialState) => {
   const store = createStoreWithMiddleware(rootReducer, { ...initialState })
 
   if (module.hot) {
@@ -37,3 +37,5 @@ export default function configure(initialState) {
 
   return store
 }
+
+export default configure

@@ -1,5 +1,6 @@
 import React from 'react'
 import classNames from 'classnames'
+import TextareaAutosize from 'react-autosize-textarea'
 import remark from 'remark'
 import reactRenderer from 'remark-react'
 
@@ -11,7 +12,13 @@ const TextareaField = ({ input, label, placeholder, children, meta: { touched, e
     <div className={classNames({ 'is-danger': isError })}>
       <label htmlFor={input.name} className="label">{label}</label>
       <div className="control has-icon has-icon-right">
-        <textarea {...input} className="textarea" placeholder={placeholder} />
+        <TextareaAutosize
+          {...input}
+          className="textarea"
+          placeholder={placeholder}
+          maxRows={25}
+          style={{ fontSize: '.9em', lineHeight: 1.7 }}
+        />
         {false && (
           <div id="preview">
             {remark().use(reactRenderer).processSync(input.value).contents}

@@ -1,11 +1,9 @@
 #admin-container
+  font-family: 'Roboto', 'Noto Sans Japanese', serif
   overflow: hidden
   header
     .button
       height: 2.285em
-    .nav-item.is-active
-      font-weight: bold
-      border-bottom-color: $info
   footer.footer.is-admin
     background-color: #52402a
     z-index: 1
@@ -33,19 +31,19 @@
     // transition: opacity .2s ease-in-out
     &:hover
       opacity: .7
+  .modal-wrapper
+    animation: modal-wrapper 0s ease 0.5s 1 forwards
   .modal
+    display: flex
+    &:not(.is-active)
+      animation: modal-out .3s ease 0s 1 forwards
+    &.is-active
+      animation: modal-in .3s ease 0s 1 forwards
     .modal-card-foot
       justify-content: flex-end
-  .pagination
-    margin: 1em 0
 
   .tab-menu
-    position: relative
-    .subtitle
-      position: absolute
-      right: 0
-      bottom: .5em
-      margin: 0
+    padding-bottom: 2em
     .tabs
       li:not(.is-active)
         a
@@ -53,7 +51,16 @@
       ul
         border-bottom: 1px solid #dbdbdb
   .works-util-bar
-    margin: 1em 0 2em 0
+    .level-left
+      display: flex
+    margin-bottom: 2em
+    .level
+      margin-bottom: 0
+    .tags
+      margin-top: .8em
+      margin-bottom: .2em
+    .subtitle
+      margin: 0
     label
       transition: all .2s ease-in-out
       &.checked
@@ -66,8 +73,6 @@
       input[type=radio]
         display: none
   table.with-thumbnail
-    th:first-child
-      width: 60px
     th, td
       vertical-align: middle
     figure
@@ -77,14 +82,41 @@
         padding: 0
   table.works
     td, th
-      // &.thumbnail
+      &.thumbnail
+        width: 4.5em
       &.id
+        width: 3.5em
         text-align: center
-      // &.works-title
-      // &.category
+      &.works-title
+        min-width: 220px
       &.status
+        width: 4em
         text-align: center
-      // &.published_at
+      &.published_at
+        width: 7em
+      &.lyrics
+        font-size: .9em
+        p
+          line-height: 1.5em
+          height: 2.8em
+          position: relative
+          // padding-right: 1em
+          overflow: hidden
+          // &:before
+          //   content: "…"
+          //   position: absolute
+          //   right: 0
+          //   bottom: 0
+          //   display: inline-block
+          //   width: 1em
+          // &:after
+          //   content: ""
+          //   position: relative
+          //   right: -1em
+          //   float: right
+          //   width: 1em
+          //   height: 100%
+          //   background-color: white
     .tag
       font-size: 12px
       margin: .2em
@@ -135,7 +167,7 @@
         margin-right: .4em
     input
       display: none
-  .select-work-item
+  .select-work
     .box
       position: absolute
       width: 100%
@@ -170,6 +202,18 @@
       padding: 1.5rem
     table.works
       font-size: .9rem
+      td, th
+        &.id
+          width: 2.5em
+        &.works-title
+          min-width: 100px
+    .tab-menu
+      ul
+        justify-content: space-between
+        li
+          flex-grow: 1
+      .icon
+        margin-right: 0
     .select-status
       .field > *
         flex-grow: 1
@@ -179,3 +223,29 @@
 @keyframes fadein
   100%
     opacity: 1
+
+@keyframes modal-wrapper
+  0%
+    transform: scale(0, 0)
+  99%
+    transform: scale(0, 0)
+  100%
+    transform: none
+
+@keyframes modal-in
+  0%
+    opacity: 0
+    z-index: -1
+  100%
+    opacity: 1
+    z-index: 1986
+
+@keyframes modal-out
+  0%
+    opacity: 1
+  99%
+    opacity: 0
+    z-index: 1
+  100%
+    opacity: 0
+    z-index: -1

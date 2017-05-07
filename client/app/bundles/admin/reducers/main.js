@@ -11,7 +11,8 @@ export const initialState = {
   loading: {},
   errors: '',
   modal: false,
-  works: '',
+  articles: [],
+  musics: [],
   currentAdmin,
   initialNotification
 }
@@ -25,20 +26,21 @@ export default handleActions({
     ...state,
     loading: { [action.payload]: false }
   }),
-  GET_ALL_WORKS: (state, action) => {
-    const data = action.payload.data
+  TOGGLE_MODAL: (state, action) => {
+    const result = action.payload
     return {
       ...state,
-      works:      data.works,
-      musics:     data.musics,
-      categories: data.categories,
-      tags:       data.tags
+      modal: typeof result === 'boolean' ? result : !state.modal
     }
   },
   ADD_TAG: (state, action) => {
     state[action.payload.target].push(action.payload.name)
     return { ...state }
   },
+  GET_WORKS: (state, action) => ({
+    ...state,
+    ...action.payload.data
+  }),
   UPDATE_ADMIN_REQUEST: {
     next: (state, action) => ({
       ...state,

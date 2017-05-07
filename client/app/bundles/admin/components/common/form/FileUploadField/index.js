@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Dropzone from 'react-dropzone'
+import ReactAudioPlayer from 'react-audio-player'
 import FormData from 'form-data'
 import classNames from 'classnames'
 
@@ -50,6 +51,7 @@ class FileUploadField extends Component {
                     />
                   </div>
                 </div>
+                <ReactAudioPlayer src={input.value.url} />
               </div>
             </article>
           ) : (

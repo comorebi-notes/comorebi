@@ -4224,6 +4224,10 @@ react-addons-css-transition-group@~15.4:
     fbjs "^0.8.4"
     object-assign "^4.1.0"
 
+react-audio-player@^0.4.1:
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/react-audio-player/-/react-audio-player-0.4.1.tgz#31b61e3d13380eea03195df34808813b204b4f4d"
+
 react-autosize-textarea@^0.4.3:
   version "0.4.3"
   resolved "https://registry.yarnpkg.com/react-autosize-textarea/-/react-autosize-textarea-0.4.3.tgz#71aa029a1278352dc805841fea880223cb99737a"

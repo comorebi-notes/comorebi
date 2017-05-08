@@ -4,18 +4,33 @@ import { browserHistory } from 'react-router'
 
 import InputField from '../../common/form/InputField'
 import TextareaField from '../../common/form/TextareaField'
+import FileUploadField from '../../common/form/FileUploadField'
 import Button from '../../common/form/Button'
 import validate from './validate'
 
 class NewMusicForm extends Component {
   render() {
-    const { loading, handleSubmit } = this.props
+    const { actions, loading, handleSubmit } = this.props
     return (
       <form onSubmit={handleSubmit}>
         <Field component={InputField} name="title" label="作品名" />
         <Field component={TextareaField} name="lyrics" label="歌詞" />
-        <Field component={InputField} name="sound_file" label="ファイル" />
-        <Field component={InputField} name="off_vocal_file" label="オフボーカル" />
+        <Field
+          component={FileUploadField}
+          name="sound_file"
+          label="ファイル"
+          fileType="sound"
+          loading={loading.uploadSoundFile}
+          handleOnDrop={actions.uploadFile}
+        />
+        <Field
+          component={FileUploadField}
+          name="off_vocal_file"
+          label="オフボーカル"
+          fileType="sound"
+          loading={loading.uploadOffVocalFile}
+          handleOnDrop={actions.uploadFile}
+        />
 
         <div className="field is-grouped with-button">
           <div className="control">

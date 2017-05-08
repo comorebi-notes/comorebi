@@ -55,7 +55,7 @@ class FileUploadField extends Component {
               </div>
             </article>
           ) : (
-            <Dropzone onDrop={this.handleOnDrop} className="dropzone">
+            <Dropzone onDrop={this.handleOnDrop} accept={mimeTypes[fileType]} className="dropzone">
               <Button
                 color="default"
                 icon="cloud-upload"
@@ -70,7 +70,6 @@ class FileUploadField extends Component {
               <progress
                 className="progress is-info"
                 id={`progress-bar-${input.name}`}
-                accept={false && mimeTypes[fileType]}
                 value="0"
                 max="100"
               />

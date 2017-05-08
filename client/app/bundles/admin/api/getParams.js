@@ -12,7 +12,7 @@ export const updateAdmin = (data) => {
 }
 
 const getFileId = (file) => {
-  if (file.url && file.id === "") return false // 変更なし
+  if (!file || (file.url && file.id === "")) return false // 変更なし
   if (!file.url) return 0 // ファイル削除
   return file.id
 }

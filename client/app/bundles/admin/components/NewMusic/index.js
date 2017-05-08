@@ -19,7 +19,7 @@ class NewMusic extends Component {
         </h2>
         <NewMusicForm
           actions={actions}
-          loading={loading.createMusic}
+          loading={loading}
           onSubmit={actions.createWorkSubmit}
         />
       </div>

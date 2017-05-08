@@ -37,7 +37,8 @@ class NewMusicForm extends Component {
             <Button
               type="submit"
               label="作成"
-              loading={loading}
+              loading={loading.createMusic}
+              disabled={loading.uploadSoundFile || loading.uploadOffVocalFile}
               icon="plus-circle"
             />
           </div>

@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import Dropzone from 'react-dropzone'
-import ReactAudioPlayer from 'react-audio-player'
 import FormData from 'form-data'
 import classNames from 'classnames'
 
+import SoundCard from '../../Card/SoundCard'
 import Button from '../Button'
 import ErrorField from '../ErrorField'
 
@@ -35,25 +35,7 @@ class FileUploadField extends Component {
         <label htmlFor={input.name} className="label">{label}</label>
         <div className="control">
           {input.value.url ? (
-            <article className="card">
-              <div className="card-content">
-                <div className="media">
-                  <div className="media-content">
-                    <div className="content">
-                      <strong>{decodeURI(input.value.url.split("/").pop())}</strong>
-                    </div>
-                  </div>
-                  <div className="media-right">
-                    <button
-                      type="button"
-                      className="delete"
-                      onClick={this.handleDelete}
-                    />
-                  </div>
-                </div>
-                <ReactAudioPlayer src={input.value.url} />
-              </div>
-            </article>
+            <SoundCard url={input.value.url} handleDelete={this.handleDelete} />
           ) : (
             <Dropzone onDrop={this.handleOnDrop} accept={mimeTypes[fileType]} className="dropzone">
               <Button

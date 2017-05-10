@@ -56,9 +56,7 @@ class NewMusicForm extends Component {
   }
 }
 
-NewMusicForm = reduxForm({
+export default NewMusicForm = reduxForm({
   form: 'music',
   validate
 })(NewMusicForm)
-
-export default NewMusicForm

@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import classNames from 'classnames'
 
-class Icon extends PureComponent {
+export default class Icon extends PureComponent {
   render() {
     const { icon, size, className } = this.props
     return (
@@ -11,5 +11,3 @@ class Icon extends PureComponent {
     )
   }
 }
-
-export default Icon

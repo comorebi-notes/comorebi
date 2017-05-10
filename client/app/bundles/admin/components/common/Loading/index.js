@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 
-class Loading extends PureComponent {
+export default class Loading extends PureComponent {
   render() {
     return (
       <div className="loading">
@@ -12,5 +12,3 @@ class Loading extends PureComponent {
     )
   }
 }
-
-export default Loading

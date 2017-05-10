@@ -7,7 +7,7 @@ import SoundCard from '../../Card/SoundCard'
 import Button from '../Button'
 import ErrorField from '../ErrorField'
 
-class FileUploadField extends Component {
+export default class FileUploadField extends Component {
   constructor() {
     super()
     this.handleOnDrop = this.handleOnDrop.bind(this)
@@ -63,5 +63,3 @@ class FileUploadField extends Component {
     )
   }
 }
-
-export default FileUploadField

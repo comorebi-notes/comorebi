@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-class WorksCount extends Component {
+export default class WorksCount extends Component {
   render() {
     const { count, totalCount } = this.props
     return (
@@ -14,5 +14,3 @@ class WorksCount extends Component {
     )
   }
 }
-
-export default WorksCount

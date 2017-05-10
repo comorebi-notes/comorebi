@@ -5,7 +5,7 @@ import SuggestionWork from './SuggestionWork'
 import SelectedWorks from './SelectedWorks'
 import * as utils from '../../../../utils'
 
-class SelectWorkField extends Component {
+export default class SelectWorkField extends Component {
   constructor() {
     super()
     this.state = {
@@ -138,5 +138,3 @@ class SelectWorkField extends Component {
     )
   }
 }
-
-export default SelectWorkField

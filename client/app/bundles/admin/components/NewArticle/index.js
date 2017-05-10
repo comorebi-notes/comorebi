@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import NewArticleForm from './NewArticleForm'
 
-class NewArticle extends Component {
+export default class NewArticle extends Component {
   componentDidMount() {
     const { actions } = this.props
     actions.getWorksAsync("article", "createArticle")
@@ -26,5 +26,3 @@ class NewArticle extends Component {
     )
   }
 }
-
-export default NewArticle

@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react'
 
 import * as utils from '../../../../../utils'
 
-class SelectedWork extends PureComponent {
+export default class SelectedWork extends PureComponent {
   constructor() {
     super()
     this.handleDelete = this.handleDelete.bind(this)
@@ -42,5 +42,3 @@ class SelectedWork extends PureComponent {
     )
   }
 }
-
-export default SelectedWork

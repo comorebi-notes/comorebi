@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import EditArticleForm from './EditArticleForm'
 import Loading from '../common/Loading'
 
-class EditArticle extends Component {
+export default class EditArticle extends Component {
   componentDidMount() {
     const { actions } = this.props
     actions.getWorksAsync("article", "editArticle")
@@ -31,5 +31,3 @@ class EditArticle extends Component {
     )
   }
 }
-
-export default EditArticle

@@ -3,7 +3,7 @@ import classNames from 'classnames'
 import Multiselect from 'react-widgets/lib/Multiselect'
 import 'react-widgets/dist/css/react-widgets.css'
 
-class MultiselectField extends Component {
+export default class MultiselectField extends Component {
   constructor() {
     super()
     this.handleCreate = this.handleCreate.bind(this)
@@ -44,5 +44,3 @@ class MultiselectField extends Component {
     )
   }
 }
-
-export default MultiselectField

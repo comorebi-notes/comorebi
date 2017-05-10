@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 
-class Id extends PureComponent {
+export default class Id extends PureComponent {
   render () {
     const { id } = this.props
     return (
@@ -8,5 +8,3 @@ class Id extends PureComponent {
     )
   }
 }
-
-export default Id

@@ -3,7 +3,7 @@ import React, { PureComponent } from 'react'
 import ModalCard from '../../../common/ModalCard'
 import Button from '../../../common/form/Button'
 
-class DestroyModal extends PureComponent {
+export default class DestroyModal extends PureComponent {
   render() {
     const { loading, handleCancel, handleDestroy } = this.props
     return (
@@ -33,5 +33,3 @@ class DestroyModal extends PureComponent {
     )
   }
 }
-
-export default DestroyModal

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import WorksTableWrapper from '../WorksTableWrapper'
 
-class ShowAllArticles extends Component {
+export default class ShowAllArticles extends Component {
   render() {
     const { actions, loading, articles, filters } = this.props
     const handleLoad = () => actions.getWorksAsync("article")
@@ -18,5 +18,3 @@ class ShowAllArticles extends Component {
     )
   }
 }
-
-export default ShowAllArticles

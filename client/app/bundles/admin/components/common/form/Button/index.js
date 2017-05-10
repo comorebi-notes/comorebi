@@ -3,7 +3,7 @@ import classNames from 'classnames'
 
 import Icon from '../../../common/Icon'
 
-class Button extends PureComponent {
+export default class Button extends PureComponent {
   render() {
     const { loading, label, type, color, size, icon, disabled, handleClick } = this.props
     const colorClassName = color === "default" ? "" : (color || 'is-primary')
@@ -28,5 +28,3 @@ class Button extends PureComponent {
     )
   }
 }
-
-export default Button

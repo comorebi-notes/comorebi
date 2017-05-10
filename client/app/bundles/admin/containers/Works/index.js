@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import TabMenu from '../../components/common/TabMenu'
 import menuItems from '../../constants/menuItems'
 
-class Works extends Component {
+export default class Works extends Component {
   render() {
     const { children, actions, path, works } = this.props
     return (
@@ -19,5 +19,3 @@ class Works extends Component {
     )
   }
 }
-
-export default Works

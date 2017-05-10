@@ -6,7 +6,7 @@ import FilteringStatusField from './FilteringStatusField'
 import WorksCount from '../WorksCount'
 import Pagination from '../Pagination'
 
-class Filters extends Component {
+export default class Filters extends Component {
   constructor() {
     super()
     this.changeWords    = this.changeWords.bind(this)
@@ -68,5 +68,3 @@ class Filters extends Component {
     )
   }
 }
-
-export default Filters

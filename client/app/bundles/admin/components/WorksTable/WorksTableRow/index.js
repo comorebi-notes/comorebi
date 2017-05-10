@@ -9,7 +9,7 @@ import Status from './Columns/Status'
 import PublishedAt from './Columns/PublishedAt'
 import Lyrics from './Columns/Lyrics'
 
-class WorksTableRow extends PureComponent {
+export default class WorksTableRow extends PureComponent {
   constructor() {
     super()
     this.handleClickRow   = this.handleClickRow.bind(this)
@@ -25,7 +25,7 @@ class WorksTableRow extends PureComponent {
   }
   render () {
     const { filters, columns,
-      work: { id, title, categories, status, images, published_at, lyrics, credit }
+      work: { id, title, categories, status, images, published_at, lyrics }
     } = this.props
     const columnItems = {
       thumbnail:    <Thumbnail image={images} />,
@@ -45,5 +45,3 @@ class WorksTableRow extends PureComponent {
     )
   }
 }
-
-export default WorksTableRow

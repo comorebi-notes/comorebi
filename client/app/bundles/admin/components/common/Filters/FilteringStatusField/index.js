@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-class FilteringStatusField extends Component {
+export default class FilteringStatusField extends Component {
   render() {
     const { handleChange } = this.props
     const statuses = ["", "published", "drafted", "deleted"]
@@ -21,5 +21,3 @@ class FilteringStatusField extends Component {
     )
   }
 }
-
-export default FilteringStatusField

@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react'
 
 import * as utils from '../../../../../utils'
 
-class SuggestionWork extends PureComponent {
+export default class SuggestionWork extends PureComponent {
   render () {
     const { item } = this.props
     return (
@@ -29,5 +29,3 @@ class SuggestionWork extends PureComponent {
     )
   }
 }
-
-export default SuggestionWork

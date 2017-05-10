@@ -3,7 +3,7 @@ import Highlighter from 'react-highlight-words'
 
 import * as filter from '../../../../utils/filter'
 
-class Lyrics extends PureComponent {
+export default class Lyrics extends PureComponent {
   render () {
     const { lyrics, filters } = this.props
     return (
@@ -20,5 +20,3 @@ class Lyrics extends PureComponent {
     )
   }
 }
-
-export default Lyrics

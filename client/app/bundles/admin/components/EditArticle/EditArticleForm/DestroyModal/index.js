@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 
 import ModalCard from '../../../common/ModalCard'
-import Button from '../../../common/form/Button'
+import Button from '../../../form/Button'
 
 export default class DestroyModal extends PureComponent {
   render() {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 import SelectedWork from '../SelectedWork'
-import * as utils from '../../../../../utils'
+import * as utils from '../../../../utils'
 
 export default class SelectedWorks extends Component {
   render () {

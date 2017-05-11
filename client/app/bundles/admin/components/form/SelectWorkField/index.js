@@ -3,7 +3,7 @@ import Autosuggest from 'react-autosuggest'
 
 import SuggestionWork from './SuggestionWork'
 import SelectedWorks from './SelectedWorks'
-import * as utils from '../../../../utils'
+import * as utils from '../../../utils'
 
 export default class SelectWorkField extends Component {
   constructor() {

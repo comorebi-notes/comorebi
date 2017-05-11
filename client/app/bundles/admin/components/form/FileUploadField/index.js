@@ -3,7 +3,8 @@ import Dropzone from 'react-dropzone'
 import FormData from 'form-data'
 import classNames from 'classnames'
 
-import SoundCard from '../../Card/SoundCard'
+import SoundCard from '../../common/Card/SoundCard'
+import ProgressBar from '../../common/ProgressBar'
 import Button from '../Button'
 import ErrorField from '../ErrorField'
 
@@ -47,17 +48,7 @@ export default class FileUploadField extends Component {
             </Dropzone>
           )}
           {isError && <ErrorField error={error} className="flat-error-field" />}
-          {loading && (
-            <div className="dropzone-progress">
-              <progress
-                className="progress is-info"
-                id={`progress-bar-${input.name}`}
-                value="0"
-                max="100"
-              />
-              <span id={`progress-text-${input.name}`} />
-            </div>
-          )}
+          {loading && <ProgressBar name={input.name} />}
         </div>
       </div>
     )

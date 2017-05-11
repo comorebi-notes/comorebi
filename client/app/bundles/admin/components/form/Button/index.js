@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import classNames from 'classnames'
 
-import Icon from '../../../common/Icon'
+import Icon from '../../common/Icon'
 
 export default class Button extends PureComponent {
   render() {

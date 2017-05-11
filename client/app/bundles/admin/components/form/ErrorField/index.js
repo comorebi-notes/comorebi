@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 
-import Icon from '../../Icon'
+import Icon from '../../common/Icon'
 
 export default class ErrorField extends PureComponent {
   render() {

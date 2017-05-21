@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import footerLinks from '../../../constants/footerLinks'
 
-class Footer extends Component {
+export default class Footer extends Component {
   render() {
     return (
       <footer className="footer is-admin">
@@ -33,5 +33,3 @@ class Footer extends Component {
     )
   }
 }
-
-export default Footer

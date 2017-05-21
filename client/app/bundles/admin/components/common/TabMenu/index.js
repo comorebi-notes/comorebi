@@ -5,7 +5,7 @@ import classNames from 'classnames'
 import Icon from '../Icon'
 import * as utils from '../../../utils'
 
-class TabMenu extends PureComponent {
+export default class TabMenu extends PureComponent {
   render() {
     const { path, menuItems } = this.props
     const rootPath = "/admin"
@@ -30,5 +30,3 @@ class TabMenu extends PureComponent {
     )
   }
 }
-
-export default TabMenu

@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react'
 
 import * as utils from '../../../../utils'
 
-class PublishedAt extends PureComponent {
+export default class PublishedAt extends PureComponent {
   render () {
     const { published_at } = this.props
     return (
@@ -12,5 +12,3 @@ class PublishedAt extends PureComponent {
     )
   }
 }
-
-export default PublishedAt

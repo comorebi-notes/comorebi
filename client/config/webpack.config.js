@@ -29,7 +29,7 @@ function getModule (env) {
         use: {
           loader: 'babel-loader',
           query: {
-            presets: ['react', 'es2015', 'es2017', 'stage-2']
+            presets: ['react', 'es2015', 'stage-2']
           }
         },
         exclude: /node_modules/

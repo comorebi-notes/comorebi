@@ -4,7 +4,7 @@ import WorksTableRow from './WorksTableRow'
 import TableCaptions from './TableCaptions'
 import tableColumns from '../../constants/tableColumns'
 
-class WorksTable extends Component {
+export default class WorksTable extends Component {
   render () {
     const { type, works, filters, actions } = this.props
     const captions = <TableCaptions columns={tableColumns[type]} />
@@ -28,5 +28,3 @@ class WorksTable extends Component {
     )
   }
 }
-
-export default WorksTable

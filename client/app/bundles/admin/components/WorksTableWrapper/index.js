@@ -6,7 +6,7 @@ import Loading from '../common/Loading'
 import Pagination from '../common/Pagination'
 import * as filter from '../../utils/filter'
 
-class WorksTableWrapper extends Component {
+export default class WorksTableWrapper extends Component {
   componentDidMount() {
     const { actions, handleLoad } = this.props
     actions.clearFilters()
@@ -44,5 +44,3 @@ class WorksTableWrapper extends Component {
     )
   }
 }
-
-export default WorksTableWrapper

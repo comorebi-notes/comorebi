@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react'
 
 import * as utils from '../../../../utils'
 
-class Status extends PureComponent {
+export default class Status extends PureComponent {
   render () {
     const { status } = this.props
     return (
@@ -12,5 +12,3 @@ class Status extends PureComponent {
     )
   }
 }
-
-export default Status

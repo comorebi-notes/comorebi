@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import WorksTableWrapper from '../WorksTableWrapper'
 
-class ShowAllMusics extends Component {
+export default class ShowAllMusics extends Component {
   render() {
     const { actions, loading, musics, filters } = this.props
     const handleLoad = () => actions.getWorksAsync("music")
@@ -18,5 +18,3 @@ class ShowAllMusics extends Component {
     )
   }
 }
-
-export default ShowAllMusics

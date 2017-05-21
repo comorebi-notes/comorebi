@@ -3,8 +3,8 @@ import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
 import { browserHistory } from 'react-router'
 
-import InputField from '../../common/form/InputField'
-import Button from '../../common/form/Button'
+import InputField from '../../form/InputField'
+import Button from '../../form/Button'
 import validate from './validate'
 
 class EditAdminForm extends Component {

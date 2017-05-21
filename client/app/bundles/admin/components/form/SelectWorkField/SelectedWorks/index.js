@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 
 import SelectedWork from '../SelectedWork'
-import * as utils from '../../../../../utils'
+import * as utils from '../../../../utils'
 
-class SelectedWorks extends Component {
+export default class SelectedWorks extends Component {
   render () {
     const { items, ids, renderSectionTitle, handleDelete } = this.props
     return (
@@ -30,5 +30,3 @@ class SelectedWorks extends Component {
     )
   }
 }
-
-export default SelectedWorks

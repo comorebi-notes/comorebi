@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import NewMusicForm from './NewMusicForm'
 
-class NewMusic extends Component {
+export default class NewMusic extends Component {
   componentDidMount() {
     const { actions } = this.props
     actions.getWorksAsync("music", "createMusic")
@@ -26,5 +26,3 @@ class NewMusic extends Component {
     )
   }
 }
-
-export default NewMusic

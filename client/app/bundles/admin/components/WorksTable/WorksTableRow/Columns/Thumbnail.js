@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 
-class Thumbnail extends PureComponent {
+export default class Thumbnail extends PureComponent {
   render () {
     const { images } = this.props
     const image = images ? images[0] : null
@@ -17,5 +17,3 @@ class Thumbnail extends PureComponent {
     )
   }
 }
-
-export default Thumbnail

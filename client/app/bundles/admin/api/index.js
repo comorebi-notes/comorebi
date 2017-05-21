@@ -1,6 +1,7 @@
 import axios from 'axios'
 
 import * as getParams from './getParams'
+import { document } from '../utils/browser-dependencies'
 
 axios.defaults.headers['X-Requested-With'] = 'XMLHttpRequest'
 const config = {

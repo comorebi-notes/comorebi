@@ -3,7 +3,7 @@ import { Link } from 'react-router'
 
 import Icon from '../Icon'
 
-class Header extends PureComponent {
+export default class Header extends PureComponent {
   render() {
     const { admin } = this.props
     const rootPath = "/admin"
@@ -40,5 +40,3 @@ class Header extends PureComponent {
     )
   }
 }
-
-export default Header

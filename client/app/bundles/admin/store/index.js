@@ -6,6 +6,7 @@ import promiseMiddleware from 'redux-promise'
 import createLogger from 'redux-logger'
 
 import rootReducer from '../reducers'
+import { window } from '../utils/browser-dependencies'
 
 const isDev = process.env.NODE_ENV === 'development'
 const router = routerMiddleware(browserHistory)

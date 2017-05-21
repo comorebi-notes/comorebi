@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 
-class TableCaptions extends PureComponent {
+export default class TableCaptions extends PureComponent {
   render() {
     const { columns } = this.props
     return (
@@ -14,5 +14,3 @@ class TableCaptions extends PureComponent {
     )
   }
 }
-
-export default TableCaptions

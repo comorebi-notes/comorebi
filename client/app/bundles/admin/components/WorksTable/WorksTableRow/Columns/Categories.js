@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 
-class Categories extends PureComponent {
+export default class Categories extends PureComponent {
   render () {
     const { categories, handleClick } = this.props
     return (
@@ -19,5 +19,3 @@ class Categories extends PureComponent {
     )
   }
 }
-
-export default Categories

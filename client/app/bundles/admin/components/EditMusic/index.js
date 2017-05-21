@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import EditMusicForm from './EditMusicForm'
 import Loading from '../common/Loading'
 
-class EditMusic extends Component {
+export default class EditMusic extends Component {
   componentDidMount() {
     const { actions } = this.props
     actions.getWorksAsync("music", "editMusic")
@@ -31,5 +31,3 @@ class EditMusic extends Component {
     )
   }
 }
-
-export default EditMusic

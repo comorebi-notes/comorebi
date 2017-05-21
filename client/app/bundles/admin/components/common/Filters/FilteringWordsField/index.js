@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import Icon from '../../Icon'
 
-class FilteringWordsField extends Component {
+export default class FilteringWordsField extends Component {
   render() {
     const { words, handleChange } = this.props
     return (
@@ -21,5 +21,3 @@ class FilteringWordsField extends Component {
     )
   }
 }
-
-export default FilteringWordsField

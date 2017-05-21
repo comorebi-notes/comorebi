@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 import { Field, reduxForm } from 'redux-form'
 import { browserHistory } from 'react-router'
 
-import InputField from '../../common/form/InputField'
-import TextareaField from '../../common/form/TextareaField'
-import FileUploadField from '../../common/form/FileUploadField'
-import Button from '../../common/form/Button'
+import InputField from '../../form/InputField'
+import TextareaField from '../../form/TextareaField'
+import FileUploadField from '../../form/FileUploadField'
+import Button from '../../form/Button'
 import validate from './validate'
 
 class NewMusicForm extends Component {
@@ -56,9 +56,7 @@ class NewMusicForm extends Component {
   }
 }
 
-NewMusicForm = reduxForm({
+export default NewMusicForm = reduxForm({
   form: 'music',
   validate
 })(NewMusicForm)
-
-export default NewMusicForm

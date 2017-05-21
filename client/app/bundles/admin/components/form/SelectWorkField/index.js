@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Autosuggest from 'react-autosuggest'
+import deepcopy from 'deepcopy'
 
 import SuggestionWork from './SuggestionWork'
 import SelectedWorks from './SelectedWorks'
@@ -67,11 +68,10 @@ export default class SelectWorkField extends Component {
   getSuggestionValue = (suggestion) => suggestion.title
   getSectionSuggestions = (section) => section.items
   handleDelete = (event, id, target) => {
-    const work_ids = this.props.input.value
+    const work_ids = deepcopy(this.props.input.value)
     const index = work_ids[target].indexOf(id)
     if (index >= 0) work_ids[target].splice(index, 1)
     this.props.input.onChange(work_ids)
-    this.onSuggestionsClearRequested()
   }
   handleAllDelete = () => this.props.input.onChange({})
   renderSuggestion = (suggestion) => (<SuggestionWork item={suggestion} />)

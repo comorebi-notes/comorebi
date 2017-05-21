@@ -67,7 +67,7 @@ class EditArticleForm extends Component {
           <div className="control">
             <Button
               color="is-danger"
-              label="消去"
+              label="削除"
               disabled={loading.updateArticle}
               icon="trash"
               handleClick={actions.toggleModal}

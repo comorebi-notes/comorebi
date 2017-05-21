@@ -7,7 +7,7 @@ import tableColumns from '../../constants/tableColumns'
 export default class WorksTable extends Component {
   render () {
     const { type, works, filters, actions } = this.props
-    const captions = <TableCaptions columns={tableColumns[type]} />
+    const captions = <TableCaptions columns={tableColumns(type)} />
     return (
       <table className="table works with-thumbnail">
         <thead>{captions}</thead>
@@ -16,7 +16,7 @@ export default class WorksTable extends Component {
             <WorksTableRow
               work={work}
               type={type}
-              columns={tableColumns[type]}
+              columns={tableColumns(type)}
               filters={filters}
               actions={actions}
               key={work.id}

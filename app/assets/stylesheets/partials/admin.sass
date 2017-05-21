@@ -30,9 +30,9 @@
   .notifications-wrapper
     strong
       color: white
-  .tag.can-click
+  .can-click
     cursor: pointer
-    // transition: opacity .2s ease-in-out
+    transition: opacity .2s ease-in-out
     &:hover
       opacity: .7
   .modal-wrapper
@@ -99,11 +99,12 @@
         text-align: center
       &.works-title
         min-width: 220px
-      &.status
-        width: 4em
-        text-align: center
       &.published_at
         width: 7em
+      &.control
+        text-align: center
+        i
+          font-size: 2em
       &.lyrics
         font-size: .9em
         p
@@ -142,19 +143,19 @@
           td
             text-align: center
         &.published
-          td.status
+          td.control
             color: $info
         &.drafted
           background-color: lighten($warning, 45%)
           &:hover
             background-color: lighten($warning, 40%)
-          td.status
+          td.control
             color: $warning
-        &.deleted
+        &.closed
           color: lighten($text, 20%)
-          background-color: lighten($text, 60%)
+          background-color: lighten($text, 65%)
           &:hover
-            background-color: lighten($text, 55%)
+            background-color: lighten($text, 60%)
 
   div.loading
     color: lighten($text, 50%)

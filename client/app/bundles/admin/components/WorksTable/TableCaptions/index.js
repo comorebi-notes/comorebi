@@ -6,7 +6,7 @@ export default class TableCaptions extends PureComponent {
     return (
       <tr>
         {columns.map((column) => (
-          <th key={column.label} className={column.className || ''}>
+          <th key={column.name} className={column.className || ''}>
             {column.label}
           </th>
         ))}

@@ -43,8 +43,7 @@ export const humanDateTime = (dateString, full) => {
 
 const statuses = {
   published: { label: "公開",   icon: "check-circle" },
-  drafted:   { label: "下書き", icon: "file-text-o" },
-  deleted:   { label: "削除",   icon: "ban" }
+  closed:    { label: "非公開", icon: "minus-circle" }
 }
 
 export const publishStatusLabel = (status) => statuses[status].label
@@ -53,6 +52,15 @@ export const publishStatusIcon  = (status) => (
     <i className={classNames("fa", `fa-${statuses[status].icon}`)} />
   </span>
 )
+export const publishStatus = (status, publishedDate) => {
+  if (!publishedDate) {
+    return ""
+  } else if (status === "closed") {
+    return "closed"
+  } else {
+    return Date.parse(publishedDate) < new Date() ? "published" : "drafted"
+  }
+}
 
 export const getId = (path) => parseInt(path.split('/')[3], 10)
 export const findWork = (works, id) => works.filter(work => work.id === id)[0]

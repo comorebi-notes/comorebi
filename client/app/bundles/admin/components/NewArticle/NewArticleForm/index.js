@@ -72,7 +72,7 @@ class NewArticleForm extends Component {
 
 const mapStateToProps = (state) => ({
   initialValues: {
-    status: "drafted",
+    status: "private",
     work_ids: {}
   },
   categories: state.main.categories,

@@ -7,16 +7,14 @@ export default class PublishStatusFields extends Component {
     const { status, label } = this.props
     const statusesData = [
       { name: "published", caption: "公開",   icon: "check-circle" },
-      { name: "drafted",   caption: "下書き", icon: "file-text-o" },
-      { name: "deleted",   caption: "削除",   icon: "ban" }
+      { name: "closed",    caption: "非公開", icon: "minus-circle" }
     ]
     const buttonClassName = (name) => {
       const value = status.input.value
       return classNames(
         "button",
-        { "is-info":    value === statusesData[0].name && value === name },
-        { "is-warning": value === statusesData[1].name && value === name },
-        { "is-dark":    value === statusesData[2].name && value === name }
+        { "is-info": value === statusesData[0].name && value === name },
+        { "is-dark": value === statusesData[1].name && value === name }
       )
     }
     return (

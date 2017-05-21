@@ -9,10 +9,10 @@ export default class DestroyModal extends PureComponent {
     return (
       <ModalCard>
         <ModalCard.Header>
-          作品の消去
+          作品の削除
         </ModalCard.Header>
         <ModalCard.Body>
-          一度消去すると復元できませんが本当によろしいですか？
+          一度削除すると復元できませんが本当によろしいですか？
         </ModalCard.Body>
         <ModalCard.Footer>
           <Button
@@ -23,7 +23,7 @@ export default class DestroyModal extends PureComponent {
           />
           <Button
             color="is-danger"
-            label="消去"
+            label="削除"
             loading={loading}
             icon="trash"
             handleClick={handleDestroy}

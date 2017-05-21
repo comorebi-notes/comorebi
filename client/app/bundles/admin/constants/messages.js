@@ -7,7 +7,7 @@ const targets = {
 const actions = {
   update:  "更新",
   create:  "作成",
-  destroy: "消去"
+  destroy: "削除"
 }
 
 const levels = {

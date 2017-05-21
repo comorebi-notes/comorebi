@@ -1,4 +1,5 @@
 import { handleActions } from 'redux-actions'
+import { window } from '../utils/browser-dependencies'
 
 const currentAdmin = window.data.admin || ''
 const windowNotification = window.data.notification || {}

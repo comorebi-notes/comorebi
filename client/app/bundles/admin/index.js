@@ -7,6 +7,7 @@ import scroll from './utils/scroll'
 
 import configureStore from './store'
 import adminRoutes from './routes'
+import { document } from './utils/browser-dependencies'
 
 const store = configureStore()
 const history = syncHistoryWithStore(browserHistory, store)
